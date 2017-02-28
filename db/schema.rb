@@ -10,12 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228181357) do
+ActiveRecord::Schema.define(version: 20170228193513) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "amenities_spaces", id: false, force: :cascade do |t|
+    t.integer "amenity_id"
+    t.integer "space_id"
   end
 
   create_table "authentications", force: :cascade do |t|
@@ -43,6 +48,11 @@ ActiveRecord::Schema.define(version: 20170228181357) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories_spaces", id: false, force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "space_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.integer  "space_id"
     t.datetime "created_at", null: false
@@ -54,7 +64,6 @@ ActiveRecord::Schema.define(version: 20170228181357) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "space_id"
-    t.integer  "booking_id"
     t.integer  "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170228181357) do
     t.integer  "size"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "avatar"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,7 +98,8 @@ ActiveRecord::Schema.define(version: 20170228181357) do
     t.datetime "reset_password_email_sent_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.date     "birthdate"
+    t.date     "birthday"
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"

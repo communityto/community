@@ -1,4 +1,5 @@
 class Space < ApplicationRecord
+  mount_uploaders :avatars, AvatarUploader
   has_and_belongs_to_many :amenities
   has_and_belongs_to_many :categories
   has_many :reviews
