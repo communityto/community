@@ -32,15 +32,15 @@ end
 25.times do
   s = Space.create!(
     host: User.all.sample,
-    title: Faker::App.name,
+    title: Faker::Pokemon.name,
     description: Faker::Lorem.paragraph,
     price: rand(200),
     check_in: Time.current,
     check_out: Time.current + rand(5).hours,
     rules: Faker::Lorem.paragraph,
-    capacity: rand(100),
+    capacity: rand(1..100),
     bathrooms: rand(10),
-    size: rand(5000)
+    size: rand(1..5000)
   )
    s.categories << Category.all.sample
    s.amenities << Amenity.all.sample
@@ -59,9 +59,11 @@ end
   1.times do
      s.reviews.create!(
        user: User.all.sample,
-       title: Faker::Lorem.sentence,
        content: Faker::Lorem.paragraph,
-       rating: rand(5)
+       accuracy: rand(5),
+       facilities: rand(5),
+       communication: rand(5),
+       location: rand(5)
      )
    end
 end
