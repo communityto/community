@@ -1,0 +1,50 @@
+<%= form_for @space do |f| %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :check_in %>
+    <%= f.text_field :check_in %>
+    <%= f.label :check_out %>
+    <%= f.text_field :check_out %>
+  </div>
+
+  <div>
+    <%= f.label :capacity %>
+    <%= f.text_field :capacity %>
+  </div>
+
+  <div>
+    <%= f.label :size %>
+    <%= f.text_field :size %>
+  </div>
+
+  <div>
+    <%= f.label :bathrooms %>
+    <%= f.text_field :bathrooms %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div>
+    <%= f.label :rules %>
+    <%= f.text_field :rules %>
+  </div>
+
+  <% end %>
