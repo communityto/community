@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 root "spaces#index"
 
 resources :spaces, only: [:index, :new, :create, :show] do
-  resources :reviews
   resources :bookings
+  resources :reviews
 end
 resources :users, only: [:new, :create, :show]
 resources :user_sessions, only: [:new, :create, :destroy]
