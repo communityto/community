@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20170228200913) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "space_id"
-    t.integer  "booking_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "accuracy"
@@ -85,6 +84,7 @@ ActiveRecord::Schema.define(version: 20170228200913) do
     t.integer  "size"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "avatar"
     t.integer  "host_id"
   end
 
@@ -101,7 +101,8 @@ ActiveRecord::Schema.define(version: 20170228200913) do
     t.datetime "reset_password_email_sent_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.date     "birthdate"
+    t.date     "birthday"
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"

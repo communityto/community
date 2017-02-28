@@ -1,6 +1,10 @@
 <%= form_for @space do |f| %>
 
   <div>
+    <%= file_field :avatars, multiple: true %>
+  </div>
+
+  <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
