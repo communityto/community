@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def new
       @user = User.new
-      @photo = Photo.new
+      
     end
 
     def create
