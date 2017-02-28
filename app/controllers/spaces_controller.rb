@@ -1,5 +1,6 @@
 class SpacesController < ApplicationController
   #before_action :require_login, only: [:new, :create]
+  before_action :load_space
 
   def index
     @spaces = Space.all
@@ -7,6 +8,16 @@ class SpacesController < ApplicationController
 
   def show
     @space = Space.find(params[:id])
+
+    if current_user
+      @review = Review.new
+    end
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
 
   def new
@@ -31,7 +42,13 @@ class SpacesController < ApplicationController
   end
 
   private
+
   def space_params
     params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, {avatars: []})
   end
+
+  def load_space
+    @space = Space.find(params[:id])
+  end
+
 end

@@ -3,7 +3,9 @@
 <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
 <%# review.title %>
+<div class="new_review">
 <%= review.content %>
+</div>
 
 <% if review.user != nil  %>
     <p> by <%= review.user %>></p>
