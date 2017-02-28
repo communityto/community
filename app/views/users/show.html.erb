@@ -1,0 +1,13 @@
+<h1>Hiiiiiiiii, <%= @user.first_name %> :) </h1>
+
+
+<h3> You currently have <%= pluralize(@user.bookings.count,'booking') %> </h3>
+<% if @user.bookings.any? %>
+  <h2>Your bookings</h2>
+  <% @user.bookings.each do |b| %>
+  <p><%= b.spaces.title %> <br />
+    <%= b.spaces.address %> <br />
+    <%= b.start_datetime %> <br />
+    <%= b.end_datetime %> <br /> </p>
+  <% end %>
+  <% end %>
