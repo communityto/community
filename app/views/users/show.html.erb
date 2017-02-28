@@ -4,10 +4,14 @@
 <h3> You currently have <%= pluralize(@user.bookings.count,'booking') %> </h3>
 <% if @user.bookings.any? %>
   <h2>Your bookings</h2>
+  <%# @user.booked_spaces.each do |b|%>
+  <%# b.title%>
+  <%# end %>
   <% @user.bookings.each do |b| %>
-  <p><%= b.spaces.title %> <br />
-    <%= b.spaces.address %> <br />
-    <%= b.start_datetime %> <br />
-    <%= b.end_datetime %> <br /> </p>
+  <!-- <p>Space ID: <%= b.space_id %> <br /> -->
+    <%= b.find_booked_space.title %>
+    <%#= b.spaces.address %> <br />
+    <!-- <%= b.start_datetime %> <br />
+    <%= b.end_datetime %> <br /> </p> -->
   <% end %>
   <% end %>
