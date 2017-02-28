@@ -19,8 +19,13 @@ ActiveRecord::Schema.define(version: 20170227221017) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "space_id"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.text     "note"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -40,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170227221017) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "space_id"
+    t.integer  "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,15 +54,15 @@ ActiveRecord::Schema.define(version: 20170227221017) do
     t.string   "title"
     t.text     "description"
     t.string   "address"
-    t.datetime "check_in"
-    t.datetime "check_out"
+    t.time     "check_in"
+    t.time     "check_out"
     t.integer  "price"
     t.text     "rules"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.integer  "capacity"
     t.integer  "bathrooms"
-    t.string   "size"
+    t.integer  "size"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170227221017) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password"
-    t.date     "birthday"
+    t.date     "birthdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

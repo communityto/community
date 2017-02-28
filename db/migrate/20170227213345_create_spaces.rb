@@ -4,10 +4,13 @@ class CreateSpaces < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :description
       t.string :address
-      t.datetime :check_in
-      t.datetime :check_out
+      t.time :check_in
+      t.time :check_out
       t.integer :price
       t.text :rules
+      t.integer :capacity
+      t.integer :bathrooms
+      t.integer :size
 
       t.timestamps
     end
