@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228193513) do
+ActiveRecord::Schema.define(version: 20170228200913) do
 
   create_table "amenities", force: :cascade do |t|
-    t.string   "type"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170228193513) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "type"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,13 +60,15 @@ ActiveRecord::Schema.define(version: 20170228193513) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string   "title"
     t.text     "content"
     t.integer  "user_id"
     t.integer  "space_id"
-    t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "accuracy"
+    t.integer  "communication"
+    t.integer  "facilities"
+    t.integer  "location"
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170228193513) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "avatar"
+    t.integer  "host_id"
   end
 
   create_table "users", force: :cascade do |t|
