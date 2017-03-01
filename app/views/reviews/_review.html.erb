@@ -9,7 +9,7 @@
 
   <% if review.user != nil  %>
     <p> by <%= review.user %>></p>
-    <p>Added on: <%= review.created_at %></p>
+    <p>Added on: <%= review.created_at.localtime%></p>
   <% end %>
 
 </div>
