@@ -1,11 +1,16 @@
-<h1>Reviews for this space</h1>
+<div class="new_review">
 
+<h1>Reviews for this space: partial from Spaces</h1>
+
+<div id="reviews_list">
 <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
+<div id="review_message">
 <p>
   <%# review.title %>
   <%= review.content %>
 </p>
+</div>
 
 <% if review.user != nil  %>
   <p> by <%= review.user %>></p>
@@ -13,3 +18,6 @@
 <% end %>
 
 <% end %>
+
+</div>
+</div>
