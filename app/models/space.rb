@@ -1,5 +1,4 @@
 class Space < ApplicationRecord
-
   mount_uploaders :avatars, AvatarUploader
 
   validates :title, length: { minimum: 3 }, on: :create
