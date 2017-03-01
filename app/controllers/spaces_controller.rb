@@ -10,6 +10,8 @@ class SpacesController < ApplicationController
 
     # if current_user
       @review = Review.new
+    # else
+      # render :login_path
     # end
 
     respond_to do |format|

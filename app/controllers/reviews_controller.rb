@@ -6,6 +6,9 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
+  def index
+  end
+
   def show
   end
 
@@ -16,7 +19,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
-        format.js
+        format.js  # server will look at comment/create.js.erb
       else
         format.html {render 'space/show', notice: 'There was an error!'}
         format.js
