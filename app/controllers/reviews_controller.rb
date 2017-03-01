@@ -1,18 +1,22 @@
 class ReviewsController < ApplicationController
 
-  before_action :load_space
+  # before_action :load_space
 
   def new
+    @space = Space.find(params[:id])
     @review = Review.new
   end
 
   def index
+    @space = Space.find(params[:id])
   end
 
   def show
+    @space = Space.find(params[:id])
   end
 
   def create
+    @space = Space.find(params[:space_id])
     @review = @space.reviews.build(review_params)
     @review.user = current_user
 
@@ -28,13 +32,14 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @space = Space.find(params[:id])
   end
 
 
 private
 
   def review_params
-    params.require(:review).permit(:content, :title)
+    params.require(:review).permit(:content)
   end
 
   def load_space

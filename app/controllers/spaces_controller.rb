@@ -8,11 +8,11 @@ class SpacesController < ApplicationController
   def show
     @space = Space.find(params[:id])
 
-    # if current_user
+    if current_user
       @review = Review.new
-    # else
-      # render :login_path
-    # end
+    else
+      render :login_path
+    end
 
     respond_to do |format|
       format.html
