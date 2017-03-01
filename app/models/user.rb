@@ -13,10 +13,4 @@ class User < ApplicationRecord
   has_many :booked_spaces, :class_name => 'Space', through: :bookings, source: :space
   has_many :hosted_spaces, :class_name => 'Space', source: :space, foreign_key: :host_id
 
-
-  # def find_booked_space_title
-  #   space_id = @booking.space_id
-  #   title = Space.find(space_id).title
-  # end
-
 end
