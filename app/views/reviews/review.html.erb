@@ -1,0 +1,13 @@
+<div class="new_review">
+
+  <p>
+    <%# review.title %>
+    <%= review.content %>
+  </p>
+
+  <% if review.user != nil  %>
+    <p> by <%= review.user %>></p>
+    <p>Added on: <%= review.created_at %></p>
+  <% end %>
+
+</div>

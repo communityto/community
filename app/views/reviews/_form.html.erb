@@ -1,16 +1,20 @@
+<%# if current_user  %>
+
 <h1>New Review!</h1>
 
   <%= form_for [@space, @review], remote: true do |f| %>
-    <div class="field">
-      <%= f.string :title %>
+    <div id="comment_errors">
+    <% render :partial => "reviews/errors" %>
     </div>
+
     <div class="field">
       <%= f.text_area :content %>
     </div>
+
     <div class="actions">
       <%= f.submit  %>
     </div>
 
-<%# f.hidden_field :user_id, :value => current_user %>
+<% f.hidden_field :user_id, :value => current_user %>
 
 <% end  %>

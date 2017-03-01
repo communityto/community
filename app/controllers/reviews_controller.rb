@@ -8,17 +8,17 @@ class ReviewsController < ApplicationController
 
   def show
   end
-  
+
   def create
-    @review = @space.reviews.build(reviews_params)
+    @review = @space.reviews.build(review_params)
     @review.user = current_user
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to space_url(@space.id), notice: "Review added!"}
+        format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
         format.js
       else
-        format.html {render 'space/show', notice: "Zere was an error!"}
+        format.html {render 'space/show', notice: 'There was an error!'}
         format.js
       end
     end

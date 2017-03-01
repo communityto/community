@@ -1,0 +1,11 @@
+// server will send back pure JS with erb filtered thorugh
+<% if @review.errors.any? %>
+
+  $("#review_errors").html("<%= (render(:partial => 'errors')) %>");
+
+<% else %>
+
+  $('#reviews_list').prepend('<%= render @comment %>');
+  $('#review_message').val("");
+
+<% end %>

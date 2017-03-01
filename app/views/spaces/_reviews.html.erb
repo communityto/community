@@ -2,12 +2,14 @@
 
 <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
-<%# review.title %>
-<%= review.content %>
+<p>
+  <%# review.title %>
+  <%= review.content %>
+</p>
 
 <% if review.user != nil  %>
-    <p> by <%= review.user %>></p>
-    <p>Added on: <%= review.created_at %></p>
+  <p> by <%= review.user %>></p>
+  <p>Added on: <%= review.created_at %></p>
 <% end %>
 
 <% end %>
