@@ -27,4 +27,46 @@ class Space < ApplicationRecord
     datetime.strftime("%Y-%m-%d")
   end
 
+  def accuracy_avg
+    accuracy_sum = reviews.sum(:accuracy)
+    accuracy_count = reviews.count(:accuracy)
+    accuracy_avg = accuracy_sum / accuracy_count
+  end
+
+  def communication_avg
+    communication_sum = reviews.sum(:communication)
+    communication_count = reviews.count(:communication)
+    communication_avg = communication_sum / communication_count
+  end
+
+  def facilities_avg
+    facilities_sum = reviews.sum(:facilities)
+    facilities_count = reviews.count(:facilities)
+    facilities_avg = facilities_sum / facilities_count
+  end
+
+  def location_avg
+    location_sum = reviews.sum(:location)
+    location_count = reviews.count(:location)
+    location_avg = location_sum / location_count
+  end
+
+  # def communication_avg
+  #   review_communication_sum = @reviews.sum(:communication)
+  #   review_communication_count = @reviews.count(:communication)
+  #   review_communication_avg = review_communication_sum / review_communication_count
+  # end
+  #
+  # def facilities_avg
+  #   review_facilities_sum = @reviews.sum(:facilities)
+  #   review_facilities_count = @reviews.count(:facilities)
+  #   review_facilities_avg = review_facilities_sum / review_facilities_count
+  # end
+  #
+  # def location_avg
+  #   review_location_sum = @reviews.sum(:location)
+  #   review_location_count = @reviews.count(:location)
+  #   review_location_avg = review_location_sum / review_location_count
+  # end
+
 end
