@@ -51,8 +51,8 @@ end
   Booking.create!(
     user: User.all.sample,
     space: s,
-    start_datetime: s.check_in + rand(5).days,
-    end_datetime: s.check_out + rand(6..30).days,
+    start_datetime: Time.current + rand(5).days,
+    end_datetime: Time.current + rand(6..30).days,
     note: Faker::Lorem.paragraph
   )
 

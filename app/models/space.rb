@@ -15,5 +15,12 @@ class Space < ApplicationRecord
   has_one :location
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
-  has_many :bookings
+  def all_booked_dates
+    booked_dates = []
+    bookings.where(approved: true).each do |b| # Iterates over all approved bookings for particular space.
+      booked_dates.push(*b.unavailable_dates)
+    end
+    return booked_dates
+  end
+
 end
