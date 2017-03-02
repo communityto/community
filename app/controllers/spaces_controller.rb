@@ -7,6 +7,18 @@ class SpacesController < ApplicationController
 
   def show
     @space = Space.find(params[:id])
+
+    if current_user
+      @review = Review.new
+    else
+      render :login_path
+    end
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
 
   def new
@@ -24,6 +36,14 @@ class SpacesController < ApplicationController
       end
   end
 
+  def edit
+    @space = Space.find(params[:id])
+  end
+
+  def update
+    @space = Space.find(space_params)
+  end
+
   def destroy
     @space = Space.find(params[:id])
     space.destroy
@@ -31,7 +51,9 @@ class SpacesController < ApplicationController
   end
 
   private
+
   def space_params
     params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, {avatars: []})
   end
+
 end

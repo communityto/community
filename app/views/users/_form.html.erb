@@ -1,1 +1,27 @@
 
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.text_field :first_name, :placeholder => 'First Name' %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :last_name, :placeholder => 'Last Name' %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :email, :placeholder => 'Email' %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, :placeholder => 'Password' %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, :placeholder => 'Re-enter Password' %>
+  </div>
+
+  <div class="field">
+    <%= f.submit %>
+  </div>
+
+<% end %>

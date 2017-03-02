@@ -1,5 +1,10 @@
 <h1>Space Show </h1>
 
-<%= render 'reviews' %>
+<%# for new reviews: %>
 
-<%= @space.title %>
+<%= render 'reviews/form' %>
+
+<div id="reviews_list">
+  <%= render "reviews" %>
+</div>
+

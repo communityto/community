@@ -1,1 +1,29 @@
-<h1>Reviews for this space</h1>
+<div class="new_review">
+
+<h1>Reviews for this space: partial from Spaces</h1>
+
+<div id="reviews_list">
+<% @space.reviews.order(created_at: :desc).each do |review|  %>
+
+<div id="review_message">
+<p>
+  <%# review.title %>
+  <%= review.content %></br>
+  Accuracy: <%= review.accuracy %></br>
+  Communication: <%= review.communication %></br>
+  Facilities: <%= review.facilities %></br>
+  Location: <%= review.location %></br>
+
+</p>
+</div>
+
+<% if review.user != nil  %>
+  <p> by <%= review.user %>></p>
+  <p>Added on: <%= review.created_at %></p>
+<% end %>
+
+<% end %>
+
+</div>
+</div>
+

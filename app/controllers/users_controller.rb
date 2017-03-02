@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :require_login
   def new
       @user = User.new
       @user.avatar = params[:file]
@@ -15,7 +16,9 @@ class UsersController < ApplicationController
     end
 
     def show
-      @user = User.find(params[:id])
+
+      @user = current_user
+
     end
 
 
@@ -23,4 +26,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:avatar, :first_name, :last_name, :email, :password, :password_confirmation)
     end
+
+
 end

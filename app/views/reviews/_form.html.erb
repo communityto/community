@@ -1,0 +1,49 @@
+<%# if current_user  %>
+
+<h1>New Review!</h1>
+
+  <%= form_for [@space, @review], remote: true do |f| %>
+    <div id="review_errors">
+    <% render :partial => "reviews/errors" %>
+    </div>
+
+    <div class="field">
+      <%= f.text_area :content %>
+    </div>
+
+    <div class="star-rating">
+
+<%# <%= f.label :accuracy %>
+  Accuracy:
+  <% 5.times do |button| %>
+    <%= f.label :accuracy, button + 1 %>
+    <%= f.radio_button :accuracy, button + 1  %>
+  <% end %>
+
+  <br>Communication:
+  <% 5.times do |button| %>
+    <%= f.label :communication, button + 1 %>
+    <%= f.radio_button :communication, button + 1  %>
+  <% end %>
+
+  <br>Facilities
+  <% 5.times do |button| %>
+    <%= f.label :facilities, button + 1 %>
+    <%= f.radio_button :facilities, button + 1  %>
+  <% end %>
+
+  <br>Location
+  <% 5.times do |button| %>
+    <%= f.label :location, button + 1 %>
+    <%= f.radio_button :location, button + 1  %>
+  <% end %>
+
+    </div>
+
+    <div class="actions">
+      <%= f.submit  %>
+    </div>
+
+<% f.hidden_field :user_id, :value => current_user %>
+
+<% end  %>
