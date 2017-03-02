@@ -1,51 +1,23 @@
-<h1>Booking#new</h1>
+<h1>Create a booking</h1>
 <p>Find me in app/views/booking/new.html.erb</p>
-
-<!-- <div class="container">
-  <form accept-charset="UTF-8" action="/" method="post" class="new_booking" id="new_booking">
-    <div class='col-md-5'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" name="booking[start_datetime]" id="booking_start_datetime" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class='col-md-5'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" name="booking[end_datetime]" id="booking_end_datetime"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <input type='textarea' name="note">
-    <input type='submit' name="commit" value="submit">
-</form>
-</div> -->
 
 <div class="container">
   <%= form_for [@space, @booking] do |f| %>
     <div class='col-md-5'>
         <div class="form-group">
             <div class='input-group date' id='datetimepicker6'>
-                <%= f.text_field :start_datetime, :html => {:class => "form-control"} %>
-                <!-- <input type='text' class="form-control" name="booking[start_datetime]" id="booking_start_datetime" /> -->
+                <%= f.text_field :start_datetime, :class => "form-control" %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
     </div>
+
     <div class='col-md-5'>
         <div class="form-group">
             <div class='input-group date' id='datetimepicker7'>
-              <%= f.text_field :end_datetime, :html => {:class => "form-control"} %>
-                <!-- <input type='text' class="form-control" name="booking[end_datetime]" id="booking_end_datetime"/> -->
+              <%= f.text_field :end_datetime, :class => "form-control" %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -54,19 +26,36 @@
     </div>
 
     <%= f.text_field :note %>
-    <!-- <input type='textarea' name="note"> -->
+
     <div class="form-actions">
-    <%= f.submit "save" %>
+      <%= f.submit "save" %>
     </div>
-    <!-- <input type='submit' name="commit" value="submit"> -->
-<!-- </form> -->
-<% end %>
+
+  <% end %>
 </div>
+
+<%= @space.bookings.each do |x| %>
+  <%= x %>
+<% end %>
+
+<br><br>
+
+<%= @space.all_booked_dates %>
+
+<!-- ##### SCRIPTS ##### -->
 
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker6').datetimepicker({
+          format: 'DD/MM/YYYY',
+          showTodayButton: true,
+          disabledDates: <%= raw @space.all_booked_dates %>,
+          useCurrent: false
+        });
         $('#datetimepicker7').datetimepicker({
+            format: 'DD/MM/YYYY',
+            showTodayButton: true,
+            disabledDates: <%= raw @space.all_booked_dates %>,
             useCurrent: false //Important! See issue #1075
         });
         $("#datetimepicker6").on("dp.change", function (e) {
@@ -74,6 +63,10 @@
         });
         $("#datetimepicker7").on("dp.change", function (e) {
             $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+        $('#datetimepicker5').datetimepicker({
+            defaultDate: moment(),
+            disabledDates: <%= raw @space.all_booked_dates %>
         });
     });
 </script>
