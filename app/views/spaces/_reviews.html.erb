@@ -3,6 +3,7 @@
   <h1>Reviews for this space</h1>
 
 <div id="reviews_summary">
+  <h2> Review Averages </h2>
   <p>
     Accuracy Average: <%= @review_accuracy_avg %></br>
     Communication Average: <%= @review_communication_avg %></br>
@@ -11,6 +12,8 @@
   </p>
 
 </div>
+
+  <h2> Reviews </h2>
 
 <div id="reviews_list">
   <% @space.reviews.order(created_at: :desc).each do |review|  %>
