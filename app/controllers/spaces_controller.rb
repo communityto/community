@@ -7,6 +7,9 @@ class SpacesController < ApplicationController
 
   def show
     @space = Space.find(params[:id])
+    @review_accuracy_sum = Review.where(:space_id => (params[:id])).sum(:accuracy)
+    @review_accuracy_count = Review.where(:space_id => (params[:id])).count(:accuracy)
+    @review_accuracy_avg = @review_accuracy_sum / @review_accuracy_count
 
     if current_user
       @review = Review.new
