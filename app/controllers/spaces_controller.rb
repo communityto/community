@@ -2,7 +2,7 @@ class SpacesController < ApplicationController
   #before_action :require_login, only: [:new, :create]
 
   def index
-    @spaces = Space.search(params[:search])
+    @spaces = Space.all
   end
 
   def show

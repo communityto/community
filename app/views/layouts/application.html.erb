@@ -9,8 +9,14 @@
   </head>
 
   <body>
+      <%= link_to "Explore", categories_path %> |
+      <%= link_to "Home", root_path %> |
      <% if current_user %>
-    <%= link_to "Profile", current_user %>
+     <%= link_to "Profile", current_user %> |
+     <%= link_to "Logout", :logout, method: :post %> |
+    <% else %>
+      <%= link_to "Register", new_user_path %> |
+      <%= link_to "Login", :login %>
     <% end %>
     <%= yield %>
   </body>
