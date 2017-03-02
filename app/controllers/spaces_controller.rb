@@ -7,9 +7,7 @@ class SpacesController < ApplicationController
 
   def show
     @space = Space.find(params[:id])
-
     @reviews = @space.reviews
-
     @review = Review.new
 
     respond_to do |format|
@@ -51,7 +49,7 @@ class SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, {avatars: []})
+    params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, {avatars: []}, :amenity_ids => [], :category_ids => [])
   end
 
 end

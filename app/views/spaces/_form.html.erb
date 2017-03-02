@@ -52,22 +52,16 @@
   </div>
 
   <div>
-    Categories
-    <% Category.all.each do |c| %>
-      <%= f.label :category, c.name %>
-      <%= f.check_box :categories %>
-    <% end %>
+    <%= f.label :amenity %>
+    <%= f.collection_check_boxes(:amenity_ids, Amenity.all, :id, :name) %>
   </div>
 
   <div>
-    Amenities
-    <% Amenity.all.each do |a| %>
-      <%= f.label :amenity, a.name %>
-      <%= f.check_box :amenities %>
-    <% end %>
+    <%= f.label :category %>
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </div>
 
-  <%= f.hidden_field :owner_id, :value => current_user.id %>
+  <%= f.hidden_field :host_id, :value => current_user.id %>
 
   <%= f.submit %>
 
