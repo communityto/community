@@ -1,4 +1,14 @@
 <h1><%= @space.title %></h1>
+<% if logged_in? %>
+  <% unless current_user.favourite_spaces.exists?(id: @space.id) -%>
+    <p> Do you love this space? If so...
+      <%= link_to 'add it to my favourites!', favourite_spaces_path(space_id: @space), method: :post %> </p>
+  <% else %>
+    <p> Cool! This is one of your favourite Spaces!</p>
+    <p> Not a fan anymore?
+    <%= link_to 'Remove this Space from my favourites!', favourite_spaces_path(@space), method: :destroy %></p>
+  <% end %>
+<% end %>
 
 <%# for new reviews: %>
 

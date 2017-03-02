@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :favourite_spaces, only: [:create, :destroy]
+
   root "spaces#index"
   resources :user_sessions
   resources :users

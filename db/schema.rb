@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302190204) do
+ActiveRecord::Schema.define(version: 20170302203616) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20170302190204) do
   create_table "categories_spaces", id: false, force: :cascade do |t|
     t.integer "category_id"
     t.integer "space_id"
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "favourited_type"
+    t.integer  "favourited_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["favourited_type", "favourited_id"], name: "index_favourites_on_favourited_type_and_favourited_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
