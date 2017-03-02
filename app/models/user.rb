@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_many :booked_spaces, :class_name => 'Space', through: :bookings, source: :space
   has_many :hosted_spaces, :class_name => 'Space', source: :space, foreign_key: :host_id
+
+  has_many :favourites
+  has_many :favourite_spaces, through: :favourites, source: :favourited, source_type: 'Space'
+
 end
