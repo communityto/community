@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   before_action :load_space
   # why is create using a :space_id? rather than :id params?
 
@@ -12,7 +11,7 @@ class ReviewsController < ApplicationController
 
   def show
   end
-
+  
   def create
     @review = @space.reviews.build(review_params)
     @review.user = current_user
@@ -34,16 +33,13 @@ class ReviewsController < ApplicationController
   def destroy
   end
 
-
-private
-
+  private
+  
   def review_params
-    params.require(:review).permit(:content, :accuracy, :communication, :facilities, :location)
+    params.require(:review).permit(:content)
   end
-
 
   def load_space
     @space = Space.find(params[:space_id])
   end
-
 end
