@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :favourite_spaces, only: [:create, :destroy]
 
   root "spaces#index"
-  resources :user_sessions
-  resources :users
+  resources :user_sessions, only: [:create]
+  resources :users, only: [:new, :create, :show]
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
@@ -15,13 +15,6 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  # resources :users, only: [:new, :create, :show]
-  # resources :user_sessions, only: [:create]
-  # resources :categories, only: [:index, :show]
-
-  # get 'login' => 'user_sessions#new', :as => :login
-  # post 'logout' => 'user_sessions#destroy', :as => :logout
-
-
+  resources :categories, only: [:index, :show]
 
 end
