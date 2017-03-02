@@ -15,18 +15,28 @@
 
 <%# <%= f.label :accuracy %>
   Accuracy:
-  <%= f.label :accuracy, 1 %>
-  <%= f.radio_button :accuracy, 1  %>
-  <%= f.label :accuracy, 2 %>
-  <%= f.radio_button :accuracy, 2  %>
-  <%= f.label :accuracy, 3 %>
-  <%= f.radio_button :accuracy, 3  %>
-  <%= f.label :accuracy, 4 %>
-  <%= f.radio_button :accuracy, 4  %>
-  <%= f.label :accuracy, 5 %>
-  <%= f.radio_button :accuracy, 5  %>
+  <% 5.times do |button| %>
+    <%= f.label :accuracy, button + 1 %>
+    <%= f.radio_button :accuracy, button + 1  %>
+  <% end %>
 
+  <br>Communication:
+  <% 5.times do |button| %>
+    <%= f.label :communication, button + 1 %>
+    <%= f.radio_button :communication, button + 1  %>
+  <% end %>
 
+  <br>Facilities
+  <% 5.times do |button| %>
+    <%= f.label :facilities, button + 1 %>
+    <%= f.radio_button :facilities, button + 1  %>
+  <% end %>
+
+  <br>Location
+  <% 5.times do |button| %>
+    <%= f.label :location, button + 1 %>
+    <%= f.radio_button :location, button + 1  %>
+  <% end %>
 
     </div>
 

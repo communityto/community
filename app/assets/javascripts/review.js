@@ -18,7 +18,7 @@ $(document).ready(function() {
           }).fail(function(responseData){
             console.log("u fail bb");
           }).always(function(responseData){
-            console.log("this is happening")
+            console.log("this is always happening")
           });
       });
 });
