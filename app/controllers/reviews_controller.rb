@@ -14,22 +14,21 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     respond_to do |format|
-    if @review.save
-      format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
-      format.js {} # server will look at comment/create.js.erb
-    else
-      format.html {render 'space/show', notice: 'Zere was an error!'}
-      format.js {}
+      if @review.save
+        format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
+        format.js {} # server will look at comment/create.js.erb
+      else
+        format.html {render 'space/show', notice: 'Zere was an error!'}
+        format.js {}
+      end
     end
   end
 
-  end
-
   def show
-    # @review = Review.find(params[:id])
   end
 
   private
+  
   def review_params
     params.require(:review).permit(:content)
   end
