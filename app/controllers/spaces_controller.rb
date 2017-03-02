@@ -61,27 +61,31 @@ class SpacesController < ApplicationController
     params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, {avatars: []})
   end
 
+  def find_review
+    Review.where(:space_id => (params[:id]))
+  end
+
   def review_accuracy_avg
-    review_accuracy_sum = Review.where(:space_id => (params[:id])).sum(:accuracy)
-    review_accuracy_count = Review.where(:space_id => (params[:id])).count(:accuracy)
+    review_accuracy_sum = find_review.sum(:accuracy)
+    review_accuracy_count = find_review.count(:accuracy)
     review_accuracy_avg = review_accuracy_sum / review_accuracy_count
   end
 
   def review_communication_avg
-    review_communication_sum = Review.where(:space_id => (params[:id])).sum(:communication)
-    review_communication_count = Review.where(:space_id => (params[:id])).count(:communication)
+    review_communication_sum = find_review.sum(:communication)
+    review_communication_count = find_review.count(:communication)
     review_communication_avg = review_communication_sum / review_communication_count
   end
 
   def review_facilities_avg
-    review_facilities_sum = Review.where(:space_id => (params[:id])).sum(:facilities)
-    review_facilities_count = Review.where(:space_id => (params[:id])).count(:facilities)
+    review_facilities_sum = find_review.sum(:facilities)
+    review_facilities_count = find_review.count(:facilities)
     review_facilities_avg = review_facilities_sum / review_facilities_count
   end
 
   def review_location_avg
-    review_location_sum = Review.where(:space_id => (params[:id])).sum(:location)
-    review_location_count = Review.where(:space_id => (params[:id])).count(:location)
+    review_location_sum = find_review.sum(:location)
+    review_location_count = find_review.count(:location)
     review_location_avg = review_location_sum / review_location_count
   end
 
