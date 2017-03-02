@@ -1,5 +1,5 @@
 <h1> View all Space types </h1>
 
 <% @categories.each do |c| %>
-<p><%= c.type %>
+<p><%= link_to c.name, c %>
   <% end %>
