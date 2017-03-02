@@ -9,7 +9,7 @@ resources :spaces, only: [:index, :new, :create, :show] do
   resources :reviews
 end
 resources :users, only: [:new, :create, :show]
-resources :user_sessions, only: [:new, :create, :destroy]
+resources :user_sessions, only: [:create]
 resources :categories, only: [:index, :show]
 
 get 'login' => 'user_sessions#new', :as => :login
