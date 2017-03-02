@@ -6,17 +6,37 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do
-  Category.create!(
-  name: Faker::Lorem.word,
-  )
-end
+Category.create(name: "Cafe")
+Category.create(name: "Bar")
+Category.create(name: "Restaurant")
+Category.create(name: "Retail")
+Category.create(name: "Office")
+Category.create(name: "Residential")
 
-10.times do
-  Amenity.create!(
-  name: Faker::Lorem.word,
-  )
-end
+Category.create(name: "Art")
+Category.create(name: "Event")
+Category.create(name: "Meeting")
+
+
+Amenity.create(name: "Pets Allowed")
+Amenity.create(name: "Internet")
+Amenity.create(name: "Onsite Parking")
+Amenity.create(name: "Wireless Internet")
+Amenity.create(name: "Air Conditioning")
+Amenity.create(name: "Elevator")
+Amenity.create(name: "Wheelchair Accessibility")
+Amenity.create(name: "Coat Check")
+Amenity.create(name: "Kid Friendly")
+Amenity.create(name: "Kitchen")
+Amenity.create(name: "Television")
+Amenity.create(name: "Projection Screen")
+Amenity.create(name: "Speakers")
+Amenity.create(name: "Rooftop")
+Amenity.create(name: "Outdoor Space")
+Amenity.create(name: "Tables")
+Amenity.create(name: "Seating")
+Amenity.create(name: "Storage")
+
 
 5.times do
   User.create!(
