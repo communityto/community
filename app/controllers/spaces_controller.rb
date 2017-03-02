@@ -7,10 +7,11 @@ class SpacesController < ApplicationController
 
   def show
     @space = Space.find(params[:id])
-    @reviews = @space.reviews
 
     if current_user
       @review = Review.new
+    else
+      render :login_path
     end
 
     respond_to do |format|
@@ -18,7 +19,6 @@ class SpacesController < ApplicationController
       format.json
       format.js
     end
-
   end
 
   def new
@@ -51,7 +51,9 @@ class SpacesController < ApplicationController
   end
 
   private
+
   def space_params
     params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, {avatars: []})
   end
+
 end

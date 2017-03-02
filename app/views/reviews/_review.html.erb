@@ -1,0 +1,15 @@
+<div class="new_review_review">
+
+<h1>Reviews for this space: partial from reviews (not rendered anymore)</h1>
+
+  <p>
+    <%# review.title %>
+    <%= review.content %>
+  </p>
+
+  <% if review.user != nil  %>
+    <p> by <%= review.user %>></p>
+    <p>Added on: <%= review.created_at.localtime%></p>
+  <% end %>
+
+</div>
