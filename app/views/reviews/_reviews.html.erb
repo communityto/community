@@ -1,0 +1,7 @@
+<%= review.content %>
+
+<% if review.user != nil %>
+  <p> by <%= review.user.first_name %></p>
+  <p>Added on: <%= review.created_at %></p>
+  
+<% end %>
