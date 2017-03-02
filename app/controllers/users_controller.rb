@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+
   end
 
   # GET /users/1
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.avatar = params[:file]
   end
 
   # GET /users/1/edit
@@ -68,6 +69,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:avatar, :first_name, :last_name, :email, :password, :password_confirmation)
     end
 end
