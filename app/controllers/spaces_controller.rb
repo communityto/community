@@ -1,5 +1,5 @@
 class SpacesController < ApplicationController
-  #before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: [:new, :create]
 
   def index
     @spaces = Space.all
@@ -13,11 +13,7 @@ class SpacesController < ApplicationController
     @review_facilities_avg = review_facilities_avg
     @review_location_avg = review_location_avg
 
-    if current_user
-      @review = Review.new
-    else
-      render :login_path
-    end
+    @review = Review.new
 
     respond_to do |format|
       format.html
