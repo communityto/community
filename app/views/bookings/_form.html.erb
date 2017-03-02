@@ -1,0 +1,62 @@
+<div class="container">
+  <%= form_for [@space, @booking] do |f| %>
+    <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+                <%= f.text_field :start_datetime, :class => "form-control" %>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker7'>
+              <%= f.text_field :end_datetime, :class => "form-control" %>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <%= f.text_field :note %>
+    <% f.hidden_field :user_id, :value => current_user %>
+
+    <div class="form-actions">
+      <%= f.submit "save" %>
+    </div>
+
+  <% end %>
+</div>
+
+<!-- ##### SCRIPTS ##### -->
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+          format: 'DD/MM/YYYY',
+          showTodayButton: true,
+          disabledDates: <%= raw @space.all_booked_dates %>,
+          useCurrent: false
+        });
+        $('#datetimepicker7').datetimepicker({
+            format: 'DD/MM/YYYY',
+            showTodayButton: true,
+            disabledDates: <%= raw @space.all_booked_dates %>,
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+        $('#datetimepicker5').datetimepicker({
+            defaultDate: moment(),
+            disabledDates: <%= raw @space.all_booked_dates %>
+        });
+    });
+</script>
