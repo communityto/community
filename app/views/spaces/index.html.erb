@@ -2,6 +2,6 @@
 
   <% @spaces.each do |s| %>
   <ul>
-      <ol><%= s.title %></ol>
+      <ol><%=link_to s.title, s %></ol>
   </ul>
   <% end %>
