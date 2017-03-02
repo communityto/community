@@ -68,3 +68,5 @@ gem 'kaminari'
 
 gem 'carrierwave', '~> 1.0'
 # Photo upload
+
+gem 'factory_girl'
