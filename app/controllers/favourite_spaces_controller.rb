@@ -1,5 +1,10 @@
 class FavouriteSpacesController < ApplicationController
-  before_action :set_space
+  # before_action :set_space
+
+  def index
+    @user = current_user
+    @favourite_spaces = @user.favourite_spaces
+  end
 
   def create
     if Favourite.create(favourited: @space, user: current_user)
@@ -16,7 +21,7 @@ class FavouriteSpacesController < ApplicationController
 
   private
 
-  def set_space
-    @space = Space.find(params[:space_id] || params[:id])
-  end
+  # def set_space
+  #   @space = Space.find(params[:space_id] || params[:id])
+  # end
 end

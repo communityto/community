@@ -2,17 +2,15 @@
  <h1>Hiiiiiiiii, <%= @user.first_name %> :) </h1>
 
 <%if @user.favourite_spaces.any? %>
-  <h3> Your favourite Spaces </h3>
-  <% @user.favourite_spaces.each do |space|%>
-  <p><%= link_to space.title, space %> <%#= link_to '(Remove)', favourite_spaces_path(space), method: :destroy %></p>
-    <% end %>
+  <h3><%= link_to 'Your favourite Spaces', user_favourite_spaces_path(@user) %></h3>
+
 <% end %>
 
 
 
 <h3> You currently have <%= pluralize(@user.bookings.count,'booking') %> </h3>
 <% if @user.bookings.any? %>
-    <h2>Your bookings</h2>
+    <h2><%=link_to 'Your bookings', user_bookings_path(@user)%></h2>
     <% @user.bookings.each do |b|%>
     <p><%=link_to b.space.title, b.space%> <br />
     Start: <%= b.start_datetime.strftime("%B %-d %Y at %l:%M%p") %> <br />

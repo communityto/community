@@ -1,0 +1,6 @@
+<h1> Your Favourite Spaces! </h1>
+
+<% @favourite_spaces.each do |space| %>
+<%=link_to space.title, space %> </br>
+<p> delete </p>
+<% end %>

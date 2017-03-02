@@ -2,11 +2,12 @@ class BookingsController < ApplicationController
 
   before_action do
     @user = current_user
-    @space = Space.find(params[:space_id])
+    # @space = Space.find(params[:space_id])
   end
 
   def index
-    @bookings = @space.bookings
+    @all_spaces = Space.all
+    # @bookings = @all_space.where(bookings
   end
 
   def new

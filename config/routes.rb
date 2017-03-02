@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
   root "spaces#index"
   resources :user_sessions, only: [:create]
-  resources :users, only: [:new, :create, :show]
-
+  resources :users, only: [:new, :create, :show] do
+    resources :bookings, only: [:index]
+    resources :reviews, only: [:index]
+    resources :favourite_spaces, only: [:index]
+  end
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
