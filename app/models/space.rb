@@ -63,7 +63,7 @@ class Space < ApplicationRecord
       if location_count > 0
         location_avg = location_sum / location_count
       else
-        location_avg = "pika!"
+        location_avg = "pika?"
       end
   end
 
