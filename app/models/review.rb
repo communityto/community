@@ -5,5 +5,8 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :space
   # belongs_to :booking
-  
+  def display_date(datetime)
+    datetime.strftime("%Y-%m-%d")
+  end
+
 end

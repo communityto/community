@@ -1,29 +1,46 @@
 <div class="new_review">
 
-<h1>Reviews for this space: partial from Spaces</h1>
+  <h1>Reviews for this space</h1>
+
+<div id="reviews_summary">
+  <p>
+    Accuracy Average: <%= @review_accuracy_avg %></br>
+    Communication Average: <%= @review_communication_avg %></br>
+    Facilities Average: <%= @review_facilities_avg %></br>
+    Location Average: <%= @review_location_avg %></br>
+  </p>
+
+</div>
 
 <div id="reviews_list">
-<% @space.reviews.order(created_at: :desc).each do |review|  %>
+  <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
 <div id="review_message">
-<p>
-  <%# review.title %>
-  <%= review.content %></br>
-  Accuracy: <%= review.accuracy %></br>
-  Communication: <%= review.communication %></br>
-  Facilities: <%= review.facilities %></br>
-  Location: <%= review.location %></br>
+  <p>
 
-</p>
+
+    <%= review.content %></br>
+    Accuracy: <%= review.accuracy %></br>
+    Communication: <%= review.communication %></br>
+    Facilities: <%= review.facilities %></br>
+    Location: <%= review.location %></br>
+  </p>
 </div>
 
 <% if review.user != nil  %>
-  <p> by <%= review.user %>></p>
-  <p>Added on: <%= review.created_at %></p>
+  <p> By <%= review.user.first_name %></p>
+  <p>Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
+
+  <div class="helpful-button-div">
+    <button class="helpful-button">
+      <div class="helpful-button-text text-muted">Helpful</div>
+      <div class="helpful-button-count">0</div>
+    </button>
+  </div></br>
+
 <% end %>
 
 <% end %>
 
 </div>
 </div>
-

@@ -23,4 +23,8 @@ class Space < ApplicationRecord
     return booked_dates
   end
 
+  def display_date(datetime)
+    datetime.strftime("%Y-%m-%d")
+  end
+
 end
