@@ -17,11 +17,13 @@ class ReviewsController < ApplicationController
     @review = @space.reviews.build(review_params)
     @review.user = current_user
 
-    respond_to do |format|
-      if @review.save
+    if @review.save
+      respond_to do |format|
         format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
-        format.js  # server will look at comment/create.js.erb
-      else
+        format.json { render json: @review }
+      end
+    else
+      respond_to do |format|
         format.html {render 'space/show', notice: 'There was an error!'}
         format.js
       end

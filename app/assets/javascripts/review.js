@@ -4,14 +4,37 @@
 
 
 $(document).ready(function() {
-  $("#new_review").on('keypress', function(e){
-      if(e.keyCode==13){
+  $("#new_review").on('submit', function(event){
+    event.preventDefault();
           $.ajax({
               url: $(this).attr('action'),
               type: $(this).attr('method'),
-              dataType: 'script',
+              dataType: 'json',
               data: $(this).serialize(),
+          }).done(function(responseData) {
+            console.log("This is coming in successfully");
+            $('#reviews_list').prepend('<%= render @review %>');
+            $('#review_message').prop('disabled', false);
+          }).fail(function(responseData){
+            console.log("u fail bb");
+          }).always(function(responseData){
+            console.log("this is happening")
           });
-      }
-  });
+      });
 });
+
+
+
+
+// $(document).ready(function() {
+//   $("#new_review").on('keypress', function(e){
+//       if(e.keyCode==13){
+//           $.ajax({
+//               url: $(this).attr('action'),
+//               type: $(this).attr('method'),
+//               dataType: 'script',
+//               data: $(this).serialize(),
+//           });
+//       }
+//   });
+// });
