@@ -2,11 +2,23 @@ class SpacesController < ApplicationController
   #before_action :require_login, only: [:new, :create]
 
   def index
-    @spaces = Space.all
+    @spaces = Space.search(params[:search])
   end
 
   def show
     @space = Space.find(params[:id])
+    @reviews = @space.reviews
+
+    if current_user
+      @review = Review.new
+    end
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
+
   end
 
   def new
