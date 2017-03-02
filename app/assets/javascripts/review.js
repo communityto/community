@@ -18,23 +18,7 @@ $(document).ready(function() {
           }).fail(function(responseData){
             console.log("u fail bb");
           }).always(function(responseData){
-            console.log("this is always happening")
+            console.log("this is always happening");
           });
       });
 });
-
-
-
-
-// $(document).ready(function() {
-//   $("#new_review").on('keypress', function(e){
-//       if(e.keyCode==13){
-//           $.ajax({
-//               url: $(this).attr('action'),
-//               type: $(this).attr('method'),
-//               dataType: 'script',
-//               data: $(this).serialize(),
-//           });
-//       }
-//   });
-// });
