@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
 
   def show
   end
-  
+
   def create
     @review = @space.reviews.build(review_params)
     @review.user = current_user
@@ -34,9 +34,9 @@ class ReviewsController < ApplicationController
   end
 
   private
-  
+
   def review_params
-    params.require(:review).permit(:content)
+    params.require(:review).permit(:content, :accuracy, :communication, :facilities, :location)
   end
 
   def load_space
