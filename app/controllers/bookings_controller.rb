@@ -6,8 +6,8 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @all_spaces = Space.all
-    # @bookings = @all_space.where(bookings
+
+    @user_bookings = current_user.bookings
   end
 
   def new

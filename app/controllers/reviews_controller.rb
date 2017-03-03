@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :load_space
+  # before_action :load_space
   # why is create using a :space_id? rather than :id params?
 
   def new
@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
+    @user_reviews = current_user.reviews
   end
 
   def show
