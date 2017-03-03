@@ -9,6 +9,7 @@ class SpacesController < ApplicationController
     @space = Space.find(params[:id])
     @reviews = @space.reviews
     @review = Review.new
+    @booking = Booking.new
 
     respond_to do |format|
       format.html
@@ -24,7 +25,6 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
-
       if @space.save
         redirect_to spaces_url
       else
