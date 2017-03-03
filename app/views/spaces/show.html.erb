@@ -10,6 +10,7 @@
   <% end %>
 <% end %>
 
+
 <p>Category: <% @space.categories.each do |category| %>
   <%= category.name %> <br/>
 <% end %>
@@ -17,6 +18,10 @@
 <p>Amenities: <% @space.amenities.each do |amenity|%>
 <%= amenity.name %><br/>
 <% end %></p>
+
+
+
+<%= render 'bookings/form' %>
 
 
 <%# for new reviews: %>

@@ -1,1 +1,6 @@
 <h1> All <%=@category.name%> Spaces </h1>
+
+<% @category.spaces.each do |space| %>
+  <h2><%= space.title %></h2>
+  <%= image_tag('https://unsplash.it/200/300/?random') %>
+<% end %>
