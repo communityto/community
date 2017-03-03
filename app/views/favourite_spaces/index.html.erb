@@ -1,0 +1,8 @@
+<h1> Your Favourite Spaces! </h1>
+
+<h4> You currently have <%= pluralize(@user.favourite_spaces.count,'favourite') %></h4>
+<% @favourite_spaces.each do |space| %>
+<%=link_to space.title, space %> </br>
+<%= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %>
+<p> delete </p>
+<% end %>

@@ -2,11 +2,13 @@ class BookingsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   before_action do
-    @space = Space.find(params[:space_id])
+    @user = current_user
+    # @space = Space.find(params[:space_id])
   end
 
   def index
-    @bookings = @space.bookings
+
+    @user_bookings = current_user.bookings
   end
 
   def new
