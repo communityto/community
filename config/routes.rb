@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
-  resources :spaces, only: [:edit, :update]
-  resources :spaces, only: [:index, :new, :create, :show] do
+  resources :spaces do
     resources :bookings
     resources :reviews
   end

@@ -1,12 +1,15 @@
 class SpacesController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
+  before_action do
+    @space = Space.find(params[:id])
+  end
+
   def index
     @spaces = Space.all
   end
 
   def show
-    @space = Space.find(params[:id])
     @reviews = @space.reviews
     @review = Review.new
     @booking = Booking.new
@@ -33,15 +36,18 @@ class SpacesController < ApplicationController
   end
 
   def edit
-    @space = Space.find(params[:id])
   end
 
   def update
-    @space = Space.find(space_params)
+    if @space.update_attributes(space_params)
+      redirect_to space_url, notice: "Space successfully updated!"
+    else
+      flash.now[:alert] = "Failed to update space."
+      render :edit
+    end
   end
 
   def destroy
-    @space = Space.find(params[:id])
     space.destroy
     redirect_to spaces_url
   end

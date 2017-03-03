@@ -1,4 +1,4 @@
-<%= form_for @space, url: {action: "create"}, html: {class: "space_new_form", multipart: true} do |f| %>
+<%= form_for @space, html: {class: "space_new_form", multipart: true} do |f| %>
 
   <div>
     <%= file_field :avatars, multiple: true %>
