@@ -6,13 +6,18 @@
   <% else %>
     <p> Cool! This is one of your favourite Spaces!</p>
     <p> Not a fan anymore?
-    <%= link_to 'Remove this Space from my favourites!', favourite_spaces_path(@space), method: :destroy %></p>
+    <%= link_to 'Remove this Space from my favourites!', favourite_space_path(@space), method: :delete %></p>
   <% end %>
 <% end %>
 
-<%= @space.amenities %>
+<p>Category: <% @space.categories.each do |category| %>
+  <%= category.name %> <br/>
+<% end %>
 
-<%= @space.categories %>
+<p>Amenities: <% @space.amenities.each do |amenity|%>
+<%= amenity.name %><br/>
+<% end %></p>
+
 
 <%# for new reviews: %>
 
