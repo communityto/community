@@ -1,0 +1,5 @@
+<h1> Your Spaces </h1>
+
+<% @hosted_spaces.each do |space| %>
+  <%=link_to space.title, space %> <br/>
+<% end %>
