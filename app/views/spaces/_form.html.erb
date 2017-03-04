@@ -1,5 +1,9 @@
 <%= form_for @space, html: {class: "space_new_form", multipart: true} do |f| %>
 
+  <% if @space.errors.any? %>
+    <%= render 'errors' %>
+  <% end %>
+
   <div>
     <%= file_field :avatars, multiple: true %>
   </div>

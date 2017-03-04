@@ -3,17 +3,13 @@
 <h1>Add a new review</h1>
 
   <%= form_for [@space, @review], remote: true do |f| %>
-    <div id="review_errors">
-    <% render :partial => "reviews/errors" %>
-    </div>
 
     <div class="field">
-      <%= f.text_area :content %>
+      <%= f.text_area :content, :placeholder => "Your Review Here" %>
     </div>
 
     <div class="star-rating">
 
-<%# <%= f.label :accuracy %>
   Accuracy:
   <% 5.times do |button| %>
     <%= f.label :accuracy, button + 1 %>
@@ -45,5 +41,5 @@
     </div>
 
 <% f.hidden_field :user_id, :value => current_user %>
-
+<span id="helpBlock" class="help-block"></span>
 <% end  %>

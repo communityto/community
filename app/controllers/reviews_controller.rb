@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  # before_action :load_space
+  before_action :load_space
   before_action :require_login, only: [:new, :create]
 
   # why is create using a :space_id? rather than :id params?
@@ -18,6 +18,7 @@ class ReviewsController < ApplicationController
   def create
     @review = @space.reviews.build(review_params)
     @review.user = current_user
+    @errorContent = []
 
     if @review.save
       respond_to do |format|
@@ -27,8 +28,11 @@ class ReviewsController < ApplicationController
     else
       respond_to do |format|
       # format.json { render :json => { :error => @review.errors.full_messages}}
-        format.html {render 'space/show', notice: 'There was an error!'}
-        # format.js
+        # format.html {render 'space/show', notice: 'There was an error!'}
+        format.js
+          @review.errors.any?
+          @review.errors.each do |key, value|
+          end
       end
     end
   end
