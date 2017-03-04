@@ -1,8 +1,9 @@
 <h1>Your Bookings</h1>
 
-
 <% @user_bookings.each do |booking|%>
 <p><%= link_to booking.space.title, booking.space%> <br />
-Start: <%= booking.start_datetime.strftime("%B %-d %Y at %l:%M%p") %> <br />
-End: <%= booking.end_datetime.strftime("%B %-d %Y at %l:%M%p") %> <br /></p>
+Start: <%= booking.start_datetime.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%H:%M") %> <br />
+End: <%= booking.end_datetime.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%H:%M") %> <br /></p>
+
+<%= link_to edit_user_booking_url(booking) %>
 <% end %>
