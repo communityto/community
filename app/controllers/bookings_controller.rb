@@ -3,19 +3,24 @@ class BookingsController < ApplicationController
 
   before_action do
     @user = current_user
-    # @space = Space.find(params[:space_id])
   end
 
   def index
-
     @user_bookings = current_user.bookings
   end
 
   def new
+    @space = Space.find(params[:space_id])
     @booking = Booking.new
   end
 
+  def edit
+    @booking = Booking.find(params[:id])
+    @space = @booking.space
+  end
+
   def create
+    @space = Space.find(params[:space_id])
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.space_id = @space.id
