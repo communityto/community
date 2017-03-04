@@ -31,7 +31,9 @@
 
 <%# for new reviews: %>
 
-<%= render 'reviews/form' %>
+  <% if can? :create, Review %>
+    <%= render 'reviews/form' %>
+  <% end %>
 
 <div id="reviews_list">
   <%= render "reviews" %>
