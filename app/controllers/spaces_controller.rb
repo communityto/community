@@ -1,9 +1,9 @@
 class SpacesController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
-  before_action do
-    @space = Space.find(params[:id])
-  end
+  # before_action do
+  #   @space = Space.find(params[:id])
+  # end
 
   def index
     @spaces = Space.all
