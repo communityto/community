@@ -14,17 +14,23 @@
 <% end %>
 
 
-<p>Description: <% @space.description %>
+<p>Description: <%= @space.description %>
 
-<p>Category: <% @space.categories.each do |category| %>
+Category: <% @space.categories.each do |category| %>
   <%= category.name %> <br/>
-<% end %>
-
-<p>Amenities: <% @space.amenities.each do |amenity|%>
-<%= amenity.name %><br/>
-<% end %></p>
-
-
+<% end %> </p>
+Address: <%= @space.address %> <br/>
+Capacity: <%= @space.capacity %> <br/>
+Size: <%= @space.size %> sq.ft. <br/>
+Available from: <%= @space.check_in %> to <%= @space.check_out %><br/>
+Hourly rate: <%= number_to_currency(@space.price)%> <br/>
+Amenities:
+<ul> <% @space.amenities.each do |amenity|%>
+<li><%= amenity.name %></li>
+<% end %></ul>
+Rules: <%= @space.rules %><br/>
+Number of washrooms: <%= @space.bathrooms %> <br/>
+</p>
 
 <%= render 'bookings/form' %>
 
