@@ -71,3 +71,6 @@ gem 'carrierwave', '~> 1.0'
 # Photo upload
 
 gem 'sorcery'
+
+gem 'cancancan', '~> 1.10'
+# authorization gem

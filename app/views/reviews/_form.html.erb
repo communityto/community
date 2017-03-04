@@ -10,30 +10,29 @@
 
     <div class="star-rating">
 
-  Accuracy:
-  <% 5.times do |button| %>
-    <%= f.label :accuracy, button + 1 %>
-    <%= f.radio_button :accuracy, button + 1  %>
-  <% end %>
+      <br>Accuracy:
+        <% 5.times do |button| %>
+          <%= f.label :accuracy, button + 1 %>
+          <%= f.radio_button :accuracy, button + 1  %>
+        <% end %>
 
-  <br>Communication:
-  <% 5.times do |button| %>
-    <%= f.label :communication, button + 1 %>
-    <%= f.radio_button :communication, button + 1  %>
-  <% end %>
+      <br>Communication:
+        <% 5.times do |button| %>
+          <%= f.label :communication, button + 1 %>
+          <%= f.radio_button :communication, button + 1  %>
+        <% end %>
 
-  <br>Facilities
-  <% 5.times do |button| %>
-    <%= f.label :facilities, button + 1 %>
-    <%= f.radio_button :facilities, button + 1  %>
-  <% end %>
+      <br>Facilities
+        <% 5.times do |button| %>
+          <%= f.label :facilities, button + 1 %>
+          <%= f.radio_button :facilities, button + 1  %>
+        <% end %>
 
-  <br>Location
-  <% 5.times do |button| %>
-    <%= f.label :location, button + 1 %>
-    <%= f.radio_button :location, button + 1  %>
-  <% end %>
-
+      <br>Location
+        <% 5.times do |button| %>
+          <%= f.label :location, button + 1 %>
+          <%= f.radio_button :location, button + 1  %>
+        <% end %>
     </div>
 
     <div class="actions">
@@ -42,4 +41,5 @@
 
 <% f.hidden_field :user_id, :value => current_user %>
 <span id="helpBlock" class="help-block"></span>
+
 <% end  %>
