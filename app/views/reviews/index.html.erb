@@ -1,8 +1,7 @@
 <h1> Your Reviews </h1>
 
-<h4> You've left <%=pluralize(@user_reviews.count, 'review') %> 
+<h4> You've left <%=pluralize(@user_reviews.count, 'review') %>
 <% @user_reviews.each do |review|%>
-<p><%= link_to booking.space.title, booking.space%> <br />
-Start: <%= booking.start_datetime.strftime("%B %-d %Y at %l:%M%p") %> <br />
-End: <%= booking.end_datetime.strftime("%B %-d %Y at %l:%M%p") %> <br /></p>
+<p>Review left for: <%= review.space.title %> on <%= review.created_at %><br/> 
+  <%= review.content %>
 <% end %>
