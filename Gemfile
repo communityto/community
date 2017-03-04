@@ -72,3 +72,6 @@ gem 'carrierwave', '~> 1.0'
 gem 'factory_girl'
 
 gem 'sorcery'
+
+gem 'cancancan', '~> 1.10'
+# authorization gem
