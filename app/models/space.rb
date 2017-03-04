@@ -27,4 +27,62 @@ class Space < ApplicationRecord
     datetime.strftime("%Y-%m-%d")
   end
 
+  def accuracy_avg
+    accuracy_sum = reviews.sum(:accuracy)
+    accuracy_count = reviews.count(:accuracy)
+      if accuracy_count > 0
+        accuracy_avg = accuracy_sum / accuracy_count
+      else
+        accuracy_avg = "omg y nobody luv me :("
+      end
+  end
+
+  def communication_avg
+    communication_sum = reviews.sum(:communication)
+    communication_count = reviews.count(:communication)
+      if communication_count > 0
+        communication_avg = communication_sum / communication_count
+      else
+        communication_avg = "gimme a review plz /)O___o/)"
+      end
+  end
+
+  def facilities_avg
+    facilities_sum = reviews.sum(:facilities)
+    facilities_count = reviews.count(:facilities)
+      if facilities_count > 0
+        facilities_avg = facilities_sum / facilities_count
+      else
+        facilities_avg = "waaaaah :'("
+      end
+  end
+
+  def location_avg
+    location_sum = reviews.sum(:location)
+    location_count = reviews.count(:location)
+      if location_count > 0
+        location_avg = location_sum / location_count
+      else
+        location_avg = "pika?"
+      end
+  end
+
+  # def communication_avg
+  #   review_communication_sum = @reviews.sum(:communication)
+  #   review_communication_count = @reviews.count(:communication)
+  #   review_communication_avg = review_communication_sum / review_communication_count
+  # end
+  #
+  # def facilities_avg
+  #   review_facilities_sum = @reviews.sum(:facilities)
+  #   review_facilities_count = @reviews.count(:facilities)
+  #   review_facilities_avg = review_facilities_sum / review_facilities_count
+  # end
+  #
+  # def location_avg
+  #   review_location_sum = @reviews.sum(:location)
+  #   review_location_count = @reviews.count(:location)
+  #   review_location_avg = review_location_sum / review_location_count
+  # end
+
 end

@@ -1,6 +1,25 @@
 
 <%= form_for @user do |f| %>
 
+  <% if @user.errors.any? %>
+    <%= render 'errors' %>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :first_name, :placeholder => 'First Name' %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :last_name, :placeholder => 'Last Name' %>
+  </div>
+
+  <div class="field">
+    <%= f.date_select :birthdate, :placeholder => 'Birthdate' %>
+  </div>
 
   <div class="field">
     <%= f.text_field :email, :placeholder => 'Email' %>

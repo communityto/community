@@ -1,16 +1,25 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_login, only: [:index, :new, :create]
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # skip_before_action :require_login, only: [:index, :new, :create]
 
   # GET /users
   # GET /users.json
   def index
-
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = current_user
   end
 
   # GET /users/new
@@ -21,15 +30,16 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = current_user
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     if @user.save
-      redirect_to(:users, notice: 'User was successfully created')
+      auto_login(@user)
+      redirect_to(:root, notice: 'User was successfully created')
     else
       render :new
     end

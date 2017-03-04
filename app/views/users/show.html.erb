@@ -1,13 +1,25 @@
 
-<h1>Hiiiiiiiii, <%#= @user.first_name %> :) </h1>
+<h1>Hiiiiiiiii, <%= @user.first_name %> :) </h1>
 
+<h4><%= link_to 'Edit your profile info', edit_user_path(@user) %> |
+  <%= link_to 'Create a Space', new_space_path %></h4>
 
-<h3> You currently have <%= pluralize(@user.bookings.count,'booking') %> </h3>
+<h3> You currently host <%= pluralize(@user.hosted_spaces.count,'Space') %>
+<%if @user.hosted_spaces.any? %> </br>
+<h4><%= link_to 'View your hosted Spaces', user_hosted_spaces_path(@user) %> <h4></h3>
+<% end %>
+
+<h3> You currently have <%= pluralize(@user.favourite_spaces.count,'favourite') %>
+<%if @user.favourite_spaces.any? %> </br>
+  <h4><%= link_to 'View your favourite Spaces', user_favourite_spaces_path(@user) %> <h4></h3>
+<% end %>
+
+<h3> You currently have <%= pluralize(@user.bookings.count,'booking') %>
 <% if @user.bookings.any? %>
-    <h2>Your bookings</h2>
-    <% @user.bookings.each do |b|%>
-    <p><%= b.space.title%> <br />
-    Start: <%= b.start_datetime.strftime("%B %-d %Y at %l:%M%p") %> <br />
-    End: <%= b.end_datetime.strftime("%B %-d %Y at %l:%M%p") %> <br /></p>
-    <% end %>
-  <% end %>
+    <h4><%=link_to 'View your bookings', user_bookings_path(@user)%> </h4></h3>
+<% end %>
+
+<h3> You currently have <%= pluralize(@user.reviews.count,'review') %> </h3>
+<% if @user.bookings.any? %>
+    <h4><%=link_to 'View your reviews', user_reviews_path(@user)%></h4></h3>
+<% end %>

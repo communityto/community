@@ -1,23 +1,18 @@
 class SpacesController < ApplicationController
-  #before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: [:new, :create]
+
+  before_action do
+    @space = Space.find(params[:id])
+  end
 
   def index
     @spaces = Space.all
   end
 
   def show
-    @space = Space.find(params[:id])
-
-    @review_accuracy_avg = review_accuracy_avg
-    @review_communication_avg = review_communication_avg
-    @review_facilities_avg = review_facilities_avg
-    @review_location_avg = review_location_avg
-
-    if current_user
-      @review = Review.new
-    else
-      render :login_path
-    end
+    @reviews = @space.reviews
+    @review = Review.new
+    @booking = Booking.new
 
     respond_to do |format|
       format.html
@@ -33,7 +28,6 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
-
       if @space.save
         redirect_to spaces_url
       else
@@ -42,15 +36,18 @@ class SpacesController < ApplicationController
   end
 
   def edit
-    @space = Space.find(params[:id])
   end
 
   def update
-    @space = Space.find(space_params)
+    if @space.update_attributes(space_params)
+      redirect_to space_url, notice: "Space successfully updated!"
+    else
+      flash.now[:alert] = "Failed to update space."
+      render :edit
+    end
   end
 
   def destroy
-    @space = Space.find(params[:id])
     space.destroy
     redirect_to spaces_url
   end
@@ -58,36 +55,7 @@ class SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, {avatars: []})
+    params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, {avatars: []}, :amenity_ids => [], :category_ids => [])
   end
-
-  def find_review
-    Review.where(:space_id => (params[:id]))
-  end
-
-  def review_accuracy_avg
-    review_accuracy_sum = find_review.sum(:accuracy)
-    review_accuracy_count = find_review.count(:accuracy)
-    review_accuracy_avg = review_accuracy_sum / review_accuracy_count
-  end
-
-  def review_communication_avg
-    review_communication_sum = find_review.sum(:communication)
-    review_communication_count = find_review.count(:communication)
-    review_communication_avg = review_communication_sum / review_communication_count
-  end
-
-  def review_facilities_avg
-    review_facilities_sum = find_review.sum(:facilities)
-    review_facilities_count = find_review.count(:facilities)
-    review_facilities_avg = review_facilities_sum / review_facilities_count
-  end
-
-  def review_location_avg
-    review_location_sum = find_review.sum(:location)
-    review_location_count = find_review.count(:location)
-    review_location_avg = review_location_sum / review_location_count
-  end
-
 
 end

@@ -1,4 +1,8 @@
-<%= form_for @space, url: {action: "create"}, html: {class: "space_new_form"} do |f| %>
+<%= form_for @space, html: {class: "space_new_form", multipart: true} do |f| %>
+
+  <% if @space.errors.any? %>
+    <%= render 'errors' %>
+  <% end %>
 
   <div>
     <%= file_field :avatars, multiple: true %>
@@ -16,9 +20,9 @@
 
   <div>
     <%= f.label :check_in %>
-    <%= f.text_field :check_in %>
+    <%= f.time_select :check_in, {:minute_step => 15, :ampm => true} %>
     <%= f.label :check_out %>
-    <%= f.text_field :check_out %>
+    <%= f.time_select :check_out, {:minute_step => 15, :ampm => true} %>
   </div>
 
   <div>
@@ -27,8 +31,8 @@
   </div>
 
   <div>
-    <%= f.label :size %>
-    <%= f.text_field :size %>
+    <%= f.label :size, 'Space Size' %>
+    <%= f.text_field :size %> sqft
   </div>
 
   <div>
@@ -38,18 +42,30 @@
 
   <div>
     <%= f.label :price %>
-    <%= f.text_field :price %>
+    <%= f.text_field :price %> /day
   </div>
 
   <div>
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
 
   <div>
     <%= f.label :rules %>
-    <%= f.text_field :rules %>
+    <%= f.text_area :rules %>
   </div>
+
+  <div>
+    <%= f.label :amenity %>
+    <%= f.collection_check_boxes(:amenity_ids, Amenity.all, :id, :name) %>
+  </div>
+
+  <div>
+    <%= f.label :category %>
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+  </div>
+
+  <%= f.hidden_field :host_id, :value => current_user.id %>
 
   <%= f.submit %>
 
