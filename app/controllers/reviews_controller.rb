@@ -38,6 +38,15 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @space = Space.find(params[:id])
+    @review = Review.find(params[:id])
+
+    @review.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(posts_url) }
+      format.js   { render :nothing => true }
+    end
   end
 
   private

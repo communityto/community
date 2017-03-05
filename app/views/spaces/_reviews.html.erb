@@ -29,16 +29,15 @@
 </div>
 
 
-<% if can? :edit, Review %>
-  <div id="edit_review">
+<%# if can? :edit, Review %>
+  <!-- <div id="edit_review">
     <button class="edit-button">Edit</button>
-  </div>
+  </div> -->
 
   <div id="delete_review">
-    <button class="delete-button">Delete</button>
+    <button class="delete-button"><%= link_to 'Destroy', space_review_path(@space.id), method: :delete, :confirm => 'Are you sure?', :remote=>true, :class=>'delete_post' %></td></button>
   </div>
-<% end %>
-
+<%# end %>
 
 <% if review.user != nil  %>
   <p> By <%= review.user.first_name %></p>

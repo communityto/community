@@ -21,4 +21,7 @@ $(document).ready(function() {
             console.log("this is always happening");
           });
       });
+  $('.delete_post').bind('ajax:success', function() {
+    $(this).closest('tr').fadeOut();
+    });
 });
