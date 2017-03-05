@@ -39,6 +39,16 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+
+    # debugger
+    @space = Space.find(params[:id])
+    @review = Review.find_by(space_id: @space.id, user_id: current_user.id)
+    @review.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(posts_url) }
+      format.js   { render :nothing => true }
+    end
   end
 
   private

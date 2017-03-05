@@ -17,8 +17,21 @@ $(document).ready(function() {
             $('#review_message').prop('disabled', false);
           }).fail(function(responseData){
             console.log("u fail bb");
+            $(".notice").remove();
+            $("#helpBlock").append("<%= render 'reviews/errors' %>");
           }).always(function(responseData){
             console.log("this is always happening");
           });
       });
+  $('.delete-button').bind('ajax:success', function() {
+    // var msg = $("#review_message").closest("#review_message");
+    // console.log(msg);
+    $("#review_message").closest("#review_message").fadeOut();
+    console.log("This delete is happening!");
+  });
 });
+
+
+// console.log("This delete is happening!");
+// console.log("#review_message");
+// $("#review_message").fadeOut();
