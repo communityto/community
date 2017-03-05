@@ -17,6 +17,8 @@ $(document).ready(function() {
             $('#review_message').prop('disabled', false);
           }).fail(function(responseData){
             console.log("u fail bb");
+            $(".notice").remove();
+            $("#helpBlock").append("<%= render 'reviews/errors' %>");
           }).always(function(responseData){
             console.log("this is always happening");
           });
