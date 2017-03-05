@@ -22,8 +22,7 @@ $(document).ready(function() {
           });
       });
   $('.delete_post').bind('ajax:success', function() {
-    $("#review_message").fadeOut();
-    console.log("#review_message");
+    $("#review_message").closest("#review_message").fadeOut();
     console.log("This delete is happening!");
   });
 });

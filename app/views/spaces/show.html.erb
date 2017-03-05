@@ -31,7 +31,10 @@
 
 <%# for new reviews: %>
 <%# if can? :create, Review  %>
-<%= render 'reviews/form' %>
+
+<%# if current_user && current_user.bookings.where(space_id: @space.id) %>
+    <%= render 'reviews/form' %>
+<%# end %>
 <%# end %>
 
 <div id="reviews_list">

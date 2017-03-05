@@ -34,10 +34,13 @@
     <button class="edit-button">Edit</button>
   </div> -->
 
+  <% if current_user && current_user.reviews.where(space_id: @space.id, user_id: current_user.id) %>
+
   <div id="delete_review">
     <td><button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :remote=>true, :class=>'delete_post' %></button></td>
   </div>
-<%# end %>
+  <% end %>
+
 
 <% if review.user != nil  %>
   <p> By <%= review.user.first_name %></p>
