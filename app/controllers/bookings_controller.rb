@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   before_action do
     @user = current_user
@@ -19,6 +19,16 @@ class BookingsController < ApplicationController
     @space = @booking.space
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    @space = @booking.space
+    if @booking.update(booking_params)
+      redirect_to user_bookings_url(user_id: @user.id)
+    else
+      render 'edit', alert: "This update failed, please try again."
+    end
+  end
+
   def create
     @space = Space.find(params[:space_id])
     @booking = Booking.new(booking_params)
@@ -34,7 +44,7 @@ class BookingsController < ApplicationController
 
   private
   def booking_params
-    params.require(:booking).permit(:start_datetime, :end_datetime, :note, :user_id)
+    params.require(:booking).permit(:start_datetime, :end_datetime, :note, :user_id, :approved)
   end
 
 end
