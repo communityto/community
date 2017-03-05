@@ -38,9 +38,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @space = Space.find(params[:id])
-    @review = Review.find(params[:id])
 
+    # debugger
+    @space = Space.find(params[:id])
+    @review = Review.find_by(space_id: @space.id, user_id: current_user.id)
     @review.destroy
 
     respond_to do |format|
