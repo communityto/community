@@ -1,5 +1,6 @@
 <h1> Your Spaces </h1>
 
 <% @hosted_spaces.each do |space| %>
-  <%=link_to space.title, space %> <br/>
+  <%= link_to space.title, space %> |
+  <%=link_to 'View Bookings', user_hosted_space_path(current_user, space) %> (<%=space.bookings.count %>) <br/>
 <% end %>
