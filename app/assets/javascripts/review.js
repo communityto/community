@@ -23,7 +23,9 @@ $(document).ready(function() {
             console.log("this is always happening");
           });
       });
-  $('.delete_post').bind('ajax:success', function() {
+  $('.delete-button').bind('ajax:success', function() {
+    // var msg = $("#review_message").closest("#review_message");
+    // console.log(msg);
     $("#review_message").closest("#review_message").fadeOut();
     console.log("This delete is happening!");
   });
