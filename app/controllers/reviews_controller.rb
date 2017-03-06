@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @user_reviews = current_user.reviews
+    @user = User.find(params[:user_id])
   end
 
   def show

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # USERS
   resources :user_sessions, only: [:create]
-  resources :users, only: [:new, :create, :show, :edit] do
+  resources :users, only: [:new, :create, :show, :edit, :update] do
     resources :bookings, only: [:index, :edit, :update, :destroy]
     resources :reviews, only: [:index]
     resources :favourite_spaces, only: [:index]
