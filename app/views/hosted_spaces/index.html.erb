@@ -1,6 +1,8 @@
 <h1> Your Spaces </h1>
-
-<% @hosted_spaces.each do |space| %>
-  <%= link_to space.title, space %> |
-  <%=link_to 'View Bookings', user_hosted_space_path(current_user, space) %> (<%=space.bookings.count %>) <br/>
+<h3> You currently host <%= pluralize(current_user.hosted_spaces.count,'Space') %> </h3>
+<%if current_user.hosted_spaces.any? %> </br>
+  <% @hosted_spaces.each do |space| %>
+    <%= link_to space.title, space %> |
+    <%=link_to 'View Bookings', user_hosted_space_path(current_user, space) %> (<%=space.bookings.count %>) <br/>
+  <% end %>
 <% end %>

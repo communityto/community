@@ -1,7 +1,9 @@
 <h1> Your Reviews </h1>
 
 <h4> You've left <%=pluralize(@user_reviews.count, 'review') %>
-<% @user_reviews.each do |review|%>
-<p>Review left for: <%= review.space.title %> on <%= review.created_at %><br/> 
-  <%= review.content %>
+<% if current_user.reviews.any? %>
+  <% @user_reviews.each do |review|%>
+  <p>Review left for: <%= review.space.title %> on <%= review.created_at %><br/>
+    <%= review.content %>
+  <% end %>
 <% end %>

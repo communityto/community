@@ -10,10 +10,18 @@
   </head>
 
   <body>
-      <%#= link_to "Explore", categories_path %> |
+      <%#= link_to "Explore", categories_path %>
       <%= link_to "Home", root_path %> |
      <% if current_user %>
       <%= link_to "Profile", current_user %> |
+      <%= link_to 'Edit your profile info', edit_user_path(current_user) %> |
+      <%= link_to 'My Bookings', user_bookings_path(current_user)%> |
+      <%= link_to 'My Favourites', user_favourite_spaces_path(current_user) %> |
+      <%=link_to 'View your reviews', user_reviews_path(current_user)%> |
+      <%if current_user.hosted_spaces.any? %>
+        <%= link_to 'My Spaces', user_hosted_spaces_path(current_user) %> |
+      <% end %>
+      <%= link_to 'Create a Space', new_space_path %> |
       <%= link_to "Logout", :logout, method: :post %>
     <% else %>
       <%= link_to "Register", new_user_path %> |
