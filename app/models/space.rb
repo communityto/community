@@ -67,6 +67,7 @@ class Space < ApplicationRecord
       end
   end
 
+
   # def communication_avg
   #   review_communication_sum = @reviews.sum(:communication)
   #   review_communication_count = @reviews.count(:communication)

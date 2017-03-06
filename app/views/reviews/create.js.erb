@@ -1,8 +1,0 @@
-// server will send back pure JS with erb filtered thorugh
-//remove old validation messages
-$(".notice").remove();
-
-//display new validation messages
-<% @review.errors.full_messages.each do |message| %>
-$(“#helpBlock”).append(‘<div class=”notice”><%= escape_javascript(message)%></div>’);
-<% end %>
