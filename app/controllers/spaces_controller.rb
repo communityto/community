@@ -25,6 +25,7 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new
     @space.avatar = params[:file]
+
   end
 
   def create
