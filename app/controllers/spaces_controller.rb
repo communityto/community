@@ -25,7 +25,6 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new
     @space.avatar = params[:file]
-
   end
 
   def create
@@ -57,7 +56,7 @@ class SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, {avatars: []}, :amenity_ids => [], :category_ids => [])
+    params.require(:space).permit(:title, :description, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, {avatars: []}, :amenity_ids => [], :category_ids => [], :address_attributes => [:id, :street_address, :region] )
   end
 
 end

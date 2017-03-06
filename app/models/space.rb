@@ -12,7 +12,8 @@ class Space < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :bookings
   has_many :reviews
-  has_one :location
+  has_one :address
+  accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
   def all_booked_dates
@@ -58,8 +59,8 @@ class Space < ApplicationRecord
   end
 
   def location_avg
-    location_sum = reviews.sum(:location)
-    location_count = reviews.count(:location)
+    location_sum = reviews.sum(:address)
+    location_count = reviews.count(:address)
       if location_count > 0
         location_avg = location_sum / location_count
       else
