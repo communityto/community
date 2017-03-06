@@ -45,7 +45,8 @@ Amenity.create(name: "Storage")
     email: Faker::Internet.safe_email,
     password: 'password',
     password_confirmation: 'password',
-    birthdate: Time.at(rand * Time.now.to_i)
+    birthdate: Time.at(rand * Time.now.to_i),
+    bio: Faker::Hipster.paragraphs(2)
   )
 end
 
