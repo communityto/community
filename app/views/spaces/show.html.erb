@@ -40,6 +40,7 @@ Number of washrooms: <%= @space.bathrooms %> <br/>
 
 <%# if current_user && current_user.bookings.where(space_id: @space.id) %>
     <%= render 'reviews/form' %>
+    <%= render 'reviews/errors' %>
 <%# end %>
 <%# end %>
 <div id="reviews_list">

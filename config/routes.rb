@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  # DELETE /reviews/:id
+  # resources :reviews, only: [:destroy]
+
   # FAVOURITES
   resources :favourite_spaces, only: [:create, :destroy]
 

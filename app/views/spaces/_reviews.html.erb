@@ -2,59 +2,58 @@
 
   <h1>Reviews for <%= @space.title %></h1>
 
-<div id="reviews_summary">
-  <h2> Review Averages </h2>
-  <p>
-    Accuracy Average: <%= @space.accuracy_avg %></br>
-    Communication Average: <%= @space.communication_avg %></br>
-    Facilities Average: <%= @space.facilities_avg %></br>
-    Location Average: <%= @space.location_avg %></br>
-  </p>
-
-</div>
+  <div id="reviews_summary">
+    <h2> Review Averages </h2>
+    <p>
+      Accuracy Average: <%= @space.accuracy_avg %></br>
+      Communication Average: <%= @space.communication_avg %></br>
+      Facilities Average: <%= @space.facilities_avg %></br>
+      Location Average: <%= @space.location_avg %></br>
+    </p>
+  </div>
 
   <h2> Reviews </h2>
 
-<div id="reviews_list">
-  <% @space.reviews.order(created_at: :desc).each do |review|  %>
+  <div id="reviews_list">
+    <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
-<div id="review_message">
-  <p>
-    <% review.content %></br>
-    Accuracy: <%= review.accuracy %></br>
-    Communication: <%= review.communication %></br>
-    Facilities: <%= review.facilities %></br>
-    Location: <%= review.location %></br>
-  </p>
+      <%# must change this to a class because it's repeated %>
+      <div class="review_message">
+        <p>
+          <%= review.content %></br>
+          Accuracy: <%= review.accuracy %></br>
+          Communication: <%= review.communication %></br>
+          Facilities: <%= review.facilities %></br>
+          Location: <%= review.location %></br>
+        </p>
 
-<%# if can? :edit, Review %>
-  <!-- <div id="edit_review">
-    <button class="edit-button">Edit</button>
-  </div> -->
+      <%# if can? :edit, Review %>
+        <!-- <div id="edit_review">
+          <button class="edit-button">Edit</button>
+        </div> -->
 
-  <% if current_user && current_user.reviews.where(space_id: @space.id, user_id: current_user.id) %>
+        <% if current_user && current_user.reviews.where(space_id: @space.id, user_id: current_user.id) %>
+          <div id="delete_review">
+            <td><button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :remote=>true, :class=>'delete_post' %></button></td>
+          </div>
+        <% end %>
 
-  <div id="delete_review">
-    <td><button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :remote=>true, :class=>'delete_post' %></button></td>
+
+        <% if review.user != nil  %>
+          <p> By <%= review.user.first_name %></p>
+          <p>Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
+
+          <div class="helpful-button-div">
+            <button class="helpful-button">
+              <div class="helpful-button-text text-muted">Helpful</div>
+              <div class="helpful-button-count">0</div>
+            </button>
+          </div>
+          <br />
+        <% end %>
+      </div>
+
+    <% end %>
+
   </div>
-  <% end %>
-
-
-<% if review.user != nil  %>
-  <p> By <%= review.user.first_name %></p>
-  <p>Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
-
-  <div class="helpful-button-div">
-    <button class="helpful-button">
-      <div class="helpful-button-text text-muted">Helpful</div>
-      <div class="helpful-button-count">0</div>
-    </button>
-  </div></br>
-</div>
-
-<% end %>
-
-<% end %>
-
-</div>
 </div>
