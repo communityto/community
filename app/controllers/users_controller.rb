@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @favourite_spaces = User.find(params[:id]).favourite_spaces
   end
 
   # GET /users/new

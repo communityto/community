@@ -1,8 +1,29 @@
 
 <h1><%= @user.first_name %> </h1>
-
+<%= @user.avatar %>
 <p>
   <%= @user.bio %>
 <p>
+<!-- HOSTED SPACES  -->
+<h5><%= @user.first_name%> hosts <%= pluralize(@user.hosted_spaces.count,'Space') %>
+<%if @user.hosted_spaces.any? %>
+  <%=link_to ' (View all)', user_hosted_spaces_path(@user) %>
+<% end %></h5>
 
-<h3><%= @user.first_name %>'s
+<!-- USER FAVOURITES -->
+<h5><%= @user.first_name%> has <%= pluralize(@user.favourite_spaces.count,'Favourite Space') %>
+<%if @user.favourites.any? %>
+  <%=link_to ' (View all)', user_favourite_spaces_path(@user) %>
+<% end %></h5>
+  <%# @favourite_spaces.each do |space| %>
+  <%#= link_to space.title, space %>
+    <%# if @user == current_user %>
+    <%#= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %>
+    <%# end %>
+  <%# end %>
+
+<!-- USER REVIEWS -->
+<h5><%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %>
+  <% if @user.reviews.any? %>
+    <%=link_to ' (View all)', user_reviews_path(@user) %>
+  <% end %></h5>

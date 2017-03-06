@@ -1,8 +1,16 @@
-<h1> Your Spaces </h1>
-<h3> You currently host <%= pluralize(current_user.hosted_spaces.count,'Space') %> </h3>
-<%if current_user.hosted_spaces.any? %> </br>
-  <% @hosted_spaces.each do |space| %>
-    <%= link_to space.title, space %> |
-    <%=link_to 'View Bookings', user_hosted_space_path(current_user, space) %> (<%=space.bookings.count %>) <br/>
+<% if @user == current_user %>
+    <h1> Your Spaces </h1>
+    <h3> You host <%= pluralize(current_user.hosted_spaces.count,'Space') %> </h3>
+  <% else %>
+    <h1> <%= @user.first_name %>'s Spaces </h1>
+    <h3> <%= @user.first_name%> hosts <%= pluralize(@user.hosted_spaces.count,'Space') %> </h3>
   <% end %>
+
+<%if @user.hosted_spaces.any? %>
+  <div><% @hosted_spaces.each do |space| %>
+    <%= link_to space.title, space %> <br/>
+      <% if @user == current_user %>
+      <%= link_to 'View Bookings', user_hosted_space_path(current_user, space) %> (<%=space.bookings.count %>) <br/>
+      <% end %>
+    <% end %></div>
 <% end %>

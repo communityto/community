@@ -1,8 +1,14 @@
-<h1> Your Reviews </h1>
+<% if current_user == @user %>
+    <h1> Your Reviews </h1>
+    <h3> You have left <%=pluralize(@user.reviews.count, 'review') %> </h3>
+  <% else %>
+    <h1> <%= @user.first_name %>'s Reviews </h1>
+  <h3> <%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %> </h2>
+<% end %>
 
-<h4> You've left <%=pluralize(@user_reviews.count, 'review') %>
+<br/>
 <% if current_user.reviews.any? %>
-  <% @user_reviews.each do |review|%>
+  <% @user.reviews.each do |review|%>
   <p>Review left for: <%= review.space.title %> on <%= review.created_at %><br/>
     <%= review.content %>
   <% end %>
