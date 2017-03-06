@@ -13,8 +13,9 @@ $(document).ready(function() {
               data: $(this).serialize(),
           }).done(function(responseData) {
             console.log("This is coming in successfully");
+            // console.log(responseData)
             $('#reviews_list').prepend('<%= render @review %>');
-            $('#review_message').prop('disabled', false);
+            // $('#review_message').prop('disabled', false);
           }).fail(function(responseData){
             console.log("u fail bb");
             $(".notice").remove();
