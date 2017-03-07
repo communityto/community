@@ -1,0 +1,5 @@
+<%= if @search.results.present? %>
+  <%= @search.results.each do |results| %>
+    <%= space = results[:space] %>
+  <% end %>
+<% end %>
