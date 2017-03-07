@@ -13,12 +13,14 @@
   </div>
 
   <h2 id="reviews_head"> Reviews </h2>
+
   <div id="reviews_ajax"></div>
+
   <div id="reviews_list">
     <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
       <%# must change this to a class because it's repeated %>
-      <div class="review_message">
+      <div id="review_message">
         <p>
           <%= review.content %></br>
           Accuracy: <%= review.accuracy %></br>
@@ -35,7 +37,7 @@
         <% if current_user && current_user.reviews.where(space_id: @space.id, user_id: current_user.id) %>
 
           <div id="delete_review">
-            <button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :remote=>true, :class=>'delete_post' %></button>
+            <button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_post', :remote=>true %></button>
           </div>
         <% end %>
 

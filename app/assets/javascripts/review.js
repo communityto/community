@@ -4,7 +4,7 @@
 
 
 $(document).ready(function() {
-  $("#new_review").on('submit', function(event){
+  $(".review_form").on('submit', function(event){
     console.log(event);
     event.preventDefault();
           $.ajax({
@@ -36,6 +36,7 @@ $(document).ready(function() {
             // $('#review_message').prop('disabled', false);
           }).fail(function(responseData){
             console.log("u fail bb");
+            console.log(responseData);
           }).always(function(responseData){
             console.log("this is always happening");
           });

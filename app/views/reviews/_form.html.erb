@@ -3,7 +3,7 @@
 
 <h1>Add a new review</h1>
 
-  <%= form_for [@space, @review], :html => {:class => "review_form"}, :remote=>true do |f| %>
+  <%= form_for [@space, @review], :html => {:class => "review_form"} do |f| %>
 
     <div class="field">
       <%= f.text_area :content, :placeholder => "Your Review Here" %>
