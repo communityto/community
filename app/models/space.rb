@@ -15,6 +15,9 @@ class Space < ApplicationRecord
   has_one :location
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
+  # SCOPES
+  scope :by_category, ->(category) { joins(:categories).where(categories: { name: category }) }
+
   def all_booked_dates
     booked_dates = []
     bookings.where(approved: true).each do |b| # Iterates over all approved bookings for particular space.
