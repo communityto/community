@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @user_reviews = current_user.reviews
+    @user = User.find(params[:user_id])
   end
 
   def show
@@ -28,13 +28,9 @@ class ReviewsController < ApplicationController
       end
     else
       respond_to do |format|
-      # format.json { render :json => { :error => @review.errors.full_messages}}
-        # format.html {render 'space/show', notice: 'There was an error!'}
-        format.js
-          @review.errors.any?
-          @review.errors.each do |key, value|
-          end
-      end
+        format.json { render :json => { :error => @review.errors.full_messages}}
+        format.html {render 'space/show', notice: 'There was an error!'}
+        end
     end
   end
 

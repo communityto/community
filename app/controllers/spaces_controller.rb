@@ -19,13 +19,13 @@ class SpacesController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.js
     end
   end
 
   def new
     @space = Space.new
     @space.avatar = params[:file]
+
   end
 
   def create
