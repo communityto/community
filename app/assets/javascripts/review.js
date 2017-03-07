@@ -4,7 +4,7 @@
 
 
 $(document).ready(function() {
-  $(".review_form").on('submit', function(event){
+  $("#new_review").on('submit', function(event){
     console.log(event);
     event.preventDefault();
           $.ajax({
@@ -31,7 +31,6 @@ $(document).ready(function() {
               'Location: ' + revLoc + '</br></br>',
               'By User ID: ' + revName + '</br>',
               'Added on: ' + revTime + '</br>');
-            $('.delete-button"')
             console.log("This is coming in successfully");
             // $('#reviews_list').prepend('<%= render @review %>');
             // $('#review_message').prop('disabled', false);

@@ -42,8 +42,8 @@ class ReviewsController < ApplicationController
     @review.destroy
 
     respond_to do |format|
-      format.html { redirect_to(posts_url) }
-      format.js   { render :nothing => true }
+      format.html { redirect_to space_url(@space.id), notice: 'Review Deleted!'}
+      format.json   { render :nothing => true }
     end
   end
 
