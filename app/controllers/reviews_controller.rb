@@ -19,7 +19,6 @@ class ReviewsController < ApplicationController
   def create
     @review = @space.reviews.build(review_params)
     @review.user = current_user
-    @errorContent = []
 
     if @review.save
       respond_to do |format|
@@ -32,6 +31,9 @@ class ReviewsController < ApplicationController
         format.html {render 'space/show', notice: 'There was an error!'}
         end
     end
+
+
+
   end
 
   def destroy
@@ -50,7 +52,11 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:content, :accuracy, :communication, :facilities, :location)
+    params.require(:review).permit(:content, :accuracy, :communication, :facilities, :location, :helpful_count)
+  end
+
+  def helpful_params
+    params.require(:review).permit(:helpful_count)
   end
 
   def load_space

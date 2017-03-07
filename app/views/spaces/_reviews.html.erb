@@ -46,13 +46,11 @@
           <p> By <%= review.user.first_name %></p>
           <p>Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
 
-          <div class="helpful-button-div">
-            <button class="helpful-button">
-              <div class="helpful-button-text text-muted">Helpful</div>
-              <div class="helpful-button-count">0</div>
-            </button>
-          </div>
-          <br />
+        <div class="helpful_div">
+          <%= render "helpful" %>
+        </div>
+
+      </br>
         <% end %>
       </div>
 
