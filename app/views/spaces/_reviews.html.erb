@@ -14,13 +14,15 @@
 
   <h2> Reviews </h2>
 
+  <div id="reviews_ajax"></div>
+
   <div id="reviews_list">
     <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
       <%# must change this to a class because it's repeated %>
-      <div class="review_message">
+      <div id="review_message">
         <p>
-          <%= review.content %></br>
+          <%= review.content %></br></br>
           Accuracy: <%= review.accuracy %></br>
           Communication: <%= review.communication %></br>
           Facilities: <%= review.facilities %></br>

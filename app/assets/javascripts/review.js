@@ -23,17 +23,17 @@ $(document).ready(function() {
 
             console.log(responseData);
 
-            $('.review_message').prepend(
+            $('#reviews_ajax').append(
               '<p>' + revContent + '</br>',
               'Accuracy: ' + revAcc + '</br>',
               'Communication: ' + revComm + '</br>',
               'Facilities: ' + revFac + '</br>',
-              'Location: ' + revLoc + '</br>',
+              'Location: ' + revLoc + '</br></br>',
               'By User ID: ' + revName + '</br>',
               'Added on: ' + revTime + '</br>');
-
+            $('.delete-button"')
             console.log("This is coming in successfully");
-            $('#reviews_list').prepend('<%= render @review %>');
+            // $('#reviews_list').prepend('<%= render @review %>');
             // $('#review_message').prop('disabled', false);
           }).fail(function(responseData){
             console.log("u fail bb");
@@ -42,10 +42,7 @@ $(document).ready(function() {
           });
       });
   $('.delete-button').bind('ajax:success', function() {
-
-    // var msg = $("#review_message").closest("#review_message");
-    // console.log(msg);
-    $(".review_message").closest(".review_message").fadeOut();
+    $("#review_message").closest("#review_message").fadeOut();
     console.log("This delete is happening!");
   });
 });
