@@ -1,4 +1,10 @@
+<% if @search.results.empty? %>
+  <h2>No spaces found!</h2>
+<% end %>
 
-  <%= @search.results.each do |result| %>
-    <%#= result.count %>
-  <% end %>
+<% @search.results.each do |result| %>
+  <p>
+    <h3><%= result.title %></h3>
+    <%= result.description %>
+  </p>
+<% end %>
