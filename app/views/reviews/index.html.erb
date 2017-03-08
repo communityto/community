@@ -7,9 +7,11 @@
 <% end %>
 
 <br/>
-<% if current_user.reviews.any? %>
-  <% @user.reviews.each do |review|%>
-  <p>Review left for: <%=link_to review.space.title, review.space %> on <%= review.created_at %><br/>
-    "<%= review.content %>" </p>
+<% if current_user.exists? %>
+  <% if current_user.reviews.any? %>
+    <% @user.reviews.each do |review|%>
+    <p>Review left for: <%=link_to review.space.title, review.space %> on <%= review.created_at %><br/>
+      "<%= review.content %>" </p>
+    <% end %>
   <% end %>
 <% end %>
