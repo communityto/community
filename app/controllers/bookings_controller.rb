@@ -23,10 +23,15 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking_space = Space.find(params[:space_id])
     @booking = Booking.find(params[:id])
     @space = @booking.space
     if @booking.update(booking_params)
-      redirect_to user_bookings_url(user_id: @user.id)
+      if current_user == @space.host
+        redirect_to user_hosted_space_url(@user, @booking_space)
+      else
+      redirect_to user_bookings_url(user_id: @user.id) # need to find a way for both methods of editing to redirect to different pages
+      end
     else
       render 'edit', alert: "This update failed, please try again."
     end
@@ -40,6 +45,12 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to space_url(@space)
     end
+  end
+  
+  def approve_booking
+    @booking = Booking.find(params[:booking])
+    @booking.approved = true
+    @booking.save
   end
 
   private

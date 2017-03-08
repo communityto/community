@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # HOME
   root "spaces#index"
 
@@ -32,4 +31,5 @@ Rails.application.routes.draw do
   get 'search', to: 'search#new'
   get 'search_results', to: 'search#results'
 
+  get "/hosted_spaces/approve_booking" => "bookings_controller#approve_booking", :as => 'approve_booking'
 end
