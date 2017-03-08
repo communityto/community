@@ -3,12 +3,14 @@ class Search
 
   def initialize(search_params)
     @potential_results = []
-    @params = search_params
     @results = []
+    @params = search_params
     populate_spaces
   end
 
   def populate_spaces
+    populate_spaces_category
+    populate_spaces_amenity
     @results = @potential_results.inject(&:&)
   end
 
@@ -17,11 +19,13 @@ class Search
     category_ids.each do |category_id|
       @potential_results << Space.all.select{|space| space.category_ids.include?(category_id.to_i)}
     end
-      @results = @potential_results.inject(&:&)
+  end
 
-      # @results = @potential_results.inject([]) do |total_results, potential_result|
-      #   total_results & potential_result
-      end
+  def populate_spaces_amenity
+    amenity_ids = @params[:amenity_ids].select(&:present?)
+    amenity_ids.each do |amenity_id|
+      @potential_results << Space.all.select{|space| space.amenity_ids.include?(amenity_id.to_i)}
+    end
   end
 
 end

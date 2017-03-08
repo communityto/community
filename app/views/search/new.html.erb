@@ -9,6 +9,11 @@
     <%= collection_check_boxes(:search, :category_ids, Category.all, :id, :name) do |s| %>
       <%= s.check_box %> <%= s.label %><br />
     <% end %>
+
+    <h2>Amenity</h2>
+    <%= collection_check_boxes(:search, :amenity_ids, Amenity.all, :id, :name) do |s| %>
+      <%= s.check_box %> <%= s.label %><br />
+    <% end %>
   </div>
 
   <%= submit_tag 'Search' %>
