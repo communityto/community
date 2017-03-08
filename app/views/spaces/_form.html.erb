@@ -14,8 +14,18 @@
   </div>
 
   <div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
+    Location:
+    <ul>
+      <%= f.fields_for :address do |address_form| %>
+
+        <%= address_form.label :street_address %>
+        <%= address_form.text_field :street_address %>
+
+        <%= address_form.label :region %>
+        <%= address_form.text_field :region %>
+
+      <% end %>
+    </ul>
   </div>
 
   <div>

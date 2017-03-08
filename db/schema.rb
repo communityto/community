@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+ActiveRecord::Schema.define(version: 20170308192433) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string  "street_address"
+    t.string  "region"
+    t.integer "space_id"
+  end
+
 ActiveRecord::Schema.define(version: 20170306195742) do
+
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -77,7 +87,6 @@ ActiveRecord::Schema.define(version: 20170306195742) do
   create_table "spaces", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "address"
     t.time     "check_in"
     t.time     "check_out"
     t.integer  "price"
