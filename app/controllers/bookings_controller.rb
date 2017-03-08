@@ -24,8 +24,11 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @space = @booking.space
     if @booking.update(booking_params)
+      if current_user == @space.host
+        redirect_to user_hosted_space_url(@user, @booking_space)
+      else
       redirect_to user_bookings_url(user_id: @user.id) # need to find a way for both methods of editing to redirect to different pages
-      # redirect_to :back
+      end
     else
       render 'edit', alert: "This update failed, please try again."
     end
