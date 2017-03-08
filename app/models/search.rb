@@ -11,6 +11,7 @@ class Search
   def populate_spaces
     populate_spaces_category
     populate_spaces_amenity
+    populate_spaces_capacity
     @results = @potential_results.inject(&:&)
   end
 
@@ -26,6 +27,10 @@ class Search
     amenity_ids.each do |amenity_id|
       @potential_results << Space.all.select{|space| space.amenity_ids.include?(amenity_id.to_i)}
     end
+  end
+
+  def populate_spaces_capacity
+    @potential_results << Space.all.select{|space| space.capacity > @params[:capacity].to_i }
   end
 
 end
