@@ -1,32 +1,29 @@
 <h1> View Bookings for <%=@hosted_space.title %> </h1>
 <h3> <%= link_to 'View Space page', space_path %> <br/>
 
-<%#= @approved_bookings.each do |booking| %>
-  <!-- <%#= booking.user.first_name %> <br/> -->
-  <!-- <%#= booking.id %> <br/> -->
-  <!-- <%#= booking.approved %> <br/> -->
-  <%# end %>
-  <p><% @hosted_space_bookings.each do |booking| %>
-  Booked by: <%=link_to booking.user.first_name, booking.user %> <br/>
-  Start: <%= booking.start_datetime %> <br/>
-  End: <%= booking.end_datetime %> <br/>
-  Note: <%= booking.note %> <br/>
-  Booking ID: <%= booking.id %> <br/></p>
-  Approval Status:
-    <% if booking.approved == false %>
-      <p id="approved-false"> This booking has not been approved </p>
-      <!-- BELOW LINK CURRENTLY NOT REQUIRED - USING FORM INSTEAD -->
-      <%#= link_to 'Approve', approve_booking_path(:booking => booking), :class =>'approve_booking' %>
-        <!-- <button class="approve-button"> Approve</button> <br/> -->
-      <%= form_for [@hosted_space, booking] do |f| %>
-        <%= f.hidden_field(:approved, :value => true) %>
-        <%= f.submit "Approve" %>
+<% @hosted_space_bookings.each do |booking| %>
+  <p>
+    Booked by: <%=link_to booking.user.first_name, booking.user %> <br/>
+    Start: <%= booking.start_datetime %> <br/>
+    End: <%= booking.end_datetime %> <br/>
+    Note: <%= booking.note %> <br/>
+    Booking ID: <%= booking.id %> <br/></p>
+    Approval Status:
+      <% if booking.approved == false %>
+        <p id="approved-false"> This booking has not been approved </p>
+        <!-- BELOW LINK CURRENTLY NOT REQUIRED - USING FORM INSTEAD -->
+        <%#= link_to 'Approve', approve_booking_path(:booking => booking), :class =>'approve_booking' %>
+          <!-- <button class="approve-button"> Approve</button> <br/> -->
+        <%= form_for [@hosted_space, booking] do |f| %>
+          <%= f.hidden_field(:approved, :value => true) %>
+          <%= f.submit "Approve" %>
+        <% end %>
+      <% else %>
+        <p id="approved-true"> This booking has been approved </p>
+        <%= form_for [@hosted_space, booking] do |f| %>
+          <%= f.hidden_field(:approved, :value => false) %>
+          <%= f.submit "Deny" %>
+        <% end %>
       <% end %>
-    <% else %>
-      <p id="approved-true"> This booking has been approved </p>
-      <%= form_for [@hosted_space, booking] do |f| %>
-        <%= f.hidden_field(:approved, :value => false) %>
-        <%= f.submit "Deny" %>
-      <% end %>
-    <% end %>
+    </p>
   <% end %>

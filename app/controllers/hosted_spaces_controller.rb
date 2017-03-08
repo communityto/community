@@ -13,12 +13,6 @@ class HostedSpacesController < ApplicationController
     @approved_bookings = Booking.where(["space_id = ? and approved = ?", "21", "true"])
   end
 
-  # def approve_booking
-  #   @booking = Booking.find(params[:booking])
-  #   @booking.approved = true
-  #   @booking.save
-  # end
-
   private
 
   def booking_params

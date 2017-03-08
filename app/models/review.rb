@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-  validates_presence_of :content, :accuracy, :communication, :address, :facilities
+  validates_presence_of :content, :accuracy, :communication, :location, :facilities
   # validates_inclusion_of :age, :in => 0..
 
   belongs_to :user

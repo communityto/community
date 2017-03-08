@@ -7,7 +7,7 @@ class Space < ApplicationRecord
   validates :capacity, numericality: { greater_than: 0 }
   validates :bathrooms, numericality: { greater_than_or_equal_to: 0 }
   validates :size, numericality: { greater_than: 0 }
-  validates :address, presence: true
+  # validates :address, presence: true
 
   has_and_belongs_to_many :amenities
   has_and_belongs_to_many :categories
@@ -69,9 +69,9 @@ class Space < ApplicationRecord
   end
 
   def location_avg
-    location_sum = reviews.sum(:address)
+    location_sum = reviews.sum(:location)
 
-    location_count = reviews.count(:address)
+    location_count = reviews.count(:location)
       if location_count > 0
         location_avg = location_sum / location_count
       else
