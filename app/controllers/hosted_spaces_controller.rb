@@ -1,7 +1,8 @@
 class HostedSpacesController < ApplicationController
-  before_action :require_login
+  # before_action :require_login
 
   def index
+  @user = User.find(params[:user_id])
   @hosted_spaces = current_user.hosted_spaces
   end
 

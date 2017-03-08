@@ -16,6 +16,15 @@ class Space < ApplicationRecord
   accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
+  # SCOPES
+  scope :by_category, ->(category) { joins(:categories).where(categories: { name: category }) }
+
+  # def self.search(search)
+  #   if search
+  #     @results = Space.joins(:categories).where(categories: { id: params[:category_ids] })
+  #   end
+  # end
+
   def all_booked_dates
     booked_dates = []
     bookings.where(approved: true).each do |b| # Iterates over all approved bookings for particular space.

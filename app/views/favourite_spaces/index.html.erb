@@ -1,7 +1,13 @@
-<h1> Your Favourite Spaces! </h1>
-
-<h4> You currently have <%= pluralize(@user.favourite_spaces.count,'favourite') %></h4>
-<% @favourite_spaces.each do |space| %>
-<p><%=link_to space.title, space %> |
-<%= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %><br/>
-<% end %></p>
+<% if @user == current_user %>
+    <h1> Your Favourite Spaces! </h1>
+    <h3> You have <%= pluralize(@user.favourite_spaces.count,'favourite space') %> </h3>
+  <% else %>
+    <h1> <%= @user.first_name %>'s Favourite Spaces </h1>
+    <h3> <%=@user.first_name %> has <%= pluralize(@user.favourite_spaces.count,'favourite space') %> </h3>
+<% end %>
+<%if @user.favourite_spaces.any? %>
+  <% @user.favourite_spaces.each do |space| %>
+  <p><%=link_to space.title, space %> |
+    <%= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %><br/>
+    <% end %></p>
+  <% end %>

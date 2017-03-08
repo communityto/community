@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    @favourite_spaces = User.find(params[:id]).favourite_spaces
   end
 
   # GET /users/new
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+  @user = current_user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -79,6 +81,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.require(:user).permit(:avatar, :first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:avatar, :first_name, :last_name, :email, :password, :password_confirmation, :bio)
     end
 end

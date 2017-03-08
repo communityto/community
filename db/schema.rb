@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170308192433) do
 
   create_table "addresses", force: :cascade do |t|
@@ -17,6 +18,9 @@ ActiveRecord::Schema.define(version: 20170308192433) do
     t.string  "region"
     t.integer "space_id"
   end
+
+ActiveRecord::Schema.define(version: 20170306195742) do
+
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -108,6 +112,7 @@ ActiveRecord::Schema.define(version: 20170308192433) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "avatar"
+    t.text     "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
