@@ -10,6 +10,7 @@ class HostedSpacesController < ApplicationController
     @user = current_user
     @hosted_space = Space.find(params[:id])
     @hosted_space_bookings = Space.find(params[:id]).bookings
+    @approved_bookings = Booking.where(["space_id = ? and approved = ?", "21", "true"])
   end
 
   # def approve_booking

@@ -44,11 +44,11 @@ class BookingsController < ApplicationController
   def show
   end
 
-  # def approve_booking
-  #   @booking = Booking.find(params[:booking])
-  #   @booking.approved = true
-  #   @booking.save
-  # end
+  def approve_booking
+    @booking = Booking.find(params[:booking])
+    @booking.approved = true
+    @booking.save
+  end
 
   private
   def booking_params
