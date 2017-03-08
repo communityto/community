@@ -20,7 +20,7 @@
   <div id="reviews_list">
     <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
-      <div class="review_container" data-user-id = "<%= review.user_id %>">
+      <div class="review_container" data-review-id = "<%= review.id %>">
         <p>
           <%= review.content %></br>
           Accuracy: <%= review.accuracy %></br>
@@ -29,14 +29,9 @@
           Location: <%= review.location %></br>
         </p>
 
-      <%# if can? :edit, Review %>
-        <!-- <div id="edit_review">
-          <button class="edit-button">Edit</button>
-        </div> -->
-
-        <% if current_user && current_user.reviews.where(space_id: @space.id, user_id: current_user.id) %>
-
-        <button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %></button>
+        <% if review.user_id == current_user.id %>
+        <button class="edit-button"><%= link_to 'Edit your review', edit_review_path(review), method: :update, :class=>'edit_review' %></button>
+        <button class="delete-button"><%= link_to 'Destroy', review_path(review), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %></button>
         <% end %>
 
         <% if review.user != nil  %>

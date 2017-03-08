@@ -42,6 +42,7 @@ Number of washrooms: <%= @space.bathrooms %> <br/>
 <%# if can? :create, Review  %>
 
 <%# if current_user && current_user.bookings.where(space_id: @space.id) %>
+<h1>Add a new review</h1>
     <%= render 'reviews/form' %>
     <%= render 'reviews/errors' %>
 <%# end %>

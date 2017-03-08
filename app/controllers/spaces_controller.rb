@@ -14,7 +14,10 @@ class SpacesController < ApplicationController
   def show
     @reviews = @space.reviews
     @review = Review.new
+
+    # @review_delete = Review.where(user_id: current_user.id)
     @booking = Booking.new
+
 
     respond_to do |format|
       format.html

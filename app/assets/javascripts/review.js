@@ -39,40 +39,58 @@ $(document).ready(function() {
         'By: ' + name + '</br></br>',
         'Added on: ' + time + '</br></br>',
         '<button class="help-button">Helpful?</button></br></br>');
-      console.log("This is coming in successfully");
+        console.log("This is coming in successfully");
       // $('#reviews_list').prepend('<%= render @review %>');
       // $('#review_message').prop('disabled', false);
-    }).fail(function(responseData){
-      console.log("u fail bb");
-      console.log(responseData);
-    }).always(function(responseData){
-      console.log("this is always happening");
+      }).fail(function(responseData){
+        console.log("u fail bb");
+        console.log(responseData);
+      }).always(function(responseData){
+        console.log("this is always happening");
+      });
     });
-  });
   $(".delete_review").on('click', function(event){
+    console.log(event);
+    event.stopPropagation();
     event.preventDefault();
     // console.log(this);
-    var userId = $('.review_container').attr('data-user-id');
+    var reviewId = $('.review_container').attr('data-review-id');
     // console.log(userId);
     var spaceId = $('.space_container').attr('data-space-id');
     // console.log(spaceId);
     // console.log(event);
     alert("This is going to happen!");
     $.ajax({
-        url: "'/spaces/' + spaceId + '/reviews/' + spaceID + '?user_id=' + userId",
-        type: 'delete',
+        url: '/reviews/' + reviewId,
+        type: 'POST',
         dataType: 'json',
+        data: {"_method":"delete"},
     }).done(function(responseData) {
       alert("Done!");
       console.log(responseData);
       // console.log(this);
       $(this).closest("#review_message").fadeOut();
       console.log("This delete is happening!");
-  }).fail(function(repsonseData){
-    // console.log(responseData);
-    console.log("Delete Aax failed!");
+    }).fail(function(repsonseData){
+      // console.log(responseData);
+      console.log("Delete Aax failed!");
+    });
   });
-});
+  // $(".edit_review").on('click', function(event){
+  //   event.preventDefault();
+  //   // console.log(this);
+  //   var userId = $('.review_container').attr('data-user-id');
+  //   // console.log(userId);
+  //   var spaceId = $('.space_container').attr('data-space-id');
+  //   // console.log(spaceId);
+  //   // console.log(event);
+  //   alert("This is going to happen!");
+  //   $.ajax({
+  //       url: "'/spaces/' + spaceId + '/reviews/' + spaceID + '?user_id=' + userId",
+  //       type: 'delete',
+  //       dataType: 'json',
+  //   }).done(function(responseData) {
+  // });
 });
 
   // $('.delete-button').bind('ajax:success', function() {

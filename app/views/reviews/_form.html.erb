@@ -1,7 +1,6 @@
 <%# if current_user.reviews.count < 1  %>
 
 
-<h1>Add a new review</h1>
 
   <%= form_for [@space, @review], :html => {:class => "review_form"} do |f| %>
 
