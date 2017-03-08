@@ -1,9 +1,11 @@
 <h1>Edit Booking for <%= @booking.space.title %></h1>
 
 <p>
-  Check-in: <%= @booking.start_datetime.strftime("%B %-d %Y") %><br />
-  Check-out: <%= @booking.end_datetime.strftime("%B %-d %Y") %><br />
+  Check-in: <%= @booking.start_datetime %><br />
+  Check-out: <%= @booking.end_datetime%><br />
   Approved: <%= @booking.approved %>
 </p>
 
 <%= render 'form' %>
+
+<!-- .strftime("%B %-d %Y") -->
