@@ -19,17 +19,24 @@ class ReviewsController < ApplicationController
   def create
     @review = @space.reviews.build(review_params)
     @review.user = current_user
+    @review_helpful_count = @review.helpful_count
 
     if @review.save
       respond_to do |format|
         format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
-        format.json { render json: @review }
+        format.json do
+          json_response = {
+            review: @review,
+            user: @review.user
+          }
+          render json: json_response
+        end
       end
     else
       respond_to do |format|
         format.json { render :json => { :error => @review.errors.full_messages}}
-        format.html {render 'space/show', notice: 'There was an error!'}
-        end
+        format.html { render 'space/show', notice: 'There was an error!'}
+      end
     end
 
 
@@ -45,7 +52,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to space_url(@space.id), notice: 'Review Deleted!'}
-      format.json   { render :nothing => true }
+      format.json   { render @review }
     end
   end
 

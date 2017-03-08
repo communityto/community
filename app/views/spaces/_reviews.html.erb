@@ -5,6 +5,7 @@
   <div id="reviews_summary">
     <h2> Review Averages </h2>
     <p>
+      <%# Space Overall Average: <%= @space.review_avg %>
       Accuracy Average: <%= @space.accuracy_avg %></br>
       Communication Average: <%= @space.communication_avg %></br>
       Facilities Average: <%= @space.facilities_avg %></br>
@@ -19,8 +20,7 @@
   <div id="reviews_list">
     <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
-      <%# must change this to a class because it's repeated %>
-      <div id="review_message">
+      <div class="review_container" data-user-id = "<%= review.user_id %>">
         <p>
           <%= review.content %></br>
           Accuracy: <%= review.accuracy %></br>
@@ -36,11 +36,8 @@
 
         <% if current_user && current_user.reviews.where(space_id: @space.id, user_id: current_user.id) %>
 
-          <div id="delete_review">
-            <button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_post', :remote=>true %></button>
-          </div>
+        <button class="delete-button"><%= link_to 'Destroy', space_review_path(space_id: @space.id, user_id: current_user.id), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %></button>
         <% end %>
-
 
         <% if review.user != nil  %>
           <p> By <%= review.user.first_name %></p>
