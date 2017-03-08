@@ -15,6 +15,7 @@ class SpacesController < ApplicationController
     @reviews = @space.reviews
     @review = Review.new
     @booking = Booking.new
+    @address = @space.address
 
     respond_to do |format|
       format.html
@@ -24,11 +25,14 @@ class SpacesController < ApplicationController
 
   def new
     @space = Space.new
+    @space.address = Address.new
     @space.avatar = params[:file]
   end
 
   def create
     @space = Space.new(space_params)
+    binding.pry
+
       if @space.save
         redirect_to spaces_url
       else

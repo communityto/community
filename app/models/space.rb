@@ -1,8 +1,8 @@
 class Space < ApplicationRecord
   mount_uploaders :avatars, AvatarUploader
 
-  validates :title, length: { minimum: 3 }, on: :create
-  validates :description, length: { minimum: 50 }, on: :create
+  validates :title, length: { minimum: 1 }, on: :create
+  validates :description, length: { minimum: 1 }, on: :create
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :capacity, numericality: { greater_than: 0 }
   validates :bathrooms, numericality: { greater_than_or_equal_to: 0 }
@@ -60,12 +60,14 @@ class Space < ApplicationRecord
 
   def location_avg
     location_sum = reviews.sum(:address)
+
     location_count = reviews.count(:address)
       if location_count > 0
         location_avg = location_sum / location_count
       else
         location_avg = "pika?"
       end
+
   end
 
 
