@@ -31,7 +31,6 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
-    binding.pry
 
       if @space.save
         redirect_to spaces_url
