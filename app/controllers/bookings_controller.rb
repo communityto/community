@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_login
 
   before_action do
     @user = current_user
@@ -7,6 +7,9 @@ class BookingsController < ApplicationController
 
   def index
     @user_bookings = current_user.bookings
+  end
+
+  def show
   end
 
   def new
@@ -43,10 +46,7 @@ class BookingsController < ApplicationController
       redirect_to space_url(@space)
     end
   end
-
-  def show
-  end
-
+  
   def approve_booking
     @booking = Booking.find(params[:booking])
     @booking.approved = true

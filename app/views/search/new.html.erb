@@ -5,6 +5,10 @@
   <%= form_tag(search_results_path, method: "get") do %>
 
   <div>
+    <h2>Capacity</h2>
+    <%= text_field_tag("search[capacity]", nil, :id => 'capacity-search', :readonly => true ) %> persons
+    <div id="capacity-slider"></div>
+
     <h2>Category</h2>
     <%= collection_check_boxes(:search, :category_ids, Category.all, :id, :name) do |s| %>
       <%= s.check_box %> <%= s.label %><br />
