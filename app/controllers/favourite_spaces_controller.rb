@@ -3,7 +3,7 @@ class FavouriteSpacesController < ApplicationController
   skip_before_action :set_space, only: [:index]
 
   def index
-    @user = current_user
+    @user = User.find(params[:user_id])
     @favourite_spaces = @user.favourite_spaces
   end
 

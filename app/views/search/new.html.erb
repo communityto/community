@@ -2,23 +2,16 @@
 
 <div class="search-form">
 
-  <%= form_tag("/search", method: "get") do %>
-
-  <div>
-    <h2>Location</h2>
-    <%= text_field_tag 'location', 'Enter a location' %>
-  </div>
-
-  <div>
-    <h2>Amenity</h2>
-    <%= collection_check_boxes(:space, :amenity_ids, Amenity.all, :id, :name) do |s| %>
-      <%= s.check_box %> <%= s.label %><br />
-    <% end %>
-  </div>
+  <%= form_tag(search_results_path, method: "get") do %>
 
   <div>
     <h2>Category</h2>
-    <%= collection_check_boxes(:space,  :category_ids, Category.all, :id, :name) do |s| %>
+    <%= collection_check_boxes(:search, :category_ids, Category.all, :id, :name) do |s| %>
+      <%= s.check_box %> <%= s.label %><br />
+    <% end %>
+
+    <h2>Amenity</h2>
+    <%= collection_check_boxes(:search, :amenity_ids, Amenity.all, :id, :name) do |s| %>
       <%= s.check_box %> <%= s.label %><br />
     <% end %>
   </div>
