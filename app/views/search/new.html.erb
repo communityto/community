@@ -6,7 +6,7 @@
 
   <div>
     <h2>Category</h2>
-    <%= collection_check_boxes(:ids, :category_ids, Category.all, :id, :name) do |s| %>
+    <%= collection_check_boxes(:search, :category_ids, Category.all, :id, :name) do |s| %>
       <%= s.check_box %> <%= s.label %><br />
     <% end %>
   </div>

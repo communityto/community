@@ -1,37 +1,27 @@
 class Search
-  attr_reader :criteria, :results
+  attr_accessor :results
 
-  def initialize(params)
-    @criteria = []
-    @spaces = {}
-    @params = params
+  def initialize(search_params)
+    @potential_results = []
+    @params = search_params
+    @results = []
     populate_spaces
-    @results = @spaces
   end
 
   def populate_spaces
-    populate_spaces_from_categories
+    @results = @potential_results.inject(&:&)
   end
 
-  def populate_spaces_from_categories
-    Category.all.each do |category_class|
-      next unless @params[category_class]
-      @criteria << criteria = { category: :categories, criteria: Category.find(category).name }
-      Space.send(category).find_each do |space|
-        space_data = { space: space, criteria: criteria }
-        add_space_to_results(space_data)
-      end
+  def populate_spaces_category
+    category_ids = @params[:category_ids].select(&:present?)
+    category_ids.each do |category_id|
+      @potential_results << Space.all.select{|space| space.category_ids.include?(category_id.to_i)}
     end
-  end
+      @results = @potential_results.inject(&:&)
 
-  def add_space_to_results(space_data)
-    space_id = space_data[:space].id
-    create_result(space_id, space_data) unless @spaces[space_id]
-    add_criteria_to_result(space_id, space_data)
-  end
-
-  def add_criteria_to_result(space_id, space_data)
-    @spaces[space_id][:criteria] << space_data[:criteria]
+      # @results = @potential_results.inject([]) do |total_results, potential_result|
+      #   total_results & potential_result
+      end
   end
 
 end
