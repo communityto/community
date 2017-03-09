@@ -18,7 +18,7 @@
   </div>
 
   <div class="field">
-    <%= f.date_select :birthdate, :placeholder => 'Birthdate' %>
+    <%= f.date_select :birthdate, :placeholder => 'Birthdate', start_year: Time.now.year - 100, end_year: Time.now.year %>
   </div>
 
   <div class="field">
