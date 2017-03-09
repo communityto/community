@@ -1,36 +1,38 @@
-<div class="container">
+<h2>Make A Booking</h2>
+
+<hr><br />
+
   <%= form_for [@space, @booking] do |f| %>
-    <div class='col-md-5'>
+    <div class="booking-calendar">
         <div class="form-group">
             <div class='input-group date' id='datetimepicker6'>
-                <%= f.text_field :start_datetime, :class => "form-control" %>
+                <%= f.text_field :start_datetime, :class => "form-control", :placeholder => "Check-in" %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
-    </div>
+      </div>
 
-    <div class='col-md-5'>
+      <div class="booking-calendar">
         <div class="form-group">
             <div class='input-group date' id='datetimepicker7'>
-              <%= f.text_field :end_datetime, :class => "form-control" %>
+              <%= f.text_field :end_datetime, :class => "form-control", :placeholder => "Check-out" %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
-    </div>
+      </div>
 
-    <%= f.text_field :note %>
+    <%= f.text_area :note, :class => 'booking-note', :placeholder => "Send a message." %>
     <%= f.hidden_field :approved, :value => false %>
 
     <div class="form-actions">
-      <%= f.submit "save" %>
+      <%= f.submit "Book" %>
     </div>
 
   <% end %>
-</div>
 
 <!-- ##### SCRIPTS ##### -->
 

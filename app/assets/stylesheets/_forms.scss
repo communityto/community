@@ -1,4 +1,4 @@
-input {
+input, textarea {
   padding: 0.5em;
   margin: 0.5em 0;
   border: 0;
@@ -29,10 +29,25 @@ input[type=file] {
   display: inline-block;
 }
 
+textarea {
+  border: 1px solid $lightgrey;
+  resize: none;
+}
+
 #error_explanation {
   margin: 2.5em 0;
 }
 
 .alert {
   padding: 0;
+}
+
+.input-group-date {
+  line-height: 1;
+}
+
+.form-control {
+  width: 100%;
+  display: block;
+  margin: 0;
 }
