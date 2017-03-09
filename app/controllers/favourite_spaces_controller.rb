@@ -9,7 +9,7 @@ class FavouriteSpacesController < ApplicationController
 
   def create
     if Favourite.create(favourited: @space, user: current_user)
-      redirect_to @space, notice: 'Space has been added to your favourites!'
+      redirect_to @space, notice: "#{@space.title} has been added to your favourites!"
     else
       redirect_to @space, alert: 'Something went wrong...*sad panda*'
     end
