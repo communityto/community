@@ -17,6 +17,7 @@ class SpacesController < ApplicationController
 
     # @review_delete = Review.where(user_id: current_user.id)
     @booking = Booking.new
+    @address = @space.address
 
 
     respond_to do |format|
@@ -27,11 +28,13 @@ class SpacesController < ApplicationController
 
   def new
     @space = Space.new
+    @space.address = Address.new
     @space.avatar = params[:file]
   end
 
   def create
     @space = Space.new(space_params)
+
       if @space.save
         redirect_to spaces_url
       else
@@ -59,7 +62,7 @@ class SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:title, :description, :address, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, {avatars: []}, :amenity_ids => [], :category_ids => [])
+    params.require(:space).permit(:title, :description, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, {avatars: []}, :amenity_ids => [], :category_ids => [], :address_attributes => [:id, :street_address, :neighbourhood] )
   end
 
 end

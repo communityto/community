@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307024700) do
+
+ActiveRecord::Schema.define(version: 20170308212021) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string  "street_address"
+    t.string  "neighbourhood"
+    t.integer "space_id"
+  end
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -70,6 +77,10 @@ ActiveRecord::Schema.define(version: 20170307024700) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "region", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -87,7 +98,6 @@ ActiveRecord::Schema.define(version: 20170307024700) do
   create_table "spaces", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "address"
     t.time     "check_in"
     t.time     "check_out"
     t.integer  "price"

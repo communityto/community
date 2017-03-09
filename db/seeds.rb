@@ -37,22 +37,22 @@ Amenity.create(name: "Tables")
 Amenity.create(name: "Seating")
 Amenity.create(name: "Storage")
 
-
 5.times do
   User.create!(
-    first_name: Faker::Name.first_name,
+    first_name: Faker::Pokemon.name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.safe_email,
     password: 'password',
     password_confirmation: 'password',
-    birthdate: Time.at(rand * Time.now.to_i)
+    birthdate: Time.at(rand * Time.now.to_i),
+    bio: Faker::Hipster.paragraphs(2)
   )
 end
 
 25.times do
   s = Space.create!(
     host: User.all.sample,
-    title: Faker::Pokemon.name,
+    title: Faker::Company.name,
     description: Faker::Lorem.paragraph,
     price: rand(200),
     check_in: Time.current,
@@ -62,22 +62,23 @@ end
     bathrooms: rand(10),
     size: rand(1..5000)
   )
+   s.address = Address.create!(street_address: Faker::Address.street_address)
    s.categories << Category.all.sample
    s.amenities << Amenity.all.sample
 end
 
 20.times do
-  s = Space.all.sample
+  a = Space.all.sample
   Booking.create!(
     user: User.all.sample,
-    space: s,
+    space: a,
     start_datetime: Time.current + rand(5).days,
     end_datetime: Time.current + rand(6..30).days,
     note: Faker::Lorem.paragraph
   )
 
   1.times do
-     s.reviews.create!(
+     a.reviews.create!(
        user: User.all.sample,
        content: Faker::Lorem.paragraph,
        accuracy: rand(5),

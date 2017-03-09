@@ -1,19 +1,30 @@
 class Space < ApplicationRecord
   mount_uploaders :avatars, AvatarUploader
 
-  validates :title, length: { minimum: 3 }, on: :create
-  validates :description, length: { minimum: 50 }, on: :create
+  validates :title, length: { minimum: 1 }, on: :create
+  validates :description, length: { minimum: 1 }, on: :create
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :capacity, numericality: { greater_than: 0 }
   validates :bathrooms, numericality: { greater_than_or_equal_to: 0 }
   validates :size, numericality: { greater_than: 0 }
+  # validates :address, presence: true
 
   has_and_belongs_to_many :amenities
   has_and_belongs_to_many :categories
   has_many :bookings
   has_many :reviews
-  has_one :location
+  has_one :address
+  accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
+
+  # SCOPES
+  scope :by_category, ->(category) { joins(:categories).where(categories: { name: category }) }
+
+  # def self.search(search)
+  #   if search
+  #     @results = Space.joins(:categories).where(categories: { id: params[:category_ids] })
+  #   end
+  # end
 
   def all_booked_dates
     booked_dates = []
@@ -59,12 +70,14 @@ class Space < ApplicationRecord
 
   def location_avg
     location_sum = reviews.sum(:location)
+
     location_count = reviews.count(:location)
       if location_count > 0
         location_avg = location_sum / location_count
       else
         location_avg = "pika?"
       end
+
   end
 
   def reviews_avg

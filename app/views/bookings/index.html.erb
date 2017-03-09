@@ -1,10 +1,17 @@
 <h1>Your Bookings</h1>
+<h3>You currently have <%= pluralize(@user.bookings.count,'booking') %> </h3>
+<% if @user.bookings.any? %>
+  <div><% @user_bookings.each do |booking|%>
+  <p><%= link_to booking.space.title, booking.space%> | <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> <br/><br />
+  Start: <%= booking.start_datetime %>, Check-in: <%= booking.space.check_in.strftime("%H:%M") %> <br />
+  End: <%= booking.end_datetime %>, Check-out <%= booking.space.check_out.strftime("%H:%M") %> <br /></p>
+  Approval status: <% if booking.approved == true %>
+    <p> Your booking has been approved </p>
+    <% else %>
+    <p> Your booking has not been approved </p>
+    <% end %>
 
-<% @user_bookings.each do |booking|%>
-<p><%= link_to booking.space.title, booking.space%> <br />
-Start: <%= booking.start_datetime.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%H:%M") %> <br />
-End: <%= booking.end_datetime.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%H:%M") %> <br /></p>
-
-<%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %>
-
+  <% end %></div>
 <% end %>
+
+<!-- .strftime("%B %-d %Y") -->

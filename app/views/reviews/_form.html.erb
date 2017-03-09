@@ -1,4 +1,4 @@
-<% if current_user.reviews.count < 1  %>
+  <% if logged_in? && current_user.reviews.count < 1  %>
 
   <%= form_for [@space, @review], :html => {:class => "review_form"} do |f| %>
 
@@ -39,5 +39,6 @@
 
 <% f.hidden_field :user_id, :value => current_user %>
 <span id="helpBlock" class="help-block"></span>
+
 <% end  %>
 <% end  %>

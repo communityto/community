@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-
   # HOME
   root "spaces#index"
 
   # USERS
   resources :user_sessions, only: [:create]
-  resources :users, only: [:new, :create, :show, :edit] do
+  resources :users, only: [:new, :create, :show, :edit, :update] do
     resources :bookings, only: [:index, :edit, :update, :destroy]
     resources :reviews, only: [:index]
     resources :favourite_spaces, only: [:index]
@@ -35,4 +34,5 @@ Rails.application.routes.draw do
   get 'search', to: 'search#new'
   get 'search_results', to: 'search#results'
 
+  get "/hosted_spaces/approve_booking" => "bookings_controller#approve_booking", :as => 'approve_booking'
 end
