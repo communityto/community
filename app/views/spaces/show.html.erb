@@ -41,11 +41,11 @@ Number of washrooms: <%= @space.bathrooms %> <br/>
 <%# for new reviews: %>
 <%# if can? :create, Review  %>
 
-<%# if current_user && current_user.bookings.where(space_id: @space.id) %>
+<% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
 <h1>Add a new review</h1>
     <%= render 'reviews/form' %>
     <%= render 'reviews/errors' %>
-<%# end %>
+<% end %>
 <%# end %>
 <div id="reviews_list">
   <%= render "reviews" %>

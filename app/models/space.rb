@@ -74,6 +74,11 @@ class Space < ApplicationRecord
 
     rev_flat = rev_array.flatten
     rev_count = rev_flat.count
+
+      if rev_count > 0
     reviews_avg = rev_total / rev_count
+      else
+    reviews_avg = "No reviews to average!"
+      end
   end
 end
