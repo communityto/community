@@ -42,22 +42,20 @@ Rules: <%= @space.rules %><br/>
 Number of washrooms: <%= @space.bathrooms %> <br/>
 </p>
 
-<%= render 'bookings/form' %>
+  <%= render 'bookings/form' %>
 
+<div class="reviews_container">
 
-<%# for new reviews: %>
-<%# if can? :create, Review  %>
-
-<% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
-<h1>Add a new review</h1>
+  <% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
     <%= render 'reviews/form' %>
     <%= render 'reviews/errors' %>
-<% end %>
-<%# end %>
-<div id="reviews_list">
-  <%= render "reviews" %>
-</div>
+  <% end %>
 
+  <div id="reviews_list">
+    <%= render "reviews" %>
+  </div>
+  
+</div>
 <!-- <iframe
   width="600"
   height="450"
@@ -75,4 +73,3 @@ Number of washrooms: <%= @space.bathrooms %> <br/>
       &q=<%=URI.encode(@address.street_address)%>" allowfullscreen>
   </iframe>
 <% end %>
-

@@ -24,6 +24,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    #
+    # if params[:increment_helpful_count]
+    #   @review.update_attributes(helpful_count: @review.helpful_count + 1)
+    # else
+    #   ...
+    # end
+
     if @review.save
       respond_to do |format|
         format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
@@ -74,8 +81,6 @@ class ReviewsController < ApplicationController
 
   def destroy
 
-    # debugger
-    # @space = Space.find(params[:id])
     @review = Review.find(params[:id])
     @review.destroy
 
@@ -89,10 +94,6 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:content, :accuracy, :communication, :facilities, :location, :helpful_count)
-  end
-
-  def helpful_params
-    params.require(:review).permit(:helpful_count)
   end
 
   def load_space

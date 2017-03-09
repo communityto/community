@@ -21,7 +21,6 @@
     <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
       <div class="review_container" data-review-id = "<%= review.id %>">
-        <div id="review_fade<%= review.id %>">
         <p>
           <%= review.content %></br>
           Accuracy: <%= review.accuracy %></br>
@@ -40,9 +39,11 @@
           <p>Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
 
         <div class="helpful_div">
-          <%= render "helpful" %>
+          <%= form_for review, :html => {:class => "helpful_button"} do |f| %>
+            <%= f.hidden_field :increment_helpful_count, :value => true %>
+            <%= f.submit 'Helpful?' %>
+          <% end %>
         </div>
-      </div>
       </br>
         <% end %>
       </div>
