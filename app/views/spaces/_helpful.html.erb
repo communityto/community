@@ -1,0 +1,5 @@
+<%= form_for [@space, @review], :html => {:class => "helpful_button"}, :remote => true do |f| %>
+  <% f.hidden_field :space_id, :value => @space.id %>
+  <%= f.hidden_field :helpful_count, :value => (@review.helpful_count + 1) %>
+  <%= f.submit 'Helpful?' %>
+<% end %>

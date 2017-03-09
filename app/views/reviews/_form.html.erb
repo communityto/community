@@ -1,9 +1,6 @@
-<% if current_user %>
-  <% if current_user.reviews.count < 1  %>
+  <% if logged_in? && current_user.reviews.count < 1  %>
 
-<h1>Add a new review</h1>
-
-  <%= form_for [@space, @review], remote: true do |f| %>
+  <%= form_for [@space, @review], :html => {:class => "review_form"} do |f| %>
 
     <div class="field">
       <%= f.text_area :content, :placeholder => "Your Review Here" %>
@@ -43,6 +40,5 @@
 <% f.hidden_field :user_id, :value => current_user %>
 <span id="helpBlock" class="help-block"></span>
 
-<% end %>
-<% end %>
-<% end %>
+<% end  %>
+<% end  %>

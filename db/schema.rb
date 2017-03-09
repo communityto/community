@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170308212021) do
 
   create_table "addresses", force: :cascade do |t|
@@ -27,6 +28,15 @@ ActiveRecord::Schema.define(version: 20170308212021) do
   create_table "amenities_spaces", id: false, force: :cascade do |t|
     t.integer "amenity_id"
     t.integer "space_id"
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -76,12 +86,13 @@ ActiveRecord::Schema.define(version: 20170308212021) do
     t.integer  "user_id"
     t.integer  "space_id"
     t.integer  "booking_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "accuracy"
     t.integer  "communication"
     t.integer  "facilities"
     t.integer  "location"
+    t.integer  "helpful_count", default: 0
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -115,6 +126,19 @@ ActiveRecord::Schema.define(version: 20170308212021) do
     t.text     "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.boolean  "vote",          default: false, null: false
+    t.string   "voteable_type",                 null: false
+    t.integer  "voteable_id",                   null: false
+    t.string   "voter_type"
+    t.integer  "voter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type"
+    t.index ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true
+    t.index ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type"
   end
 
 end

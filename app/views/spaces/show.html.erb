@@ -1,3 +1,6 @@
+<div class="space_container" data-space-id = "<%= @space.id %>">
+<%# please do not remove the above div with class review_contaner!!! %>
+
 <h1><%= @space.title %></h1>
 <% if logged_in? %>
   <%if current_user.hosted_spaces.include?(@space) %>
@@ -45,9 +48,11 @@ Number of washrooms: <%= @space.bathrooms %> <br/>
 <%# for new reviews: %>
 <%# if can? :create, Review  %>
 
-<%# if current_user && current_user.bookings.where(space_id: @space.id) %>
+<% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
+<h1>Add a new review</h1>
     <%= render 'reviews/form' %>
-<%# end %>
+    <%= render 'reviews/errors' %>
+<% end %>
 <%# end %>
 <div id="reviews_list">
   <%= render "reviews" %>

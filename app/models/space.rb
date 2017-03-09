@@ -80,23 +80,18 @@ class Space < ApplicationRecord
 
   end
 
+  def reviews_avg
+    rev_array = reviews.pluck(:accuracy, :communication, :facilities, :location)
+    rev_flat = rev_array.map(&:sum)
+    rev_total = rev_flat.sum
 
-  # def communication_avg
-  #   review_communication_sum = @reviews.sum(:communication)
-  #   review_communication_count = @reviews.count(:communication)
-  #   review_communication_avg = review_communication_sum / review_communication_count
-  # end
-  #
-  # def facilities_avg
-  #   review_facilities_sum = @reviews.sum(:facilities)
-  #   review_facilities_count = @reviews.count(:facilities)
-  #   review_facilities_avg = review_facilities_sum / review_facilities_count
-  # end
-  #
-  # def location_avg
-  #   review_location_sum = @reviews.sum(:location)
-  #   review_location_count = @reviews.count(:location)
-  #   review_location_avg = review_location_sum / review_location_count
-  # end
+    rev_flat = rev_array.flatten
+    rev_count = rev_flat.count
 
+      if rev_count > 0
+    reviews_avg = rev_total / rev_count
+      else
+    reviews_avg = "No reviews to average!"
+      end
+  end
 end
