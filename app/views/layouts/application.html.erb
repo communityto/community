@@ -3,34 +3,50 @@
   <head>
     <title>Community</title>
     <%= csrf_meta_tags %>
+    <script src="https://use.fontawesome.com/8004be3262.js"></script>
+    <%= stylesheet_link_tag    "https://fonts.googleapis.com/css?family=Open+Sans:300,600|Roboto:300,600" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-      <%#= link_to "Explore", categories_path %>
-      <%= link_to "Home", root_path %> |
-     <% if current_user %>
-      <%= link_to "Profile", current_user %> |
-      <%= link_to 'Edit your profile info', edit_user_path(current_user) %> |
-      <%= link_to 'My Bookings', user_bookings_path(current_user)%> |
-      <%= link_to 'My Favourites', user_favourite_spaces_path(current_user) %> |
-      <%=link_to 'My Reviews', user_reviews_path(current_user)%> |
-      <%if current_user.hosted_spaces.any? %>
-        <%= link_to 'My Spaces', user_hosted_spaces_path(current_user) %> |
+    <div class="main">
+      <header class="site-header">
+        <h1 class="logo"><i class="fa fa-diamond" aria-hidden="true"></i> <%= link_to "community.", root_path %></h1>
+
+        <nav class="site-nav">
+          <%= link_to "Home", root_path %>
+          <%= link_to "Explore", spaces_path %>
+          <% if current_user %>
+            <%= link_to "Profile", current_user %>
+            <%= link_to 'Edit your profile info', edit_user_path(current_user) %>
+            <%= link_to 'My Bookings', user_bookings_path(current_user)%>
+            <%= link_to 'My Favourites', user_favourite_spaces_path(current_user) %>
+            <%=link_to 'My Reviews', user_reviews_path(current_user)%>
+            <% if current_user.hosted_spaces.any? %>
+              <%= link_to 'My Spaces', user_hosted_spaces_path(current_user) %>
+            <% end %>
+            <%= link_to 'Host', new_space_path %>
+            <%= link_to "Logout", :logout, method: :post %>
+          <% else %>
+            <%= link_to "Register", new_user_path %>
+            <%= link_to "Login", :login %>
+          <% end %>
+        </nav>
+      </header>
+
+      <% flash.each do |key, message| %>
+        <div class="flash-<%= key %>"><%= message %></div>
       <% end %>
-      <%= link_to 'Create a Space', new_space_path %> |
-      <%= link_to "Logout", :logout, method: :post %>
-    <% else %>
-      <%= link_to "Register", new_user_path %> |
-      <%= link_to "Login", :login %>
-    <% end %>
 
-    <div>
-      <p id="notice"><%= flash[:notice] %></p>
-      <p id="alert"><%= flash[:alert] %></p>
+      <main>
+        <%= yield %>
+      </main>
+
+      <footer class="site-footer">
+        <h1 class="footer-logo">community.</h1>
+      </footer>
+
     </div>
-
-    <%= yield %>
   </body>
 </html>

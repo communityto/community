@@ -14,10 +14,8 @@
 
 @import 'normalize';
 
-// Bootstrap
-@import 'bootstrap';
-@import 'bootstrap-sprockets';
-@import 'bootstrap-datetimepicker';
-
 // Base styles
-@import 'base/base';
+@import 'main';
+
+// Page styles
+@import 'pages';

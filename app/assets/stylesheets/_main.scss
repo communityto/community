@@ -1,13 +1,19 @@
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
+@import 'bootstrap';
+@import 'bootstrap-sprockets';
+@import 'bootstrap-datetimepicker';
+@import 'variables';
+@import 'forms';
+@import 'typography';
 
 html,
 body {
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  font-family: $base-font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.35;
 }
 
 img {
@@ -43,10 +49,20 @@ p {
   zoom: 1;
 }
 
+.main {
+  min-height: 100%;
+  position: relative;
+}
+
 .site-header {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid $lightgrey;
+
+  a, a:hover {
+    color: $blue;
+    text-decoration: none;
+  }
 
   .site-nav {
     line-height: 50px;
@@ -73,15 +89,10 @@ p {
   }
 }
 
-.main {
-  min-height: 100%;
-  position: relative;
-}
-
 .container {
   width: 80%;
   margin: 0 auto;
-  padding: 2em 0 6em 0;
+  padding: 2em 0 8em 0;
 }
 
 .flex-container {

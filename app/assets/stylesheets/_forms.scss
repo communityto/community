@@ -23,7 +23,16 @@ input[type=submit] {
   border: 1px solid $blue;
 }
 
-input[type=checkbox] {
+input[type=checkbox],
+input[type=file] {
   width: auto;
   display: inline-block;
+}
+
+#error_explanation {
+  margin: 2.5em 0;
+}
+
+.alert {
+  padding: 0;
 }
