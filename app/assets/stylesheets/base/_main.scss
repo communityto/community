@@ -1,0 +1,135 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+
+  & > img {
+    display: block;
+  }
+}
+
+header {
+  padding: 1em;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: $lightgrey;
+  margin: 0.5em 0;
+}
+
+p {
+  font-size: 1em;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $lightgrey;
+
+  .site-nav {
+    line-height: 50px;
+    font-size: 0.8em;
+
+    a {
+      color: $grey;
+      margin: 0 1em;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    a:hover {
+      color: $blue;
+    }
+  }
+
+  .logo {
+    margin: 0 20px;
+    line-height: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $blue;
+  }
+}
+
+.main {
+  min-height: 100%;
+  position: relative;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2em 0 6em 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-child {
+  flex-basis: 30%;
+  margin: 1em;
+}
+
+.grey {
+  background-color: $lightergrey;
+  padding: 3em 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.centered {
+  text-align: center;
+}
+
+.centered-form {
+  padding: 2em;
+  width: 35%;
+  margin: 0 auto;
+}
+
+.sign-up {
+  margin-top: 2em;
+}
+
+.site-footer {
+
+  text-align: right;
+  background-color: $blue;
+  padding: 1em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  .footer-logo {
+    color: white;
+    font-size: 25px;
+    margin: 0.5em;
+    font-weight: 600;
+  }
+}
