@@ -30,6 +30,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # ADDITIONAL FEATURES
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mailboxer'
+
 
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'autoprefixer-rails'
@@ -66,6 +71,3 @@ group :development do
 
   gem 'factory_girl_rails', '~> 4.8'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

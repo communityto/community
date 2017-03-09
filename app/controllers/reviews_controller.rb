@@ -31,6 +31,9 @@ class ReviewsController < ApplicationController
           json_response = {
             review: @review,
             user: @review.user
+            averages: {
+              location_avg = @space.location_avg
+              }
           }
           render json: json_response
         end

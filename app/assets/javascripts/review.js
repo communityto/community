@@ -4,7 +4,6 @@
 
 $(document).ready(function() {
   $(".review_form").on('submit', function(event){
-    console.log(event);
     event.preventDefault();
     $.ajax({
         url: $(this).attr('action'),
@@ -58,17 +57,19 @@ $(document).ready(function() {
     // });
 
 // $('.del_review').on('click', function(event){
-$('body').delegate('.delete_review','click',function(){
+$('body').delegate('.delete_review','click',function(event){
     console.log(event);
     event.stopPropagation();
     event.preventDefault();
     alert("selected!");
-    // console.log(this);
     var reviewId = $('.review_container').attr('data-review-id');
     // console.log(userId);
     var spaceId = $('.space_container').attr('data-space-id');
-    // console.log(spaceId);
+    console.log(spaceId);
     // console.log(event);
+
+// event.target
+
     $.ajax({
         url: '/reviews/' + reviewId,
         type: 'POST',

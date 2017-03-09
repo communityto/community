@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   mount_uploader :avatar, AvatarUploader
+  acts_as_messageable
 
   validates_format_of :email, :with => /\A(\S+)@(.+)\.(\S+)\z/
   validates :first_name, length: { minimum: 2 }, on: :create
@@ -18,5 +19,13 @@ class User < ActiveRecord::Base
 
   has_many :favourites
   has_many :favourite_spaces, through: :favourites, source: :favourited, source_type: 'Space'
+
+  def name
+    return "user.first_name"
+  end
+
+  def mailboxer_email(message)
+    return "user.email"
+  end
 
 end
