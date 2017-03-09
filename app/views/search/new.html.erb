@@ -7,20 +7,26 @@
     <%= form_tag(search_results_path, method: "get") do %>
 
     <div>
-      <h2>Capacity</h2>
-      <%= text_field_tag("search[capacity]", nil, :id => 'capacity-search', :readonly => true ) %> persons
+      <h3>Capacity</h3>
+      Persons:<%= text_field_tag("search[capacity]", nil, :id => 'capacity-search', :readonly => true ) %>
       <div id="capacity-slider"></div>
 
-      <h2>Category</h2>
+      <hr>
+
+      <h3>Category</h3>
       <%= collection_check_boxes(:search, :category_ids, Category.all, :id, :name) do |s| %>
         <%= s.check_box %> <%= s.label %><br />
       <% end %>
 
-      <h2>Amenity</h2>
+      <hr>
+
+      <h3>Amenity</h3>
       <%= collection_check_boxes(:search, :amenity_ids, Amenity.all, :id, :name) do |s| %>
         <%= s.check_box %> <%= s.label %><br />
       <% end %>
     </div>
+
+    <hr>
 
     <%= submit_tag 'Search' %>
 
