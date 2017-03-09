@@ -1,5 +1,3 @@
-<div class="space_container" data-space-id = "<%= @space.id %>">
-<%# please do not remove the above div with class review_contaner!!! %>
 
 <h1><%= @space.title %></h1>
 <% if logged_in? %>
@@ -15,7 +13,6 @@
     <%= link_to 'Remove this Space from my favourites!', favourite_space_path(@space), method: :delete %></p>
   <% end %>
 <% end %>
-
 
 <p>Description: <%= @space.description %>
 
@@ -54,8 +51,7 @@ Number of washrooms: <%= @space.bathrooms %> <br/>
   <div id="reviews_list">
     <%= render "reviews" %>
   </div>
-  
-</div>
+
 <!-- <iframe
   width="600"
   height="450"

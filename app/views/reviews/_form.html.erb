@@ -1,4 +1,4 @@
-  <%# if logged_in? && @reviews.count < 1  %>
+<% if logged_in? && @reviews_exist < 1 %>
 
 <h1>Add a new review</h1>
 
@@ -42,5 +42,5 @@
 <% f.hidden_field :user_id, :value => current_user %>
 <span id="helpBlock" class="help-block"></span>
 
-<%# end %>
+<% end %>
 <% end %>
