@@ -1,5 +1,11 @@
-<h1> View all Space types </h1>
+<section class="container">
+  <h1>Categories</h1>
 
-<% @categories.each do |c| %>
-<p><%= link_to c.name, c %>
-  <% end %>
+  <div class="category">
+    <% @categories.each do |c| %>
+      <div class="category-name">
+        <%= link_to c.name, c %>
+      </div>
+      <% end %>
+  </div>
+</section>
