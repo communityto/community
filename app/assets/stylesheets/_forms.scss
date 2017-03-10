@@ -53,9 +53,19 @@ textarea {
   margin: 0;
 }
 
+.helpful_button input[type=submit] {
+  width: 50%;
+}
+
 .delete_review {
-  padding: 0.5em;
   color: white;
   background-color: $blue;
-  border: 1px solid $blue;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  border: 0;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  width: 100%;
 }

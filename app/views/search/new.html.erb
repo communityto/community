@@ -2,31 +2,33 @@
 
   <h1>Search</h1>
 
+  <hr>
+
   <div class="search-form">
 
     <%= form_tag(search_results_path, method: "get") do %>
 
     <div>
-      <h3>Capacity</h3>
-      Persons:<%= text_field_tag("search[capacity]", nil, :id => 'capacity-search', :readonly => true ) %>
+      <h3><span class="blue-underline">Capacity</span></h3>
+      <%= text_field_tag("search[capacity]", nil, :id => 'capacity-search', :readonly => true ) %>
       <div id="capacity-slider"></div>
 
       <hr>
 
-      <h3>Category</h3>
+      <h3><span class="blue-underline">Category</span></h3>
       <%= collection_check_boxes(:search, :category_ids, Category.all, :id, :name) do |s| %>
         <%= s.check_box %> <%= s.label %><br />
       <% end %>
 
       <hr>
 
-      <h3>Amenity</h3>
+      <h3><span class="blue-underline">Amenity</span></h3>
       <%= collection_check_boxes(:search, :amenity_ids, Amenity.all, :id, :name) do |s| %>
         <%= s.check_box %> <%= s.label %><br />
       <% end %>
     </div>
 
-    <hr>
+    <br /><br />
 
     <%= submit_tag 'Search' %>
 
