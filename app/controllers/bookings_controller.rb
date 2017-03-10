@@ -46,7 +46,8 @@ class BookingsController < ApplicationController
       redirect_to space_url(@space)
     end
   end
-  
+
+  # Logic should be in model.
   def approve_booking
     @booking = Booking.find(params[:booking])
     @booking.approved = true
