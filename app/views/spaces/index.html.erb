@@ -1,7 +1,28 @@
-<h1> Spaces Index </h1>
+<section class="container">
+  <h1>Listed Spaces</h1>
 
-  <% @spaces.each do |s| %>
-  <ul>
-      <ol><%=link_to s.title, s %></ol>
-  </ul>
-  <% end %>
+  <section class="flex-container">
+
+    <% @spaces.each do |space| %>
+      <div class="space flex-child">
+
+        <%= link_to space, class: 'space-link' do %>
+
+          <figure class="space-image">
+            <% if space.avatar %>
+              <%= image_tag space.avatar %>
+            <% else %>
+              <%= image_tag ("http://placehold.it/2000x1000") %>
+            <% end %>
+          </figure>
+
+        <div class="space-description">
+          <h1 class="space-title"><%= space.title %></h1><% end %>
+            <hr>
+          <p><%= space.description %></p>
+        </div>
+
+      </div>
+    <% end %>
+  </section>
+</section>

@@ -52,7 +52,7 @@ end
 25.times do
   s = Space.create!(
     host: User.all.sample,
-    title: Faker::Company.name,
+    title: Faker::HarryPotter.location,
     description: Faker::Lorem.paragraph,
     price: rand(200),
     check_in: Time.current,

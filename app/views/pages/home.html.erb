@@ -1,14 +1,18 @@
+<section class="cover">
+  <div class="welcome">
+    Find a space<br />
+    to express<br />
+    yourself.
+  </div>
+</section>
+
 <section class="container">
 
-  <h1><span class="blue-underline"><%= @search.results.count %></span> Spaces</h1>
-    <% if @search.results.empty? %>
-      <h2>No spaces found!</h2>
-    <% end %>
-  <br />
-
+  <h1>Featured Spaces</h1>
+  <hr>
   <section class="flex-container">
 
-    <% @search.results.each do |space| %>
+    <% @spaces.sample(6).each do |space| %>
       <div class="space flex-child">
 
         <%= link_to space, class: 'space-link' do %>
@@ -30,5 +34,4 @@
       </div>
     <% end %>
   </section>
-
 </section>
