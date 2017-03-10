@@ -49,8 +49,26 @@ $(document).ready(function() {
 
       // spans.first().html(3);
       console.log(reviewIdCreated);
+      var img = $("<img />").attr('src', '/assets/stars.png');
+      // var imgTwo = $("<img />").attr('src', '/assets/stars.png');
+      //   $("<img />").attr('src', '/assets/stars.png');
+      // var imgThree = $("<img />").attr('src', '/assets/stars.png');
+      // $("<img />").attr('src', '/assets/stars.png');
+      // $("<img />").attr('src', '/assets/stars.png');
 
-      $(span_space).html(space_avg);
+      // if (space_avg === 1) {
+      //   $(span_space).prepend(img);
+      // } else if (space_avg === 2) {
+      //   $(span_space).prepend(img);
+      //   $(span_space).prepend(img);
+      // } else {
+      //   $(span_space).prepend(img);
+      //   $(span_space).prepend(img);
+      //   $(span_space).prepend(img);
+      // }
+
+      $(span_space).prepend(img);
+      // $(span_space).html(space_avg);
       $(span_acc).html(acc_avg);
       $(span_comm).html(comm_avg);
       $(span_fac).html(fac_avg);
