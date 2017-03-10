@@ -13,9 +13,16 @@ $(document).ready(function() {
         data: $(this).serialize(),
     }).done(function(responseData) {
       console.log(responseData);
+
+      // json object variables of new averages
       var user = responseData.user;
       var review = responseData.review;
-
+      var space_avg = responseData.space_avg;
+      var loc_avg = responseData.location_avg;
+      var acc_avg = responseData.accuracy_avg;
+      var fac_avg = responseData.facilities_avg;
+      var comm_avg = responseData.communication_avg;
+      // object attribute variables
       var content = review.content;
       var acc = review.accuracy;
       var comm = review.communication;
@@ -24,7 +31,23 @@ $(document).ready(function() {
       var name = user.first_name;
       var time = review.updated_at;
       var reviewIdCreated = review.id;
+
+      // new review averages
+      var spans = $('.reviews_summary').children().children();
+      var span_space = spans[0];
+      var span_acc = spans[1];
+      var span_comm = spans[2];
+      var span_fac = spans[3];
+      var span_loc = spans[4];
+
+      // spans.first().html(3);
       console.log(reviewIdCreated);
+
+      $(span_space).html(space_avg);
+      $(span_acc).html(acc_avg);
+      $(span_comm).html(comm_avg);
+      $(span_fac).html(fac_avg);
+      $(span_loc).html(loc_avg);
 
       $('#review_all').prepend(
         "<div class='review_container' data-review-id = '" + reviewIdCreated + "'>",
@@ -36,9 +59,17 @@ $(document).ready(function() {
         'Location: ' + loc + '</br></br>',
         'By: ' + name + '</br></br>',
         'Added on: ' + time + '</br></br>');
+
       }).fail(function(responseData){
         console.log("u fail bb");
         console.log(responseData);
+        // Array of error messages triggered by validations
+        var errorArr = responseData.error;
+        var errorLength = errorArr.length;
+        for (var i = 0; i < errorLength; i ++) {
+          $('.help-block').append(errorArr[i]);
+          console.log(errorArr[i]);
+        }
       }).always(function(responseData){
         console.log("this is always happening");
       });

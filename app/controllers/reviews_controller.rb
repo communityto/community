@@ -3,8 +3,6 @@ class ReviewsController < ApplicationController
   skip_before_action :load_space, only: [:index, :edit, :update, :destroy]
   before_action :require_login, only: [:new, :create]
 
-  # why is create using a :space_id? rather than :id params?
-
   def new
     @review = Review.new
   end
@@ -66,7 +64,12 @@ class ReviewsController < ApplicationController
         format.json do
           json_response = {
             review: @review,
-            user: @review.user
+            user: @review.user,
+            space_avg: @space.reviews_avg,
+            location_avg: @space.location_avg,
+            accuracy_avg: @space.accuracy_avg,
+            communication_avg: @space.communication_avg,
+            facilities_avg: @space.facilities_avg
           }
           render json: json_response
         end

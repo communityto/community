@@ -2,16 +2,14 @@
 
   <h1>Reviews for <%= @space.title %></h1>
 
-  <div id="reviews_summary">
     <h2> Review Averages </h2>
-    <p>
-      Space Overall Average: <%= @space.reviews_avg %> </br></br>
-      Accuracy Average: <%= @space.accuracy_avg %></br>
-      Communication Average: <%= @space.communication_avg %></br>
-      Facilities Average: <%= @space.facilities_avg %></br>
-      Location Average: <%= @space.location_avg %></br>
-    </p>
-  </div>
+    <ul class = "reviews_summary">
+      <li>Space Overall Average: <span id="space_num"><%= @space.reviews_avg %></span></li><br>
+      <li>Accuracy Average: <span id="acc_num"><%= @space.accuracy_avg %></span></li>
+      <li>Communication Average: <span id="comm_num"><%= @space.communication_avg %></span></li>
+      <li>Facilities Average: <span id="fac_num"><%= @space.facilities_avg %></span></li>
+      <li>Location Average: <span id="loc_num"><%= @space.location_avg %></span></li>
+    </ul>
 
   <h2 id="reviews_head"> Reviews </h2>
 
