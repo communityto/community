@@ -8,8 +8,10 @@
   <% end %>
   <%if @user.favourite_spaces.any? %>
     <% @user.favourite_spaces.each do |space| %>
-    <p><%=link_to space.title, space %> |
-      <%= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %><br/>
-      <% end %></p>
+    <p><%=link_to space.title, space %>
+      <% if current_user == @user %>
+      | <%= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %><br/>
+      <% end %>
+    <% end %></p>
     <% end %>
 </section>
