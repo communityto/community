@@ -3,8 +3,9 @@
   <h1>Reviews for <%= @space.title %></h1>
 
     <h2> Review Averages </h2>
+
     <ul class = "reviews_summary">
-      <li>Space Overall Average: <span id="space_num"><%= @space.reviews_avg %></span></li><br>
+      <li>Space Overall Average/Star rating: <span id="space_num"><%= render_stars(@space.reviews_avg) %></span></li><br>
       <li>Accuracy Average: <span id="acc_num"><%= @space.accuracy_avg %></span></li>
       <li>Communication Average: <span id="comm_num"><%= @space.communication_avg %></span></li>
       <li>Facilities Average: <span id="fac_num"><%= @space.facilities_avg %></span></li>
