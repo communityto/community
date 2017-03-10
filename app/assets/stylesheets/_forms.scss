@@ -52,3 +52,10 @@ textarea {
   display: block;
   margin: 0;
 }
+
+.delete_review {
+  padding: 0.5em;
+  color: white;
+  background-color: $blue;
+  border: 1px solid $blue;
+}
