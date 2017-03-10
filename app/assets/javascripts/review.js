@@ -13,9 +13,23 @@ $(document).ready(function() {
         data: $(this).serialize(),
     }).done(function(responseData) {
       console.log(responseData);
+
+      // if (responseData.status? ) {
+      //     var errorArr = responseData.error;
+      //     var errorLength = errorArr.length;
+      //     for (var i = 0; i < errorLength; i ++) {
+      //     $('.help-block').append(errorArr[i]);
+      //     console.log(errorArr[i]);
+      // } else {
+      // json object variables of new averages
       var user = responseData.user;
       var review = responseData.review;
-
+      var space_avg = responseData.space_avg;
+      var loc_avg = responseData.location_avg;
+      var acc_avg = responseData.accuracy_avg;
+      var fac_avg = responseData.facilities_avg;
+      var comm_avg = responseData.communication_avg;
+      // object attribute variables
       var content = review.content;
       var acc = review.accuracy;
       var comm = review.communication;
@@ -24,11 +38,24 @@ $(document).ready(function() {
       var name = user.first_name;
       var time = review.updated_at;
       var reviewIdCreated = review.id;
+
+      // new review averages
+      var spans = $('.reviews_summary').children().children();
+      var span_space = spans[0];
+      var span_acc = spans[1];
+      var span_comm = spans[2];
+      var span_fac = spans[3];
+      var span_loc = spans[4];
+
+      // spans.first().html(3);
       console.log(reviewIdCreated);
 
-// I want to access this variable ^^^
+      $(span_space).html(space_avg);
+      $(span_acc).html(acc_avg);
+      $(span_comm).html(comm_avg);
+      $(span_fac).html(fac_avg);
+      $(span_loc).html(loc_avg);
 
-      // console.log(content);
       $('#review_all').prepend(
         "<div class='review_container' data-review-id = '" + reviewIdCreated + "'>",
         "<div id='review_fade'" + reviewIdCreated + ">",
@@ -37,110 +64,43 @@ $(document).ready(function() {
         'Communication: ' + comm + '</br>',
         'Facilities: ' + fac + '</br>',
         'Location: ' + loc + '</br></br>',
-        "<a data-confirm='Are you sure?' class='edit_review' rel='nofollow' data-method='update' href='/reviews/'" + reviewIdCreated + '">Edit your review</a></br></br>',
-        "<a data-confirm='Are you sure?' class='delete_review' rel='nofollow' data-method='delete' href='/reviews/'" + reviewIdCreated + '">Destroy</a></br></br>',
         'By: ' + name + '</br></br>',
-        'Added on: ' + time + '</br></br>',
-        '<button>Helpful?</button></br>');
-        console.log("This is coming in successfully");
-      // $('#reviews_list').prepend('<%= render @review %>');
-      // $('#review_message').prop('disabled', false);
+        'Added on: ' + time + '</br></br>');
+
+      // }
+
       }).fail(function(responseData){
         console.log("u fail bb");
         console.log(responseData);
+        // Array of error messages triggered by validations
+        // var errorArr = responseData.error;
+        // var errorLength = errorArr.length;
+        // for (var i = 0; i < errorLength; i ++) {
+        //   $('.help-block').append(errorArr[i]);
+        //   console.log(errorArr[i]);
+        // }
       }).always(function(responseData){
         console.log("this is always happening");
       });
     });
 
-    // $('body').delegate('.del_review','click',function(){
-    //     alert("success this");
-    // });
-
-// $('.del_review').on('click', function(event){
-$('body').delegate('.delete_review','click',function(){
-    console.log(event);
+$('.reviews_container').delegate('.delete_review','click',function(event){
     event.stopPropagation();
     event.preventDefault();
+    var reviewElement = $(event.target).parent();
+    var reviewId = $(event.target).parent().data('reviewId');
     alert("selected!");
-    // console.log(this);
-    var reviewId = $('.review_container').attr('data-review-id');
-    // console.log(userId);
-    var spaceId = $('.space_container').attr('data-space-id');
-    // console.log(spaceId);
-    // console.log(event);
-    $.ajax({
+      $.ajax({
         url: '/reviews/' + reviewId,
         type: 'POST',
         dataType: 'json',
         data: {"_method":"delete"},
-        success: function(response){
-        $('#review_fade'+ reviewId).fadeOut("slow");},
-        // $('#review_fade'+reviewId).fadeOut();},
     }).done(function(responseData) {
-      alert("Done!");
-      console.log(responseData);
-      var fadeId = responseData.id;
-      console.log(fadeId);
-      // responseData here is the review object
-      // $('#review_fade'+fadeId).fadeOut("slow");
-
-      // $('#delete_container').closest("div").fadeOut();
-      // $('.delete_review').closest("div").fadeOut();
-      // console.log("This delete is happening!");
-      alert("End Fade Out!!");
+      $(reviewElement).fadeOut("slow", function(){
+        alert('after fade out');
+      });
     }).fail(function(repsonseData){
-      // console.log(responseData);
       console.log("Delete Ajax failed!");
     });
   });
-
-  $('body').delegate('.edit_review','click',function(){
-      console.log(event);
-      event.stopPropagation();
-      event.preventDefault();
-      alert("selected!");
-      // console.log(this);
-      var reviewId = $('.review_container').attr('data-review-id');
-      // console.log(userId);
-      var spaceId = $('.space_container').attr('data-space-id');
-      // console.log(spaceId);
-      // console.log(event);
-      $.ajax({
-          url: '/reviews/' + reviewId + '/edit',
-          type: 'GET',
-          dataType: 'json',
-      }).done(function(responseData) {
-        alert("Done!");
-        console.log(responseData);
-        alert("End Fade Out attempt!!");
-      }).fail(function(repsonseData){
-        // console.log(responseData);
-        console.log("Delete Ajax failed!");
-      });
-    });
-
-  // $(".edit_review").on('click', function(event){
-  //   event.preventDefault();
-  //   // console.log(this);
-  //   var userId = $('.review_container').attr('data-user-id');
-  //   // console.log(userId);
-  //   var spaceId = $('.space_container').attr('data-space-id');
-  //   // console.log(spaceId);
-  //   // console.log(event);
-  //   alert("This is going to happen!");
-  //   $.ajax({
-  //       url: "'/spaces/' + spaceId + '/reviews/' + spaceID + '?user_id=' + userId",
-  //       type: 'delete',
-  //       dataType: 'json',
-  //   }).done(function(responseData) {
-  // });
 });
-
-  // $('.delete-button').bind('ajax:success', function() {
-  //   $("#review_message").closest("#review_message").fadeOut();
-
-
-// console.log("This delete is happening!");
-// console.log("#review_message");
-// $("#review_message").fadeOut();

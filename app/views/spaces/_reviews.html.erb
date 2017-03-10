@@ -1,16 +1,15 @@
 <div id="new_review">
 
-  <div id="reviews_summary">
-    <h3>Reviews</h3>
-    <p>
-      Overall Average: <%= @space.reviews_avg %> </br></br>
-      Accuracy Average: <%= @space.accuracy_avg %></br>
-      Communication Average: <%= @space.communication_avg %></br>
-      Facilities Average: <%= @space.facilities_avg %></br>
-      Location Average: <%= @space.location_avg %></br>
-    </p>
-  </div>
+  <h1>Reviews for <%= @space.title %></h1>
 
+    <h2> Review Averages </h2>
+    <ul class = "reviews_summary">
+      <li>Space Overall Average: <span id="space_num"><%= @space.reviews_avg %></span></li><br>
+      <li>Accuracy Average: <span id="acc_num"><%= @space.accuracy_avg %></span></li>
+      <li>Communication Average: <span id="comm_num"><%= @space.communication_avg %></span></li>
+      <li>Facilities Average: <span id="fac_num"><%= @space.facilities_avg %></span></li>
+      <li>Location Average: <span id="loc_num"><%= @space.location_avg %></span></li>
+    </ul>
   <hr>
 
 <div id="review_all">
@@ -19,7 +18,6 @@
     <% @space.reviews.order(created_at: :desc).each do |review|  %>
 
       <div class="review_container" data-review-id = "<%= review.id %>">
-        <div id="review_fade<%= review.id %>">
         <p>
           <%= review.content %></br>
           Accuracy: <%= review.accuracy %></br>
@@ -29,7 +27,6 @@
         </p>
 
         <% if logged_in? && review.user_id == current_user.id %>
-        <%= link_to 'Edit your review', edit_review_path(review), method: :update, :class=>'edit_review' %></br>
         <%= link_to 'Destroy', review_path(review), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %>
         <% end %>
 
@@ -38,9 +35,11 @@
           <p>Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
 
         <div class="helpful_div">
-          <%= render "helpful" %>
+          <%= form_for review, :html => {:class => "helpful_button"} do |f| %>
+            <%= f.hidden_field :increment_helpful_count, :value => true %>
+            <%= f.submit 'Helpful?' %>
+          <% end %>
         </div>
-      </div>
       </br>
         <% end %>
       </div>

@@ -1,4 +1,76 @@
-<section class="space-cover" style="background: url('http://www.torontolofts.ca/Assets/website/Images/Properties/ToyFactory227/slider01.jpg') no-repeat">
+
+<h1><%= @space.title %></h1>
+<% if logged_in? %>
+  <%if current_user.hosted_spaces.include?(@space) %>
+    <%= link_to 'Edit this space', edit_space_path %>
+  <% end %>
+  <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
+    <p> Do you love this space? If so...
+      <%= link_to 'add it to my favourites!', favourite_spaces_path(space_id: @space), method: :post %> </p>
+  <% else %>
+    <p> Cool! This is one of your favourite Spaces!</p>
+    <p> Not a fan anymore?
+    <%= link_to 'Remove this Space from my favourites!', favourite_space_path(@space), method: :delete %></p>
+  <% end %>
+<% end %>
+
+<p>Description: <%= @space.description %>
+
+Category: <% @space.categories.each do |category| %>
+  <%= category.name %> <br/>
+<% end %>
+
+
+<% if @address %>
+  Address:
+  <%= @address.street_address %> <br/>
+  <%= @address.neighbourhood %> <br/>
+<% end %>
+
+Capacity: <%= @space.capacity %> <br/>
+Size: <%= @space.size %> sq.ft. <br/>
+Available from: <%= @space.check_in %> to <%= @space.check_out %><br/>
+Hourly rate: <%= number_to_currency(@space.price)%> <br/>
+Amenities:
+  <ul> <% @space.amenities.each do |amenity|%>
+  <li><%= amenity.name %></li>
+  <% end %></ul>
+Rules: <%= @space.rules %><br/>
+Number of washrooms: <%= @space.bathrooms %> <br/>
+</p>
+
+  <%= render 'bookings/form' %>
+
+<div class="reviews_container">
+
+  <% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
+    <%= render 'reviews/form' %>
+    <%= render 'reviews/errors' %>
+  <% end %>
+
+  <div id="reviews_list">
+    <%= render "reviews" %>
+  </div>
+
+<!-- <iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
+    &q=<%#=URI.encode(@space.address)%>" allowfullscreen>
+</iframe> -->
+
+<% if @address %>
+  <iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
+      &q=<%=URI.encode(@address.street_address)%>" allowfullscreen>
+  </iframe>
+<% end %>
+
+  <section class="space-cover" style="background: url('http://www.torontolofts.ca/Assets/website/Images/Properties/ToyFactory227/slider01.jpg') no-repeat">
 </section>
 
 <section class="container">

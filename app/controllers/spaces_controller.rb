@@ -15,10 +15,9 @@ class SpacesController < ApplicationController
     @reviews = @space.reviews
     @review = Review.new
 
-    # @review_delete = Review.where(user_id: current_user.id)
     @booking = Booking.new
     @address = @space.address
-
+    @reviews_exist = (current_user.reviews.where(space_id: @space.id)).count
 
     respond_to do |format|
       format.html
