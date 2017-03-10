@@ -5,7 +5,7 @@
   <%= form_for [@space, @review], :html => {:class => "review_form"} do |f| %>
 
     <div class="field">
-      <%= f.text_area :content, :placeholder => "Your Review Here" %>
+      <%= f.text_area :content, :class => 'review', :placeholder => "Your Review Here" %>
     </div>
 
     <div class="star-rating">
@@ -36,7 +36,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit  %>
+      <%= f.submit 'Submit Review', :class => 'review-submit' %>
     </div>
 
 <% f.hidden_field :user_id, :value => current_user %>

@@ -10,70 +10,71 @@
 
   <div>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :placeholder => 'Title' %>
   </div>
 
   <div>
-    Location:
-    <ul>
-      <%= f.fields_for :address do |address_form| %>
-
-        <%= address_form.label :street_address %>
-        <%= address_form.text_field :street_address %>
-
-        <%= address_form.label :neighbourhood %>
-        <%= address_form.text_field :neighbourhood %>
-
-      <% end %>
+    <%= f.fields_for :address do |address_form| %>
+    <%= address_form.label :street_address %>
+      <%= address_form.text_field :street_address, :placeholder => "120 Toronto Street" %>
+    <% end %>
     </ul>
   </div>
 
+  <br />
+
   <div>
-    <%= f.label :check_in %>
-    <%= f.time_select :check_in, {:minute_step => 15, :ampm => true} %>
-    <%= f.label :check_out %>
+    <%= f.label :check_in, 'Check-in Time' %>
+    <%= f.time_select :check_in, {:minute_step => 15, :ampm => true} %><br />
+    <%= f.label :check_out, 'Check-out Time' %>
     <%= f.time_select :check_out, {:minute_step => 15, :ampm => true} %>
   </div>
 
+  <br />
+
   <div>
-    <%= f.label :capacity %>
-    <%= f.text_field :capacity %>
+    <%= f.label :capacity, 'Space Occupancy' %>
+    <%= f.text_field :capacity, :placeholder => "e.g. 20" %>
   </div>
 
   <div>
-    <%= f.label :size, 'Space Size' %>
-    <%= f.text_field :size %> sqft
+    <%= f.label :size, 'Size (sqft)' %>
+    <%= f.text_field :size, :placeholder => "e.g. 500" %>
   </div>
 
   <div>
     <%= f.label :bathrooms %>
-    <%= f.text_field :bathrooms %>
+    <%= f.text_field :bathrooms, :placeholder => "e.g. 10" %>
   </div>
 
   <div>
-    <%= f.label :price %>
-    <%= f.text_field :price %> /day
+    <%= f.label :price, 'Daily Rate' %>
+    <%= f.text_field :price, :placeholder => "e.g. 0" %>
   </div>
 
   <div>
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :placeholder => "Write a description of your space." %>
   </div>
 
   <div>
     <%= f.label :rules %>
-    <%= f.text_area :rules %>
-  </div>
+    <%= f.text_area :rules, :placeholder => "House rules for visitors." %>
+  </div><br />
 
-  <div>
-    <%= f.label :amenity %>
-    <%= f.collection_check_boxes(:amenity_ids, Amenity.all, :id, :name) %>
-  </div>
+  <div class="space-options-list">
+    <%= f.label :amenity, 'Amenities' %><br /><br />
+    <%= f.collection_check_boxes(:amenity_ids, Amenity.all, :id, :name) do |s| %>
+      <%= s.check_box %> <%= s.label %><br />
+    <% end %>
+  </div><br />
 
-  <div>
-    <%= f.label :category %>
-    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
-  </div>
+  <div class="space-options-list">
+    <%= f.label :category, 'Categories' %><br /><br />
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |s| %>
+      <%= s.check_box %> <%= s.label %><br />
+    <% end %>
+  </div><br />
 
   <%= f.hidden_field :host_id, :value => current_user.id %>
 

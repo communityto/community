@@ -1,0 +1,54 @@
+input, textarea {
+  padding: 0.5em;
+  margin: 0.5em 0;
+  border: 0;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  width: 100%;
+}
+
+input[value],
+input[placeholder] {
+  font-weight: 300;
+  color: $grey;
+  opacity: 1;
+}
+
+input[type=submit] {
+  padding: 0.5em;
+  color: white;
+  background-color: $blue;
+  border: 1px solid $blue;
+}
+
+input[type=checkbox],
+input[type=file],
+input[type=radio] {
+  width: auto;
+  display: inline-block;
+}
+
+textarea {
+  border: 1px solid $lightgrey;
+  resize: none;
+}
+
+#error_explanation {
+  margin: 2.5em 0;
+}
+
+.alert {
+  padding: 0;
+}
+
+.input-group-date {
+  line-height: 1;
+}
+
+.form-control {
+  width: 100%;
+  display: block;
+  margin: 0;
+}

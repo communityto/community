@@ -10,9 +10,20 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require jquery-ui
  */
 
+@import 'normalize';
 
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
-@import 'bootstrap-datetimepicker';
+// Base styles
+@import 'main';
+
+// Page styles
+@import 'layouts/pages';
+@import 'layouts/spaces';
+@import 'layouts/categories';
+@import 'layouts/search';
+@import 'layouts/users';
+@import 'layouts/user_sessions';
+@import 'layouts/bookings';
+@import 'layouts/reviews';

@@ -69,3 +69,94 @@ Number of washrooms: <%= @space.bathrooms %> <br/>
       &q=<%=URI.encode(@address.street_address)%>" allowfullscreen>
   </iframe>
 <% end %>
+
+  <section class="space-cover" style="background: url('http://www.torontolofts.ca/Assets/website/Images/Properties/ToyFactory227/slider01.jpg') no-repeat">
+</section>
+
+<section class="container">
+
+  <div class="space_container" data-space-id = "<%= @space.id %>">
+  <%# please do not remove the above div with class review_contaner!!! %>
+
+    <h1><%= @space.title %></h1>
+
+    <hr>
+
+    <div class="space-nav">
+      <% if logged_in? %>
+        <% if current_user.hosted_spaces.include?(@space) %>
+          <%= link_to 'Edit Details', edit_space_path %>
+        <% end %>
+        <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
+          <p><%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %> </p>
+        <% else %>
+          <%= link_to 'Unfavourite', favourite_space_path(@space), method: :delete %></p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h4><%= @address.street_address %></h4>
+
+    <p><%= @space.description %></p><br />
+
+    <h3>Details</h3>
+
+    <hr>
+
+    <div class="space-details"><h4>
+      <span class="blue-underline">Category</span> -
+        <% @space.categories.each do |category| %>
+          <%= category.name %> <br/>
+        <% end %>
+
+      <span class="blue-underline">Capacity</span> <%= @space.capacity %> <br/>
+      <span class="blue-underline">Size</span> <%= @space.size %> sq.ft. <br/>
+      <span class="blue-underline">Available From</span> <%= @space.check_in.strftime("%I:%m%p")%> to <%= @space.check_out.strftime("%I:%m%p") %><br/>
+      <span class="blue-underline">Daily Rate</span> <%= number_to_currency(@space.price)%> <br/>
+      <span class="blue-underline">Amenities</span>
+        <ul> <% @space.amenities.each do |amenity|%>
+        <li><%= amenity.name %></li>
+        <% end %></ul>
+      <span class="blue-underline">Rules</span> <br /><%= @space.rules %><br/>
+      <span class="blue-underline">Bathrooms</span> <%= @space.bathrooms %> </h4>
+    </div>
+
+    <br /><br />
+
+    <%= render 'bookings/form' %>
+
+    <%# for new reviews: %>
+    <%# if can? :create, Review  %>
+
+    <% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
+    <h3>Leave a review</h3>
+    <hr>
+        <%= render 'reviews/form' %>
+        <%= render 'reviews/errors' %>
+    <% end %>
+    <%# end %>
+    <div id="reviews_list">
+      <%= render "reviews" %>
+    </div>
+
+    <!-- <iframe
+      width="600"
+      height="450"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
+        &q=<%#=URI.encode(@space.address)%>" allowfullscreen>
+    </iframe> -->
+
+    <h2>Location</h2>
+
+    <% if @address %>
+      <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
+          &q=<%=URI.encode(@address.street_address)%>" allowfullscreen>
+      </iframe>
+    <% end %>
+
+</section>
