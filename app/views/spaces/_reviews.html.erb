@@ -2,7 +2,7 @@
 
   <h1>Reviews for <%= @space.title %></h1>
 
-    <h2> <%= pluralize(@review_count, "Review") %> </h2>
+    <h2><%= pluralize(@review_count, "Review") %></h2><br>
 
     <ul class = "reviews_summary">
       <li>Overall Average/Star rating: <span id="space_num"><%= render_stars(@space.reviews_avg) %></span></li><br>

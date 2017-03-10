@@ -29,6 +29,9 @@ $(document).ready(function() {
       var acc_avg = responseData.accuracy_avg;
       var fac_avg = responseData.facilities_avg;
       var comm_avg = responseData.communication_avg;
+      var review_count = responseData.review_count;
+      var review_update = review_count + ' Reviews';
+      // console.log(review_count);
       // object attribute variables
       var content = review.content;
       var acc = review.accuracy;
@@ -71,7 +74,18 @@ $(document).ready(function() {
       //   $(span_space).prepend(img);
       // }
 
+      // rendering the new averages as stars as a hack lolol!
       $(span_space).prepend(starImg);
+      // $(span_acc).append(starImg);
+      // $(span_comm).append(starImg);
+      // $(span_fac).append(starImg);
+      // $(span_loc).append(starImg);
+
+      // rendering new review count/
+      $('h2').html(review_update);
+      // $('h2').append("<span class='blue-underline'>");
+
+      // rendering the new averages as integers:
       // $(span_space).html(space_avg);
       $(span_acc).html(acc_avg);
       $(span_comm).html(comm_avg);
