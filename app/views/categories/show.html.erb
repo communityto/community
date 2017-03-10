@@ -1,6 +1,28 @@
-<h1> All <%=@category.name%> Spaces </h1>
+<section class="container">
+  <h1><%=@category.name%></h1>
+  <section class="flex-container">
 
-<% @category.spaces.each do |space| %>
-  <h2><%= space.title %></h2>
-  <%= image_tag('https://unsplash.it/200/300/?random') %>
-<% end %>
+    <% @category.spaces.each do |space| %>
+      <div class="space flex-child">
+
+        <%= link_to space, class: 'space-link' do %>
+
+          <figure class="space-image">
+            <% if space.avatar %>
+              <%= image_tag space.avatar %>
+            <% else %>
+              <%= image_tag ("http://placehold.it/2000x1000") %>
+            <% end %>
+          </figure>
+
+        <div class="space-description">
+          <h1 class="space-title"><%= space.title %></h1><% end %>
+            <hr>
+          <p><%= space.description %></p>
+        </div>
+
+      </div>
+    <% end %>
+  </section>
+
+</section>
