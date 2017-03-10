@@ -14,7 +14,8 @@ class SpacesController < ApplicationController
   def show
     @reviews = @space.reviews
     @review = Review.new
-
+    @users = User.all
+    # @review_user = User.where(user_id: review.user_id)
     @booking = Booking.new
     @address = @space.address
     @reviews_exist = (current_user.reviews.where(space_id: @space.id)).count

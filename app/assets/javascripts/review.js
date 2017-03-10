@@ -38,6 +38,7 @@ $(document).ready(function() {
       var name = user.first_name;
       var time = review.updated_at;
       var reviewIdCreated = review.id;
+      var avatar = user.avatar;
 
       // new review averages
       var spans = $('.reviews_summary').children().children();
@@ -77,13 +78,13 @@ $(document).ready(function() {
       $('#review_all').prepend(
         "<div class='review_container' data-review-id = '" + reviewIdCreated + "'>",
         "<div id='review_fade'" + reviewIdCreated + ">",
-        '<p>' + content + '</br>',
-        'Accuracy: ' + acc + '</br>',
-        'Communication: ' + comm + '</br>',
-        'Facilities: ' + fac + '</br>',
-        'Location: ' + loc + '</br></br>',
-        'By: ' + name + '</br></br>',
-        'Added on: ' + time + '</br></br>');
+        '<p>' + content + '<br>',
+        'Accuracy: ' + acc + '<br>',
+        'Communication: ' + comm + '<br>',
+        'Facilities: ' + fac + '<br>',
+        'Location: ' + loc + '<br><br>',
+        'By: ' + name + '<br><br>',
+        'Added on: ' + time + '<br><br>');
 
       // }
 

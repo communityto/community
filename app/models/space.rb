@@ -94,4 +94,10 @@ class Space < ApplicationRecord
     reviews_avg = "No reviews to average!"
       end
   end
+
+  # def review_user(review)
+  #   id = review.user_id
+  #   review_user = User.find(id)
+  # end
+
 end
