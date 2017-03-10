@@ -76,7 +76,11 @@ class ReviewsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render :json => { :error => @review.errors.full_messages}}
+        format.json { render :json => {
+          :error => @review.errors.full_messages
+          :status => 0
+          }
+        }
         format.html { render 'space/show', notice: 'There was an error!'}
       end
     end

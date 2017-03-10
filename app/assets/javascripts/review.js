@@ -14,6 +14,13 @@ $(document).ready(function() {
     }).done(function(responseData) {
       console.log(responseData);
 
+      // if (responseData.status? ) {
+      //     var errorArr = responseData.error;
+      //     var errorLength = errorArr.length;
+      //     for (var i = 0; i < errorLength; i ++) {
+      //     $('.help-block').append(errorArr[i]);
+      //     console.log(errorArr[i]);
+      // } else {
       // json object variables of new averages
       var user = responseData.user;
       var review = responseData.review;
@@ -60,16 +67,18 @@ $(document).ready(function() {
         'By: ' + name + '</br></br>',
         'Added on: ' + time + '</br></br>');
 
+      // }
+
       }).fail(function(responseData){
         console.log("u fail bb");
         console.log(responseData);
         // Array of error messages triggered by validations
-        var errorArr = responseData.error;
-        var errorLength = errorArr.length;
-        for (var i = 0; i < errorLength; i ++) {
-          $('.help-block').append(errorArr[i]);
-          console.log(errorArr[i]);
-        }
+        // var errorArr = responseData.error;
+        // var errorLength = errorArr.length;
+        // for (var i = 0; i < errorLength; i ++) {
+        //   $('.help-block').append(errorArr[i]);
+        //   console.log(errorArr[i]);
+        // }
       }).always(function(responseData){
         console.log("this is always happening");
       });
