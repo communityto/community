@@ -3,8 +3,6 @@ class ReviewsController < ApplicationController
   skip_before_action :load_space, only: [:index, :edit, :update, :destroy]
   before_action :require_login, only: [:new, :create]
 
-  # why is create using a :space_id? rather than :id params?
-
   def new
     @review = Review.new
   end
@@ -24,6 +22,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    #
+    # if params[:increment_helpful_count]
+    #   @review.update_attributes(helpful_count: @review.helpful_count + 1)
+    # else
+    #   ...
+    # end
+
     if @review.save
       respond_to do |format|
         format.html { redirect_to space_url(@space.id), notice: 'Review added!'}
@@ -59,14 +64,23 @@ class ReviewsController < ApplicationController
         format.json do
           json_response = {
             review: @review,
-            user: @review.user
+            user: @review.user,
+            space_avg: @space.reviews_avg,
+            location_avg: @space.location_avg,
+            accuracy_avg: @space.accuracy_avg,
+            communication_avg: @space.communication_avg,
+            facilities_avg: @space.facilities_avg
           }
           render json: json_response
         end
       end
     else
       respond_to do |format|
-        format.json { render :json => { :error => @review.errors.full_messages}}
+        format.json { render :json => {
+          :error => @review.errors.full_messages
+          :status => 0
+          }
+        }
         format.html { render 'space/show', notice: 'There was an error!'}
       end
     end
@@ -74,8 +88,6 @@ class ReviewsController < ApplicationController
 
   def destroy
 
-    # debugger
-    # @space = Space.find(params[:id])
     @review = Review.find(params[:id])
     @review.destroy
 
@@ -89,10 +101,6 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:content, :accuracy, :communication, :facilities, :location, :helpful_count)
-  end
-
-  def helpful_params
-    params.require(:review).permit(:helpful_count)
   end
 
   def load_space
