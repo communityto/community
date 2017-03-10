@@ -1,6 +1,6 @@
 <% if logged_in? && @reviews_exist < 1 %>
 
-<h1>Add a new review</h1>
+<h3>Leave a review</h3>
 
   <%= form_for [@space, @review], :html => {:class => "review_form"} do |f| %>
 
