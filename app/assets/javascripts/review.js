@@ -39,7 +39,7 @@ $(document).ready(function() {
       var time = review.updated_at;
       var reviewIdCreated = review.id;
       var avatar = user.avatar;
-
+      var avatarUrl = avatar.url;
       // new review averages
       var spans = $('.reviews_summary').children().children();
       var span_space = spans[0];
@@ -50,6 +50,8 @@ $(document).ready(function() {
 
       // spans.first().html(3);
       console.log(reviewIdCreated);
+      console.log(avatar);
+      console.log(avatarUrl);
       var img = $("<img />").attr('src', '/assets/stars.png');
       // var imgTwo = $("<img />").attr('src', '/assets/stars.png');
       //   $("<img />").attr('src', '/assets/stars.png');
@@ -77,14 +79,15 @@ $(document).ready(function() {
 
       $('#review_all').prepend(
         "<div class='review_container' data-review-id = '" + reviewIdCreated + "'>",
-        "<div id='review_fade'" + reviewIdCreated + ">",
-        '<p>' + content + '<br>',
+        '<p class="reviewer-content">' + content + '<br><br>',
         'Accuracy: ' + acc + '<br>',
         'Communication: ' + comm + '<br>',
         'Facilities: ' + fac + '<br>',
-        'Location: ' + loc + '<br><br>',
-        'By: ' + name + '<br><br>',
-        'Added on: ' + time + '<br><br>');
+        'Location: ' + loc + '<br><br></p>',
+        "<div class='reviewer-info'><p><div class='profile-image' style='background-image: url('" + avatarUrl + "')'</div></p>",
+        '<p>By: ' + name + '</p>',
+        '<p>Added on: ' + time + '</p>',
+        '<hr>');
 
       // }
 
@@ -116,7 +119,7 @@ $('.reviews_container').delegate('.delete_review','click',function(event){
         data: {"_method":"delete"},
     }).done(function(responseData) {
       $(reviewElement).fadeOut("slow", function(){
-        alert('after fade out');
+        alert('Review faded...bye betch!');
       });
     }).fail(function(repsonseData){
       console.log("Delete Ajax failed!");
