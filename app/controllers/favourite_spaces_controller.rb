@@ -17,7 +17,7 @@ class FavouriteSpacesController < ApplicationController
 
   def destroy
     Favourite.where(favourited_id: @space.id, user_id: current_user.id).first.destroy
-    redirect_to user_path, notice: 'Space has been removed from your favourites'
+    redirect_to :back, notice: 'Space has been removed from your favourites'
   end
 
   private
