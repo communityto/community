@@ -21,6 +21,11 @@ img {
   height: auto;
 }
 
+a, a:hover {
+  color: $blue;
+  text-decoration: none;
+}
+
 figure {
   margin: 0;
 
@@ -58,11 +63,6 @@ p {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid $lightgrey;
-
-  a, a:hover {
-    color: $blue;
-    text-decoration: none;
-  }
 
   .site-nav {
     line-height: 50px;
@@ -126,6 +126,15 @@ p {
 
 .sign-up {
   margin-top: 2em;
+}
+
+.space-nav {
+  text-align: right;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 0;
+  margin-top: 15px;
 }
 
 .site-footer {

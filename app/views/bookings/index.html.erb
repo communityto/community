@@ -1,17 +1,22 @@
-<h1>Your Bookings</h1>
-<h3>You currently have <%= pluralize(@user.bookings.count,'booking') %> </h3>
-<% if @user.bookings.any? %>
-  <div><% @user_bookings.each do |booking|%>
-  <p><%= link_to booking.space.title, booking.space%> | <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> <br/><br />
-  Start: <%= booking.start_datetime %>, Check-in: <%= booking.space.check_in.strftime("%H:%M") %> <br />
-  End: <%= booking.end_datetime %>, Check-out <%= booking.space.check_out.strftime("%H:%M") %> <br /></p>
-  Approval status: <% if booking.approved == true %>
-    <p> Your booking has been approved </p>
-    <% else %>
-    <p> Your booking has not been approved </p>
-    <% end %>
+<section class="container">
 
-  <% end %></div>
-<% end %>
+  <h1>Your Bookings</h1>
+  <h3>You currently have <%= pluralize(@user.bookings.count,'booking') %></h3>
 
-<!-- .strftime("%B %-d %Y") -->
+  <hr>
+
+  <% if @user.bookings.any? %>
+    <div><% @user_bookings.each do |booking|%>
+    <p><%= link_to booking.space.title, booking.space%> | <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> <br/><br />
+    Start: <%= booking.start_datetime %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
+    End: <%= booking.end_datetime %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %> <br /></p>
+    Status: <% if booking.approved == true %>
+      Your booking has been approved.>
+      <% else %>
+      Your booking has not been approved.
+      <% end %>
+
+    <% end %></div>
+  <% end %>
+
+</section>

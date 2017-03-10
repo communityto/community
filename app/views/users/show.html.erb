@@ -1,29 +1,45 @@
+<section class="grey">
+  <div class="profile-image" style="background-image: url('<%= @user.avatar %>')">
+  </div>
 
-<h1><%= @user.first_name %> </h1>
-<%= image_tag @user.avatar.to_s %>
-<p>
-  <%= @user.bio %>
-<p>
-<!-- HOSTED SPACES  -->
-<h5><%= @user.first_name%> hosts <%= pluralize(@user.hosted_spaces.count,'Space') %>
-<%if @user.hosted_spaces.any? %>
-  <%=link_to ' (View all)', user_hosted_spaces_path(@user) %>
-<% end %></h5>
+  <% if @user == current_user %>
+    <h1 class="centered">Hey there <span><%= @user.first_name%>!</span></h1>
+    <% else %>
+    <h1 class="centered"><span><%= @user.first_name%>'s</span> Profile</h1>
+    <% end %>
+</section>
 
-<!-- USER FAVOURITES -->
-<h5><%= @user.first_name%> has <%= pluralize(@user.favourite_spaces.count,'Favourite Space') %>
-<%if @user.favourites.any? %>
-  <%=link_to ' (View all)', user_favourite_spaces_path(@user) %>
-<% end %></h5>
-  <%# @favourite_spaces.each do |space| %>
-  <%#= link_to space.title, space %>
-    <%# if @user == current_user %>
-    <%#= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %>
-    <%# end %>
-  <%# end %>
+<section class="container">
 
-<!-- USER REVIEWS -->
-<h5><%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %>
-  <% if @user.reviews.any? %>
-    <%=link_to ' (View all)', user_reviews_path(@user) %>
+  <h4>About Me</h4>
+  <hr>
+  <p>
+    <%= @user.bio %>
+  </p>
+
+  <br />
+
+  <!-- HOSTED SPACES  -->
+  <h5><%= @user.first_name%> hosts <%= pluralize(@user.hosted_spaces.count,'Space') %>
+  <%if @user.hosted_spaces.any? %>
+    <%=link_to ' (View all)', user_hosted_spaces_path(@user) %>
   <% end %></h5>
+
+  <!-- USER FAVOURITES -->
+  <h5><%= @user.first_name%> has <%= pluralize(@user.favourite_spaces.count,'Favourite Space') %>
+  <%if @user.favourites.any? %>
+    <%=link_to ' (View all)', user_favourite_spaces_path(@user) %>
+  <% end %></h5>
+    <%# @favourite_spaces.each do |space| %>
+    <%#= link_to space.title, space %>
+      <%# if @user == current_user %>
+      <%#= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %>
+      <%# end %>
+    <%# end %>
+
+  <!-- USER REVIEWS -->
+  <h5><%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %>
+    <% if @user.reviews.any? %>
+      <%=link_to ' (View all)', user_reviews_path(@user) %>
+    <% end %></h5>
+</section>

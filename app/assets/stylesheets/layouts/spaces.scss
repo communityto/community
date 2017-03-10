@@ -40,10 +40,6 @@
   margin-bottom: 0;
 }
 
-.space-details {
-  line-height: 200%;
-}
-
 .space-cover {
   background-color: #F3F3F5;
   background-size: 100%;
@@ -51,16 +47,15 @@
   height: 500px;
 }
 
-.booking-note {
-  width: 50%;
-  height: 200px;  
+.space-details h4 {
+  line-height: 2;
 }
 
-.booking-calendar {
-  width: 50%;
-}
-
-input {
-  width: auto;
-  border: 1px solid $lightgrey;
+.space_new_form {
+  label {
+    display: inline-block;
+  }
+  input {
+    margin-bottom: 15px;
+  }
 }

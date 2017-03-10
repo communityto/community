@@ -1,17 +1,18 @@
-<% if current_user == @user %>
-    <h1> Your Reviews </h1>
-    <h3> You have left <%=pluralize(@user.reviews.count, 'review') %> </h3>
-  <% else %>
-    <h1> <%= @user.first_name %>'s Reviews </h1>
-  <h3> <%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %> </h2>
-<% end %>
-
-<br/>
-<% if current_user.exists? %>
-  <% if current_user.reviews.any? %>
-    <% @user.reviews.each do |review|%>
-    <p>Review left for: <%=link_to review.space.title, review.space %> on <%= review.created_at %><br/>
-      "<%= review.content %>" </p>
-    <% end %>
+<section class="container">
+  <% if current_user == @user %>
+      <h1> Your Reviews </h1>
+      <h3> You have left <%=pluralize(@user.reviews.count, 'review') %> </h3>
+    <% else %>
+      <h1> <%= @user.first_name %>'s Reviews </h1>
+    <h3> <%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %> </h2>
   <% end %>
-<% end %>
+
+  <br/>
+
+  <% if @user.reviews.any? %>
+      <% @user.reviews.each do |review|%>
+      <p>Review left for: <%=link_to review.space.title, review.space %> on <%= review.created_at %><br/>
+        "<%= review.content %>" </p>
+      <% end %>
+  <% end %>
+</section>

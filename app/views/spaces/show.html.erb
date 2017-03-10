@@ -10,41 +10,46 @@
 
     <hr>
 
-    <% if logged_in? %>
-      <%if current_user.hosted_spaces.include?(@space) %>
-        <%= link_to 'Edit this space', edit_space_path %>
+    <div class="space-nav">
+      <% if logged_in? %>
+        <% if current_user.hosted_spaces.include?(@space) %>
+          <%= link_to 'Edit Details', edit_space_path %>
+        <% end %>
+        <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
+          <p><%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %> </p>
+        <% else %>
+          <%= link_to 'Unfavourite', favourite_space_path(@space), method: :delete %></p>
+        <% end %>
       <% end %>
-      <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
-        <p> Do you love this space? If so...
-          <%= link_to 'add it to my favourites!', favourite_spaces_path(space_id: @space), method: :post %> </p>
-      <% else %>
-        <p> Cool! This is one of your favourite Spaces!</p>
-        <p> Not a fan anymore?
-        <%= link_to 'Remove this Space from my favourites!', favourite_space_path(@space), method: :delete %></p>
-      <% end %>
-    <% end %>
+    </div>
 
     <h4><%= @address.street_address %></h4>
 
-    <p><%= @space.description %></p>
+    <p><%= @space.description %></p><br />
 
-    <div class="space-details">
+    <h3>Details</h3>
+
+    <hr>
+
+    <div class="space-details"><h4>
       <span class="blue-underline">Category</span> -
         <% @space.categories.each do |category| %>
           <%= category.name %> <br/>
         <% end %>
 
-      <span class="blue-underline">Capacity</span> - <%= @space.capacity %> <br/>
-      <span class="blue-underline">Size</span> - <%= @space.size %> sq.ft. <br/>
-      <span class="blue-underline">Available From</span> - <%= @space.check_in.strftime("%I:%m%p")%> to <%= @space.check_out.strftime("%I:%m%p") %><br/>
-      <span class="blue-underline">Daily Rate</span> - <%= number_to_currency(@space.price)%> <br/>
-      <span class="blue-underline">Amenities</span> -
+      <span class="blue-underline">Capacity</span> <%= @space.capacity %> <br/>
+      <span class="blue-underline">Size</span> <%= @space.size %> sq.ft. <br/>
+      <span class="blue-underline">Available From</span> <%= @space.check_in.strftime("%I:%m%p")%> to <%= @space.check_out.strftime("%I:%m%p") %><br/>
+      <span class="blue-underline">Daily Rate</span> <%= number_to_currency(@space.price)%> <br/>
+      <span class="blue-underline">Amenities</span>
         <ul> <% @space.amenities.each do |amenity|%>
         <li><%= amenity.name %></li>
         <% end %></ul>
-      <span class="blue-underline">Rules</span> - <%= @space.rules %><br/>
-      <span class="blue-underline">Bathrooms</span> - <%= @space.bathrooms %> <br/>
+      <span class="blue-underline">Rules</span> <br /><%= @space.rules %><br/>
+      <span class="blue-underline">Bathrooms</span> <%= @space.bathrooms %> </h4>
     </div>
+
+    <br /><br />
 
     <%= render 'bookings/form' %>
 
@@ -52,7 +57,8 @@
     <%# if can? :create, Review  %>
 
     <% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
-    <h1>Add a new review</h1>
+    <h3>Leave a review</h3>
+    <hr>
         <%= render 'reviews/form' %>
         <%= render 'reviews/errors' %>
     <% end %>
@@ -70,7 +76,7 @@
     </iframe> -->
 
     <h2>Location</h2>
-    
+
     <% if @address %>
       <iframe
         width="600"
