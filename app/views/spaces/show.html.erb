@@ -25,7 +25,7 @@
 
     <h4><%= @address.street_address %></h4>
 
-    <p><%= @space.description %></p><br />
+    <p><%= @space.description %></p>
 
     <h3>Details</h3>
 
@@ -49,8 +49,10 @@
       <span class="blue-underline">Bathrooms</span> <%= @space.bathrooms %> </h4>
     </div>
 
-    <br /><br />
+    <h3>Make A Booking</h3>
 
+    <hr><br />
+    
     <%= render 'bookings/form' %>
 
     <%# for new reviews: %>
@@ -75,8 +77,8 @@
       src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
         &q=<%#=URI.encode(@space.address)%>" allowfullscreen>
     </iframe> -->
-    
-    <h2>Location</h2>
+
+    <h3>Location</h3>
 
      <% if @address %>
        <iframe

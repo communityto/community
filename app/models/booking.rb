@@ -3,9 +3,9 @@ class Booking < ApplicationRecord
   belongs_to :space
   has_one :review
 
-  def approve_booking
-    approved = true
-  end
+  # def approve_booking
+  #   approved = true
+  # end
 
   def unavailable_dates
     booking_dates = []

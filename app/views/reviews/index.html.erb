@@ -1,7 +1,8 @@
 <section class="container">
   <% if current_user == @user %>
-      <h1> Your Reviews </h1>
-      <h3> You have left <%=pluralize(@user.reviews.count, 'review') %> </h3>
+      <h1>Your Reviews</h1>
+      <hr>
+      <h4>You have made <%=pluralize(@user.reviews.count, 'review') %>.</h4>
     <% else %>
       <h1> <%= @user.first_name %>'s Reviews </h1>
     <h3> <%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %> </h2>
