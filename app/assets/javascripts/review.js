@@ -29,6 +29,9 @@ $(document).ready(function() {
       var acc_avg = responseData.accuracy_avg;
       var fac_avg = responseData.facilities_avg;
       var comm_avg = responseData.communication_avg;
+      var review_count = responseData.review_count;
+      var review_update = review_count + ' Reviews';
+      // console.log(review_count);
       // object attribute variables
       var content = review.content;
       var acc = review.accuracy;
@@ -40,6 +43,9 @@ $(document).ready(function() {
       var reviewIdCreated = review.id;
       var avatar = user.avatar;
       var avatarUrl = avatar.url;
+      var avatarImg = $("<img class='profile-image' />").attr('src', avatarUrl);
+      var starImg = $("<img />").attr('src', '/assets/stars.png');
+      // var encodeUrl = (avatarUrl.replace(/ /,'/'));
       // new review averages
       var spans = $('.reviews_summary').children().children();
       var span_space = spans[0];
@@ -48,11 +54,9 @@ $(document).ready(function() {
       var span_fac = spans[3];
       var span_loc = spans[4];
 
-      // spans.first().html(3);
-      console.log(reviewIdCreated);
-      console.log(avatar);
-      console.log(avatarUrl);
-      var img = $("<img />").attr('src', '/assets/stars.png');
+      // console.log(reviewIdCreated);
+      // console.log(encodeUrl);
+
       // var imgTwo = $("<img />").attr('src', '/assets/stars.png');
       //   $("<img />").attr('src', '/assets/stars.png');
       // var imgThree = $("<img />").attr('src', '/assets/stars.png');
@@ -70,7 +74,18 @@ $(document).ready(function() {
       //   $(span_space).prepend(img);
       // }
 
-      $(span_space).prepend(img);
+      // rendering the new averages as stars as a hack lolol!
+      $(span_space).prepend(starImg);
+      // $(span_acc).append(starImg);
+      // $(span_comm).append(starImg);
+      // $(span_fac).append(starImg);
+      // $(span_loc).append(starImg);
+
+      // rendering new review count/
+      $('h2').html(review_update);
+      // $('h2').append("<span class='blue-underline'>");
+
+      // rendering the new averages as integers:
       // $(span_space).html(space_avg);
       $(span_acc).html(acc_avg);
       $(span_comm).html(comm_avg);
@@ -84,9 +99,13 @@ $(document).ready(function() {
         'Communication: ' + comm + '<br>',
         'Facilities: ' + fac + '<br>',
         'Location: ' + loc + '<br><br></p>',
-        "<div class='reviewer-info'><p><div class='profile-image' style='background-image: url('" + avatarUrl + "')'</div></p>",
+        '<div class="reviewer-info">',
+        avatarImg,
+        // "<div class='reviewer-info'><p><div class='profile-image' style='background-image: " + avatarImg + "</div></p>",
+        // "<div class='reviewer-info'><p><div class='profile-image' style='background-image: url('" + avatarImg + "')'</div></p>",
         '<p>By: ' + name + '</p>',
-        '<p>Added on: ' + time + '</p>',
+        '<p>Added on: ' + time + '</p></div>',
+        "<button>Was this review helpful?</button>",
         '<hr>');
       // }
 

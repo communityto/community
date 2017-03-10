@@ -69,7 +69,8 @@ class ReviewsController < ApplicationController
             location_avg: @space.location_avg,
             accuracy_avg: @space.accuracy_avg,
             communication_avg: @space.communication_avg,
-            facilities_avg: @space.facilities_avg
+            facilities_avg: @space.facilities_avg,
+            review_count: @space.reviews.count
           }
           render json: json_response
         end
