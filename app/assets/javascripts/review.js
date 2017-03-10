@@ -88,7 +88,6 @@ $(document).ready(function() {
         '<p>By: ' + name + '</p>',
         '<p>Added on: ' + time + '</p>',
         '<hr>');
-
       // }
 
       }).fail(function(responseData){
