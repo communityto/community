@@ -1,8 +1,9 @@
 <div id="new_review">
 
   <h3>Reviews</h3>
+  <hr>
 
-    <h4><%= pluralize(@review_count, "Review") %> </h4>
+    <h4><%= pluralize(@review_count, "Review") %></h4>
     <ul class = "reviews_summary">
       <li>Overall Average/Star rating: <span id="space_num"><%= render_stars(@space.reviews_avg) %></span></li><br>
       <li>Accuracy Average: <span id="acc_num"><%= @space.accuracy_avg %></span></li>
@@ -45,7 +46,7 @@
 
             </div>
 
-            <br>
+            <hr>
           <% end %>
         </div>
 

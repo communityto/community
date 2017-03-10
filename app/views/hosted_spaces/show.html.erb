@@ -1,5 +1,8 @@
-<h1> View Bookings for <%=@hosted_space.title %> </h1>
-<h3> <%= link_to 'View Space page', space_path %> <br/>
+<section class="container">
+
+<h1> Bookings for <%=@hosted_space.title %> </h1>
+<hr>
+<h4> <%= link_to 'View Space', space_path %> </h4><br/>
 
 <% @hosted_space_bookings.each do |booking| %>
   <p>
@@ -27,3 +30,5 @@
       <% end %>
     </p>
   <% end %>
+
+</section>

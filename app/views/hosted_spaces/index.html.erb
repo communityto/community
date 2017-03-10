@@ -1,16 +1,39 @@
-<% if @user == current_user %>
+<section class="container">
+  <% if @user == current_user %>
     <h1> Your Spaces </h1>
-    <h3> You host <%= pluralize(current_user.hosted_spaces.count,'Space') %> </h3>
+    <hr>
+    <h4> You host <%= pluralize(current_user.hosted_spaces.count,'space') %>.</h4>
   <% else %>
     <h1> <%= @user.first_name %>'s Spaces </h1>
-    <h3> <%= @user.first_name%> hosts <%= pluralize(@user.hosted_spaces.count,'Space') %> </h3>
+    <h3> <%= @user.first_name%> hosts <%= pluralize(@user.hosted_spaces.count,'space') %>.</h3>
   <% end %>
 
-<%if @user.hosted_spaces.any? %>
-  <div><% @hosted_spaces.each do |space| %>
-    <%= link_to space.title, space %> <br/>
-      <% if @user == current_user %>
-      <%= link_to 'View Bookings', user_hosted_space_path(current_user, space) %> (<%=space.bookings.count %>) <br/>
+  <% if @user.hosted_spaces.any? %>
+    <section class="flex-container">
+
+      <% @hosted_spaces.each do |space| %>
+        <div class="space flex-child">
+
+          <%= link_to space, class: 'space-link' do %>
+
+            <figure class="space-image">
+              <% if space.avatar %>
+                <%= image_tag space.avatar %>
+              <% else %>
+                <%= image_tag ("http://placehold.it/2000x1000") %>
+              <% end %>
+            </figure>
+
+          <div class="space-description">
+            <h1 class="space-title"><%= space.title %></h1><% end %>
+              <hr>
+              <p><%= space.description %></p>
+              <div class="space-bookings"><%= link_to 'View Bookings', user_hosted_space_path(current_user, space) %></div>
+          </div>
+
+        </div>
       <% end %>
-    <% end %></div>
-<% end %>
+    </section>
+  <% end %>
+
+</section>
