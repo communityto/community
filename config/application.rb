@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'fog/aws'
 
 # mina says this is not needed:
 # require 'carrierwave'
