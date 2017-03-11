@@ -37,12 +37,14 @@
         $('#datetimepicker6').datetimepicker({
           format: 'DD/MM/YYYY',
           showTodayButton: true,
+          minDate: moment(),
           disabledDates: <%= raw @space.all_booked_dates %>,
           useCurrent: false
         });
         $('#datetimepicker7').datetimepicker({
             format: 'DD/MM/YYYY',
             showTodayButton: true,
+            minDate: moment(),
             disabledDates: <%= raw @space.all_booked_dates %>,
             useCurrent: false //Important! See issue #1075
         });
