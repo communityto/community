@@ -8,4 +8,13 @@ class Conversation < ApplicationRecord
   scope :participating, -> (user) do
   where("(Conversations.author_id = ? OR conversations.receiver_id = ?)", user.id, user.id)
   end
+
+  def with(current_user)
+    author == current_user ? receiver : author
+  end
+
+  def participates?(user)
+    author == user || receiver == user
+  end
+
 end
