@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index]
     resources :favourite_spaces, only: [:index]
     resources :hosted_spaces, only: [:index, :show]
-    get 'conversations' => 'conversations#index', :as => :conversations
+    resources :personal_messages, only: [:create]
+    resources :conversation, only: [:index, :show]
   end
 
   # ACCOUNTS
