@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308212021) do
+ActiveRecord::Schema.define(version: 20170311214020) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
     t.string  "street_address"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170308212021) do
     t.string   "uid",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid", using: :btree
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -60,20 +63,40 @@ ActiveRecord::Schema.define(version: 20170308212021) do
     t.integer "space_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["author_id", "receiver_id"], name: "index_conversations_on_author_id_and_receiver_id", unique: true, using: :btree
+    t.index ["author_id"], name: "index_conversations_on_author_id", using: :btree
+    t.index ["receiver_id"], name: "index_conversations_on_receiver_id", using: :btree
+  end
+
   create_table "favourites", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "favourited_type"
     t.integer  "favourited_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["favourited_type", "favourited_id"], name: "index_favourites_on_favourited_type_and_favourited_id"
-    t.index ["user_id"], name: "index_favourites_on_user_id"
+    t.index ["favourited_type", "favourited_id"], name: "index_favourites_on_favourited_type_and_favourited_id", using: :btree
+    t.index ["user_id"], name: "index_favourites_on_user_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
     t.integer  "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "personal_messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_personal_messages_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_personal_messages_on_user_id", using: :btree
   end
 
   create_table "region", force: :cascade do |t|
@@ -123,8 +146,8 @@ ActiveRecord::Schema.define(version: 20170308212021) do
     t.datetime "remember_me_token_expires_at"
     t.string   "avatar"
     t.text     "bio"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   end
 
   create_table "votes", force: :cascade do |t|
@@ -135,9 +158,11 @@ ActiveRecord::Schema.define(version: 20170308212021) do
     t.integer  "voter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type"
-    t.index ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true
-    t.index ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type"
+    t.index ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type", using: :btree
+    t.index ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true, using: :btree
+    t.index ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
   end
 
+  add_foreign_key "personal_messages", "conversations"
+  add_foreign_key "personal_messages", "users"
 end
