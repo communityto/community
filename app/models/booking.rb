@@ -9,8 +9,8 @@ class Booking < ApplicationRecord
 
   def unavailable_dates
     booking_dates = []
-    start = (start_datetime + 1.days).to_datetime
-    finish = (end_datetime + 1.days).to_datetime
+    start = (start_time + 1.days).to_datetime
+    finish = (end_time + 1.days).to_datetime
     (start..finish).each do |d|
       booking_dates << d.to_s
     end
