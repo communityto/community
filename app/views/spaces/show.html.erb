@@ -13,7 +13,7 @@
     <div class="space-nav">
       <% if logged_in? %>
         <% if current_user.hosted_spaces.include?(@space) %>
-          <%= link_to 'Edit Details', edit_space_path %> | 
+          <%= link_to 'Edit Details', edit_space_path %> |
         <% end %>
         <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
           <%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %>
@@ -70,18 +70,12 @@
       </div>
     </div>
 
-    <!-- <iframe
-      width="600"
-      height="450"
-      frameborder="0" style="border:0"
-      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
-        &q=<%#=URI.encode(@space.address)%>" allowfullscreen>
-    </iframe> -->
-
     <h3>Location</h3>
     <hr><br />
 
-     <% if @address %>
+         <%= render 'map' %>
+
+     <!-- <% if @address %>
        <iframe
          width="600"
          height="450"
@@ -89,6 +83,8 @@
          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
            &q=<%=URI.encode(@address.street_address)%>" allowfullscreen>
        </iframe>
-     <% end %>
+     <% end %> -->
+
+
 
 </section>
