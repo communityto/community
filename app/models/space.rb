@@ -7,7 +7,7 @@ class Space < ApplicationRecord
   validates :capacity, numericality: { greater_than: 0 }
   validates :bathrooms, numericality: { greater_than_or_equal_to: 0 }
   validates :size, numericality: { greater_than: 0 }
-  # validates :address, presence: true
+  validates :address, presence: true
 
   has_and_belongs_to_many :amenities
   has_and_belongs_to_many :categories
@@ -17,16 +17,7 @@ class Space < ApplicationRecord
   accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
-  # SCOPES
-  scope :by_category, ->(category) { joins(:categories).where(categories: { name: category }) }
-
-  # def self.search(search)
-  #   if search
-  #     @results = Space.joins(:categories).where(categories: { id: params[:category_ids] })
-  #   end
-  # end
-
-  def all_booked_dates
+  def booking_disabled_dates
     booked_dates = []
     bookings.where(approved: true).each do |b| # Iterates over all approved bookings for particular space.
       booked_dates.push(*b.unavailable_dates)
@@ -84,20 +75,14 @@ class Space < ApplicationRecord
     rev_array = reviews.pluck(:accuracy, :communication, :facilities, :location)
     rev_flat = rev_array.map(&:sum)
     rev_total = rev_flat.sum
-
     rev_flat = rev_array.flatten
     rev_count = rev_flat.count
 
-      if rev_count > 0
-    reviews_avg = rev_total / rev_count
-      else
-    reviews_avg = "No reviews to average!"
-      end
+    if rev_count > 0
+      reviews_avg = rev_total / rev_count
+    else
+      reviews_avg = "No reviews to average!"
+    end
   end
-
-  # def review_user(review)
-  #   id = review.user_id
-  #   review_user = User.find(id)
-  # end
 
 end

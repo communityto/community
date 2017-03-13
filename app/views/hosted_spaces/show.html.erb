@@ -1,29 +1,81 @@
-<h1> View Bookings for <%=@hosted_space.title %> </h1>
-<h3> <%= link_to 'View Space page', space_path %> <br/>
+<section class="container">
 
-<% @hosted_space_bookings.each do |booking| %>
-  <p>
-    Booked by: <%=link_to booking.user.first_name, booking.user %> <br/>
-    Start: <%= booking.start_datetime %> <br/>
-    End: <%= booking.end_datetime %> <br/>
-    Note: <%= booking.note %> <br/>
-    Booking ID: <%= booking.id %> <br/></p>
-    Approval Status:
-      <% if booking.approved == false %>
-        <p id="approved-false"> This booking has not been approved </p>
-        <!-- BELOW LINK CURRENTLY NOT REQUIRED - USING FORM INSTEAD -->
-        <%#= link_to 'Approve', approve_booking_path(:booking => booking), :class =>'approve_booking' %>
-          <!-- <button class="approve-button"> Approve</button> <br/> -->
-        <%= form_for [@hosted_space, booking] do |f| %>
-          <%= f.hidden_field(:approved, :value => true) %>
-          <%= f.submit "Approve" %>
-        <% end %>
-      <% else %>
-        <p id="approved-true"> This booking has been approved </p>
-        <%= form_for [@hosted_space, booking] do |f| %>
-          <%= f.hidden_field(:approved, :value => false) %>
-          <%= f.submit "Deny" %>
-        <% end %>
-      <% end %>
-    </p>
+  <h1>Malfoy Manor</h1>
+  <hr>
+  <h4><%= link_to 'View Space', space_path %></h4>
+
+  <h3>Calendar</h3>
+  <hr>
+  <div style="overflow:hidden;">
+      <div class="form-group">
+          <div class="row">
+              <div class="col-md-8">
+                  <div id="datetimepicker12"></div>
+              </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#datetimepicker12').datetimepicker({
+                  inline: true,
+                  sideBySide: true
+              });
+          });
+      </script>
+  </div>
+
+  <h3>Bookings</h3>
+  <hr>
+
+  <% if @hosted_space_bookings.count == 0 %>
+    <h4>There are currently 0 bookings.</h4>
   <% end %>
+
+  <div id="space-calendar">
+    <%= month_calendar events: @hosted_space_bookings do |date, bookings| %>
+      <%= date.day %>
+
+      <% bookings.each do |booking| %>
+        <div>
+          <%= booking.user.first_name %>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div><br />
+
+  <h4><span class="blue-underline">Approved Bookings</span></h4>
+
+  <% if !@hosted_space_bookings.where(approved:true).exists? %>
+    <p>You have no approved bookings.</p>
+  <% end %>
+
+  <% @hosted_space_bookings.where(approved: true).each do |booking| %>
+    <div class="user-booking">
+      <h4><%= link_to booking.user.first_name, booking.user %></h4>
+      Start: <%= booking.start_time.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
+      End: <%= booking.end_time.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %>
+      <%= form_for [@hosted_space, booking] do |f| %>
+        <%= f.hidden_field(:approved, :value => false) %>
+        <%= f.submit "Cancel" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <h4><span class="blue-underline">Pending Bookings</span></h4>
+
+  <% @hosted_space_bookings.where(approved: false).each do |booking| %>
+    <div class="user-booking">
+      <h4><%= link_to booking.user.first_name, booking.user %></h4>
+      Start: <%= booking.start_time.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
+      End: <%= booking.end_time.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %>
+      <%= form_for [@hosted_space, booking] do |f| %>
+        <%= f.hidden_field(:approved, :value => true) %>
+        <%= f.submit "Approve" %>
+      <% end %>
+    </div>
+  <% end %>
+
+</section>

@@ -17,6 +17,7 @@
         <nav class="site-nav">
           <%= link_to "Home", root_path %>
           <%= link_to "Explore", categories_path %>
+          <%= link_to "Search", search_path %>
           <% if current_user %>
             <%= link_to "Profile", current_user %>
             <%= link_to 'Inbox', user_conversations_path(current_user) %>

@@ -2,7 +2,7 @@
     <div class="booking-calendar">
         <div class="form-group">
             <div class='input-group date' id='datetimepicker6'>
-                <%= f.text_field :start_datetime, :class => "form-control", :placeholder => "Check-in" %>
+                <%= f.text_field :start_time, :class => "form-control", :placeholder => "Check-in" %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -13,7 +13,7 @@
       <div class="booking-calendar">
         <div class="form-group">
             <div class='input-group date' id='datetimepicker7'>
-              <%= f.text_field :end_datetime, :class => "form-control", :placeholder => "Check-out" %>
+              <%= f.text_field :end_time, :class => "form-control", :placeholder => "Check-out" %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -37,13 +37,15 @@
         $('#datetimepicker6').datetimepicker({
           format: 'DD/MM/YYYY',
           showTodayButton: true,
-          disabledDates: <%= raw @space.all_booked_dates %>,
+          minDate: moment(),
+          disabledDates: <%= raw @space.booking_disabled_dates %>,
           useCurrent: false
         });
         $('#datetimepicker7').datetimepicker({
             format: 'DD/MM/YYYY',
             showTodayButton: true,
-            disabledDates: <%= raw @space.all_booked_dates %>,
+            minDate: moment(),
+            disabledDates: <%= raw @space.booking_disabled_dates %>,
             useCurrent: false //Important! See issue #1075
         });
         $("#datetimepicker6").on("dp.change", function (e) {
@@ -54,7 +56,7 @@
         });
         $('#datetimepicker5').datetimepicker({
             defaultDate: moment(),
-            disabledDates: <%= raw @space.all_booked_dates %>
+            disabledDates: <%= raw @space.booking_disabled_dates %>
         });
     });
 </script>
