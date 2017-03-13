@@ -7,13 +7,13 @@
   <%# please do not remove the above div with class review_contaner!!! %>
 
     <h1><%= @space.title %></h1>
-    <h4>Hosted by: <%= @space.host.first_name %> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: @space.host) %> </h4>
+    <h4>Hosted by: <%= @space.host.first_name %> <% if logged_in? %> |<%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: @space.host) %> <% end %></h4>
     <hr>
 
     <div class="space-nav">
       <% if logged_in? %>
         <% if current_user.hosted_spaces.include?(@space) %>
-          <%= link_to 'Edit Details', edit_space_path %> | 
+          <%= link_to 'Edit Details', edit_space_path %> |
         <% end %>
         <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
           <%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %>
