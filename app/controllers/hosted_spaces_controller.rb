@@ -3,7 +3,7 @@ class HostedSpacesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @hosted_spaces = current_user.hosted_spaces
+    @hosted_spaces = @user.hosted_spaces
   end
 
   def show

@@ -1,0 +1,12 @@
+<section class="container">
+  <h1>New message to <%= @receiver.first_name %></h1>
+
+  <%= form_for @personal_message, url: {action: "create"} do |f| %>
+    <%= hidden_field_tag 'receiver_id', @receiver.id %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+
+    <%= f.submit %>
+  <% end %>
+</section>

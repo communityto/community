@@ -1,0 +1,17 @@
+<section class="container">
+  <h1>Your conversation with <%= @conversation.with(current_user).first_name %></h1>
+
+  <div id="conversation-main">
+    <div id="conversation-body">
+      <%= render @conversation.personal_messages %>
+    </div>
+
+    <%= form_for @personal_message, url: {action: "reply"} do |f| %>
+      <%= hidden_field_tag 'conversation_id', @conversation.id %>
+      <%= f.label :Reply %>
+      <%= f.text_area :body %>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
+</section>
