@@ -9,11 +9,30 @@
   <% end %>
 
   <% if @user.favourite_spaces.any? %>
-    <% @user.favourite_spaces.each do |space| %>
-    <p><%=link_to space.title, space %>
-      <% if current_user == @user %>
-      | <%= link_to 'Remove from favourites', favourite_space_path(space), method: :delete %><br/>
+    <section class="flex-container">
+
+      <% @favourite_spaces.each do |space| %>
+        <div class="space flex-child">
+
+          <%= link_to space, class: 'space-link' do %>
+
+            <figure class="space-image">
+              <% if space.avatar %>
+                <%= image_tag space.avatar %>
+              <% else %>
+                <%= image_tag ("http://placehold.it/2000x1000") %>
+              <% end %>
+            </figure>
+
+          <div class="space-description">
+            <h1 class="space-title"><%= space.title %></h1><% end %>
+              <hr>
+              <p><%= space.description %></p>
+          </div>
+
+        </div>
       <% end %>
-    <% end %></p>
-    <% end %>
+    </section>
+  <% end %>
+
 </section>

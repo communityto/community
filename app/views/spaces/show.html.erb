@@ -13,10 +13,10 @@
     <div class="space-nav">
       <% if logged_in? %>
         <% if current_user.hosted_spaces.include?(@space) %>
-          <%= link_to 'Edit Details', edit_space_path %>
+          <%= link_to 'Edit Details', edit_space_path %> | 
         <% end %>
         <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
-          <p><%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %> </p>
+          <%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %>
         <% else %>
           <%= link_to 'Unfavourite', favourite_space_path(@space), method: :delete %></p>
         <% end %>
