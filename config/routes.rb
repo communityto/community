@@ -21,8 +21,6 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  #
-
   # DELETE & EDIT /reviews/:id
   resources :reviews, only: [:destroy, :edit, :update]
 
@@ -38,4 +36,7 @@ Rails.application.routes.draw do
 
   # APPROVE BOOKING
   get "/hosted_spaces/approve_booking" => "bookings_controller#approve_booking", :as => 'approve_booking'
+
+  # ENABLE/DISABLE DATES
+  get "/hosted_spaces/set_dates" => "hosted_spaces_controller#set_dates", :as => 'set_dates'
 end
