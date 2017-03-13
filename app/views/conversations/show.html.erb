@@ -8,7 +8,7 @@
 
     <%= form_for @personal_message, url: {action: "reply"} do |f| %>
       <%= hidden_field_tag 'conversation_id', @conversation.id %>
-      <%= f.label :body %>
+      <%= f.label :Reply %>
       <%= f.text_area :body %>
 
       <%= f.submit %>

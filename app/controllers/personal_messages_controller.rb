@@ -2,7 +2,7 @@ class PersonalMessagesController < ApplicationController
 before_action :find_conversation!
 
   def new
-    redirect_to conversation_path(@conversation) and return if @conversation
+    redirect_to user_conversation_path(current_user, @conversation) and return if @conversation
     @users = User.all
     @personal_message = current_user.personal_messages.build
   end
@@ -34,7 +34,7 @@ before_action :find_conversation!
       redirect_to(root_path) and return unless @receiver
       @conversation = Conversation.between(current_user.id, @receiver.id)[0]
     else
-      @conversation = Conversation.find_by(id: params[:conversation_id])
+      @conversation = Conversation.find_by(params[:conversation_id])
       redirect_to(root_path) and return unless @conversation && @conversation.participates?(current_user)
     end
   end
