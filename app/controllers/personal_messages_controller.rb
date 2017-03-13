@@ -1,5 +1,7 @@
 class PersonalMessagesController < ApplicationController
-before_action :find_conversation!
+
+  before_action :find_conversation!
+  before_action :require_login
 
   def new
     redirect_to user_conversation_path(current_user, @conversation) and return if @conversation

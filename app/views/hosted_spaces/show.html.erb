@@ -52,7 +52,7 @@
 
   <% @hosted_space_bookings.where(approved: true).each do |booking| %>
     <div class="user-booking">
-      <h4><%= link_to booking.user.first_name, booking.user %></h4>
+      <h4><%= link_to booking.user.first_name, booking.user %> | <%= link_to 'Send a Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></h4>
       Start: <%= booking.start_time.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
       End: <%= booking.end_time.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %>
       <%= form_for [@hosted_space, booking] do |f| %>
@@ -68,7 +68,7 @@
 
   <% @hosted_space_bookings.where(approved: false).each do |booking| %>
     <div class="user-booking">
-      <h4><%= link_to booking.user.first_name, booking.user %></h4>
+      <h4><%= link_to booking.user.first_name, booking.user %> | <%= link_to 'Send a Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></h4>
       Start: <%= booking.start_time.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
       End: <%= booking.end_time.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %>
       <%= form_for [@hosted_space, booking] do |f| %>
