@@ -15,8 +15,9 @@
         <div class="user-booking">
           <b><%= link_to booking.space.title, booking.space %></b><br />
           <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: booking.space.host) %><br />
-          Start: <%= booking.start_time.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
-          End: <%= booking.end_time.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %>
+          Start: <%= booking.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
+          End: <%= booking.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
+          Delete booking: <%= link_to "Remove", user_booking_path(current_user, booking), method: :delete %>
         </div>
       <% end %><br />
 
@@ -30,8 +31,9 @@
           <div class="user-booking">
             <b><%= link_to booking.space.title, booking.space %></b><br />
             <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: booking.space.host) %><br />
-            Start: <%= booking.start_time.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
-            End: <%= booking.end_time.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %>
+            Start: <%= booking.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
+            End: <%= booking.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
+            Delete booking: <%= link_to "Remove", user_booking_path(current_user, booking), method: :delete %>
           </div>
         <% end %>
 

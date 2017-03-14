@@ -22,8 +22,6 @@ class PersonalMessagesController < ApplicationController
     redirect_to user_conversation_path(current_user, @conversation)
   end
 
-
-
   private
 
   def personal_message_params
