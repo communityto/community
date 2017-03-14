@@ -7,7 +7,7 @@
   <%# please do not remove the above div with class review_contaner!!! %>
 
     <h1><%= @space.title %></h1>
-    <h4>Hosted by: <%= @space.host.first_name %> <% if logged_in? && @space.host != current_user%> |<%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: @space.host) %> <% end %></h4>
+    <h4>Hosted by: <%=link_to @space.host.first_name, user_path(@space.host) %> <% if logged_in? && @space.host != current_user%> |<%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: @space.host) %> <% end %></h4>
     <hr>
 
     <div class="space-nav">
