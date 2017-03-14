@@ -13,6 +13,9 @@ class HostedSpacesController < ApplicationController
     @approved_bookings = Booking.where(["space_id = ? and approved = ?", "21", "true"])
   end
 
+  def set_dates
+  end
+
   private
 
   def booking_params
