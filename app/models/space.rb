@@ -1,9 +1,6 @@
 class Space < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
-  geocoded_by :street_address
-  after_validation :geocode
-
   validates :title, length: { minimum: 1 }, on: :create
   validates :description, length: { minimum: 1 }, on: :create
   validates :price, numericality: { greater_than_or_equal_to: 0 }
