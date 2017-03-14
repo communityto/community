@@ -4,8 +4,8 @@
   <%= form_for @personal_message, url: {action: "create"} do |f| %>
     <%= hidden_field_tag 'receiver_id', @receiver.id %>
 
-    <%= f.label :body %>
-    <%= f.text_area :body %>
+<p class="emoji-picker-container">
+    <%= f.text_area :body, :placeholder => 'Enter your message here', data: { emojiable: true } %> </p>
 
     <%= f.submit %>
   <% end %>

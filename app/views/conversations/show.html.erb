@@ -8,8 +8,8 @@
 
     <%= form_for @personal_message, url: {action: "reply"} do |f| %>
       <%= hidden_field_tag 'conversation_id', @conversation.id %>
-      <%= f.label :Reply %>
-      <%= f.text_area :body %>
+  <p class="emoji-picker-container"><%= f.label :Reply %>
+      <%= f.text_area :body, :placeholder => "Enter your message here", data: { emojiable: true } %></p>
 
       <%= f.submit %>
     <% end %>
