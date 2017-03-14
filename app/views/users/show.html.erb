@@ -5,7 +5,8 @@
   <% if @user == current_user %>
     <h1 class="centered">Hey there <span><%= @user.first_name%>!</span></h1>
     <% else %>
-    <h1 class="centered"><span><%= @user.first_name%>'s</span> Profile</h1>
+    <h1 class="centered"><span><%= @user.first_name%>'s</span> Profile<br/>
+    <%= link_to 'Send a Message', new_user_personal_message_path(current_user, receiver_id: @user) %> </h1>
     <% end %>
 </section>
 
@@ -42,4 +43,5 @@
     <% if @user.reviews.any? %>
       <%=link_to ' (View all)', user_reviews_path(@user) %>
     <% end %></h5>
+
 </section>

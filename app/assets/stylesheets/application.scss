@@ -11,10 +11,15 @@
  * It is generally better to create a new file per style scope.
  *
  *= require jquery-ui
+<<<<<<< HEAD
  *= require simple_calendar
+=======
+ *= require rails_emoji_picker
+>>>>>>> 78ac9c64544eda9d1349fcbba00e9ae40b17909b
  */
 
 @import 'normalize';
+@import 'rails_emoji_picker';
 
 // Base styles
 @import 'bootstrap';
