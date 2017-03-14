@@ -48,7 +48,7 @@ class BookingsController < ApplicationController
       else
         @conversation = Conversation.create(author_id: current_user.id, receiver_id: @space.host.id)
       end
-      @booking_notification = PersonalMessage.create(body: "A New booking request has been made at #{@space.title} by #{current_user.first_name}", conversation_id: @conversation.id, user_id: current_user.id)
+      @booking_notification = PersonalMessage.create(body: "A new booking request has been made at #{@space.title}: from #{@booking.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%-d %b %Y")} to #{@booking.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%-d %b %Y")} with the note: #{@booking.note}.", conversation_id: @conversation.id, user_id: current_user.id)
       @booking_notification.save!
       redirect_to space_url(@space)
     end
