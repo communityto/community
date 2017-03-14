@@ -6,42 +6,13 @@
 
   <h3>Calendar</h3>
   <hr>
-  <div style="overflow:hidden;">
-      <div class="form-group">
-          <div class="row">
-              <div class="col-md-8">
-                  <div id="datetimepicker12"></div>
-              </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker12').datetimepicker({
-                  inline: true,
-                  sideBySide: true
-              });
-          });
-      </script>
-  </div>
-
-  <h3>Bookings</h3>
-  <hr>
 
   <% if @hosted_space_bookings.count == 0 %>
     <h4>There are currently 0 bookings.</h4>
   <% end %>
 
-  <div id="space-calendar">
-    <%= month_calendar events: @hosted_space_bookings do |date, bookings| %>
-      <%= date.day %>
-
-      <% bookings.each do |booking| %>
-        <div>
-          <%= booking.user.first_name %>
-        </div>
-      <% end %>
-
-    <% end %>
+  <div id="bookings-calendar">
+    <%= render partial: "calendar", locals: {hosted_spaces: @hosted_space_bookings} %>
   </div><br />
 
   <h4><span class="blue-underline">Approved Bookings</span></h4>

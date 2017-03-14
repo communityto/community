@@ -16,6 +16,9 @@ class HostedSpacesController < ApplicationController
     end
   end
 
+  def set_dates
+  end
+
   private
 
   def booking_params

@@ -61,6 +61,7 @@ class BookingsController < ApplicationController
   end
 
   # Logic should be in model. --> Should it be? It's a controller action w/a route
+
   def approve_booking
     @booking = Booking.find(params[:booking])
     @booking.approved = true
