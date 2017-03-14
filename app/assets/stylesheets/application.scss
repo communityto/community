@@ -12,9 +12,11 @@
  *
  *= require jquery-ui
  *= require simple_calendar
+ *= require rails_emoji_picker
  */
 
 @import 'normalize';
+@import 'rails_emoji_picker';
 
 // Base styles
 @import 'bootstrap';

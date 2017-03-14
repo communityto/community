@@ -1,0 +1,14 @@
+<section class="container">
+  <h1> Your Inbox </h1>
+
+  <% @conversations.each do |c| %>
+    Your conversation with: <% if c.author == current_user %>
+      <%= link_to c.receiver.first_name, user_path(c.receiver) %> <br/>
+    <% else %>
+      <%= link_to c.author.first_name, user_path(c.author) %> <br />
+    <% end %>
+      <%= c.personal_messages.last.body.truncate(50) %> <br/>
+    <%= link_to 'View Conversation', user_conversation_path(current_user, c) %>
+      </p>
+    <% end %>
+</section>

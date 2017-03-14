@@ -9,8 +9,11 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index]
     resources :favourite_spaces, only: [:index]
     resources :hosted_spaces, only: [:index, :show]
+    resources :personal_messages, only: [:create, :new]
+    resources :conversations, only: [:index, :show,]
   end
 
+  post 'users/:user_id/conversations/:id' => 'conversations#reply', :as => :reply
   # ACCOUNTS
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
