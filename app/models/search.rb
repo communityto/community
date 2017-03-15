@@ -12,7 +12,17 @@ class Search
     populate_spaces_category
     populate_spaces_amenity
     populate_spaces_capacity
+    populate_spaces_location
     @results = @potential_results.inject(&:&)
+  end
+
+  def populate_spaces_location
+    @nearby_spaces = []
+    space_address = Address.near(@params[:address], 1)
+    space_address.each do |address|
+      @nearby_spaces << address.space
+    end
+    @potential_results << @nearby_spaces
   end
 
   def populate_spaces_category

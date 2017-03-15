@@ -56,7 +56,7 @@ end
     price: 300,
     check_in: Time.current,
     check_out: Time.current + rand(5).hours,
-    rules: "none",
+    rules: "just have fun :)",
     capacity: rand(1..100),
     bathrooms: rand(10),
     size: rand(1..5000)
@@ -90,3 +90,66 @@ end
    )
 
    s2.address = a2
+
+   s3 = Space.create!(
+     host: User.all.sample,
+     title: "Cherry Cola's Cabaret",
+     description: "Drink whiskey",
+     price: 100,
+     check_in: Time.current,
+     check_out: Time.current + rand(5).hours,
+     rules: "none",
+     capacity: rand(1..100),
+     bathrooms: rand(10),
+     size: rand(1..5000)
+   )
+
+   a3 = Address.create!(
+    street_address: "200 Bathurst Street",
+    city: "Toronto",
+    province: "Ontario"
+   )
+
+   s3.address = a3
+
+   s4 = Space.create!(
+     host: User.all.sample,
+     title: "Nocturne",
+     description: "Weird raves.",
+     price: 100,
+     check_in: Time.current,
+     check_out: Time.current + rand(5).hours,
+     rules: "none",
+     capacity: rand(1..100),
+     bathrooms: rand(10),
+     size: rand(1..5000)
+   )
+
+   a4 = Address.create!(
+    street_address: "550 Queen Street West",
+    city: "Toronto",
+    province: "Ontario"
+   )
+
+   s4.address = a4
+
+   s5 = Space.create!(
+     host: User.all.sample,
+     title: "The Smiling Buddha",
+     description: "Cheap shots",
+     price: 100,
+     check_in: Time.current,
+     check_out: Time.current + rand(5).hours,
+     rules: "none",
+     capacity: rand(1..100),
+     bathrooms: rand(10),
+     size: rand(1..5000)
+   )
+
+   a5 = Address.create!(
+    street_address: "961 College Street",
+    city: "Toronto",
+    province: "Ontario"
+   )
+
+   s5.address = a5
