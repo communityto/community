@@ -17,6 +17,9 @@ class Space < ApplicationRecord
   accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
+  def all_disabled_dates(host_disabled_dates)
+  end
+
   def booking_disabled_dates
     booked_dates = []
     bookings.where(approved: true).each do |b| # Iterates over all approved bookings for particular space.

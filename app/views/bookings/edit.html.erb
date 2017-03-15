@@ -1,11 +1,12 @@
+<section class="container">
 <h1>Edit Booking for <%= @booking.space.title %></h1>
 
 <p>
-  Check-in: <%= @booking.start_time %><br />
-  Check-out: <%= @booking.end_time%><br />
-  Approved: <%= @booking.approved %>
+  Check-in: <%= @booking.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%-d %b %Y at %l:%M %P") %><br />
+  Check-out: <%= @booking.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%-d %b %Y at %l:%M %P") %><br />
+  Approved: <% if @booking.approved == false%> No <% else %> Yes <% end %>
 </p>
 
 <%= render 'form' %>
-
+</section>
 <!-- .strftime("%B %-d %Y") -->

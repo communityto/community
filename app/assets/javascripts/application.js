@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require rails_emoji_picker
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .

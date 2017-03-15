@@ -9,8 +9,11 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index]
     resources :favourite_spaces, only: [:index]
     resources :hosted_spaces, only: [:index, :show]
+    resources :personal_messages, only: [:create, :new]
+    resources :conversations, only: [:index, :show,]
   end
 
+  post 'users/:user_id/conversations/:id' => 'conversations#reply', :as => :reply
   # ACCOUNTS
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
@@ -20,8 +23,6 @@ Rails.application.routes.draw do
     resources :bookings
     resources :reviews
   end
-
-  #
 
   # DELETE & EDIT /reviews/:id
   resources :reviews, only: [:destroy, :edit, :update]
@@ -38,4 +39,7 @@ Rails.application.routes.draw do
 
   # APPROVE BOOKING
   get "/hosted_spaces/approve_booking" => "bookings_controller#approve_booking", :as => 'approve_booking'
+
+  # ENABLE/DISABLE DATES
+  get "/hosted_spaces/set_dates" => "hosted_spaces_controller#set_dates", :as => 'set_dates'
 end

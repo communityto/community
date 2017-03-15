@@ -3,7 +3,7 @@ class HostedSpacesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @hosted_spaces = current_user.hosted_spaces
+    @hosted_spaces = @user.hosted_spaces
   end
 
   def show
@@ -11,6 +11,12 @@ class HostedSpacesController < ApplicationController
     @hosted_space = Space.find(params[:id])
     @hosted_space_bookings = Space.find(params[:id]).bookings
     @approved_bookings = Booking.where(["space_id = ? and approved = ?", "21", "true"])
+    if current_user != @hosted_space.host
+      redirect_to space_path(@hosted_space)
+    end
+  end
+
+  def set_dates
   end
 
   private
