@@ -6,7 +6,7 @@ class SearchController < ApplicationController
 
   private
   def search_params
-    params.require(:search).permit(:capacity, :amenity_ids => [], :category_ids => [])
+    params.require(:search).permit(:start_time, :end_time, :capacity, :amenity_ids => [], :category_ids => [])
   end
 
 end

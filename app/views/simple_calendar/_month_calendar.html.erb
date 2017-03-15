@@ -36,12 +36,14 @@
   $(document).ready(function() {
 
     function timeISO(time) {
-      t = new Date(time)
-      return t.toISOString();
+      t1 = new Date(time)
+      t2 = t1.toISOString();
+      return moment(t2).format("YYYY-MM-DDT00:00:00+00:00")
     }
 
-    var disabledDates = <%= raw @hosted_space.disabled_dates %>;
+    var disabledDates = <%= raw @hosted_space.all_disabled_dates_host %>;
     console.log(disabledDates);
+    console.log(disabledDates[0]);
 
     $('td > div').each(function(){
       var calendarDate = timeISO($(this).data('calendardate'));
@@ -53,11 +55,11 @@
       };
     });
 
-    $('div.enabled-date').on('click', function() {
+    $('#bookings-calendar').on('click', '.enabled-date', function(event) {
       $(this).attr('class', 'disabled-date');
       $.ajax({
         url: '<%= disable_date_url %>',
-        type: 'POST',
+        type: 'PATCH',
         data: { disabled_date: timeISO($(this).data('calendardate')) }
       }).fail(function(data) {
         console.log("Failed");
@@ -66,11 +68,11 @@
       });
     });
 
-    $('div.disabled-date').on('click', function() {
+    $('#bookings-calendar').on('click', '.disabled-date', function(event) {
       $(this).attr('class', 'enabled-date');
       $.ajax({
         url: '<%= enable_date_url %>',
-        type: 'POST',
+        type: 'PATCH',
         data: { enabled_date: timeISO($(this).data('calendardate')) }
       }).fail(function(data) {
         console.log("Failed");
