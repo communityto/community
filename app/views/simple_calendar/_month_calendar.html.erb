@@ -34,14 +34,31 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+
+    function timeISO(time) {
+      t = new Date(time)
+      return t.toISOString();
+    }
+
     var disabledDates = <%= raw @hosted_space.disabled_dates %>;
+    console.log(disabledDates);
+
+    $('td > div').each(function(){
+      var calendarDate = timeISO($(this).data('calendardate'));
+      console.log(calendarDate);
+      if (disabledDates.includes(calendarDate)) {
+        $(this).attr('class', 'disabled-date');
+      } else {
+        $(this).attr('class', 'enabled-date');
+      };
+    });
+
     $('div.enabled-date').on('click', function() {
-      var calendarDate = $(this).data('calendardate');
+      $(this).attr('class', 'disabled-date');
       $.ajax({
         url: '<%= disable_date_url %>',
         type: 'POST',
-        data: { disabled_date: $(this).data('calendardate') },
-        success: function(data) { alert(data); }
+        data: { disabled_date: timeISO($(this).data('calendardate')) }
       }).fail(function(data) {
         console.log("Failed");
       }).always(function () {
@@ -50,12 +67,11 @@
     });
 
     $('div.disabled-date').on('click', function() {
-      var calendarDate = $(this).data('calendardate');
+      $(this).attr('class', 'enabled-date');
       $.ajax({
         url: '<%= enable_date_url %>',
         type: 'POST',
-        data: { enabled_date: $(this).data('calendardate') },
-        success: function(data) { alert(data); }
+        data: { enabled_date: timeISO($(this).data('calendardate')) }
       }).fail(function(data) {
         console.log("Failed");
       }).always(function () {
