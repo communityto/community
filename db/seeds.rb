@@ -49,42 +49,44 @@ Amenity.create(name: "Storage")
   )
 end
 
-25.times do
   s = Space.create!(
     host: User.all.sample,
-    title: Faker::HarryPotter.location,
-    description: Faker::Lorem.paragraph,
-    price: rand(200),
+    title: "Bitmaker",
+    description: "learn to code!",
+    price: 300,
     check_in: Time.current,
     check_out: Time.current + rand(5).hours,
-    rules: Faker::Lorem.paragraph,
+    rules: "none",
     capacity: rand(1..100),
     bathrooms: rand(10),
     size: rand(1..5000)
   )
-   s.address = Address.create!(street_address: Faker::Address.street_address)
-   s.categories << Category.all.sample
-   s.amenities << Amenity.all.sample
-end
 
-20.times do
-  a = Space.all.sample
-  Booking.create!(
-    user: User.all.sample,
-    space: a,
-    start_time: Time.current + rand(5).days,
-    end_time: Time.current + rand(6..30).days,
-    note: Faker::Lorem.paragraph
+  a = Address.create!(
+   street_address: "220 King St W",
+   city: "Toronto",
+   province: "Ontario"
   )
 
-  1.times do
-     a.reviews.create!(
-       user: User.all.sample,
-       content: Faker::Lorem.paragraph,
-       accuracy: rand(5),
-       facilities: rand(5),
-       communication: rand(5),
-       location: rand(5)
-     )
-   end
-end
+   s.address = a
+
+   s2 = Space.create!(
+     host: User.all.sample,
+     title: "Starbucks",
+     description: "Drink overpriced coffee.",
+     price: 100,
+     check_in: Time.current,
+     check_out: Time.current + rand(5).hours,
+     rules: "none",
+     capacity: rand(1..100),
+     bathrooms: rand(10),
+     size: rand(1..5000)
+   )
+
+   a2 = Address.create!(
+    street_address: "120 Yonge Street",
+    city: "Toronto",
+    province: "Ontario"
+   )
+
+   s2.address = a2

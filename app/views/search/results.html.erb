@@ -6,6 +6,8 @@
     <% end %>
   <br />
 
+  <%= render partial: 'spaces/map', locals: {spaces: @search.results} %>
+
   <section class="flex-container">
 
     <% @search.results.each do |space| %>
