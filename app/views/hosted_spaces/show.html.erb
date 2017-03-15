@@ -49,4 +49,30 @@
     </div>
   <% end %>
 
+  <%= @hosted_space.disabled_dates %><br />
+
+  <%= @hosted_space.booking_disabled_dates %><br />
+
+  <%= @hosted_space.all_disabled_dates %><br />
+
 </section>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var disabledDates = '<%= @hosted_space.disabled_dates %>';
+    $('.calendarDay').on('click', function() {
+      var calendarDate = $(this).data('calendardate');
+      console.log(typeof disabledDates)
+      $.ajax({
+        url: '<%= disable_date_url %>',
+        type: 'POST',
+        data: { disabled_date: $(this).data('calendardate') },
+        success: function(data) { alert(data); }
+      }).fail(function(data) {
+        console.log("Failed");
+      }).always(function () {
+        console.log("Ajax request sent");
+      });
+    });
+  });
+</script>

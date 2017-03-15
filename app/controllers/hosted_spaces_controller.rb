@@ -13,7 +13,13 @@ class HostedSpacesController < ApplicationController
     @approved_bookings = Booking.where(["space_id = ? and approved = ?", "21", "true"])
   end
 
-  def set_dates
+  def disable_date
+    @hosted_space = Space.find(params[:id])
+    @hosted_space.disabled_dates << params[:disabled_date].to_time.iso8601
+    @hosted_space.save!
+  end
+
+  def enable_date
   end
 
   private

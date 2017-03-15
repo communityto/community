@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20170314195005) do
     t.datetime "updated_at",                  null: false
     t.integer  "host_id"
     t.string   "avatar"
-    t.datetime "disabled_dates", default: [],              array: true
+    t.string   "disabled_dates", default: [],              array: true
   end
 
   create_table "users", force: :cascade do |t|
