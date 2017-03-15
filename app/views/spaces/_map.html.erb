@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Index Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
     <style>
       #map {
         width: 100%;
@@ -15,23 +18,22 @@
     <script>
 
       function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: {lat: 43.653226, lng: -79.383184}
-      });
-        <% @spaces.each do |s| %>
-          var uluru = {
-             lat: <%= s.address.latitude %>,
-             lng: <%= s.address.longitude %>
-           }
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 43.653226, lng: -79.383184},
 
-          var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
-          });
+        });
+          <% spaces.each do |s| %>
+            var uluru = {
+               lat: <%= s.address.latitude %>,
+               lng: <%= s.address.longitude %>
+             }
 
-        <% end %>
-
+            var marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+            });
+          <% end %>
       }
 
     </script>
