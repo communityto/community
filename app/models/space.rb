@@ -1,13 +1,13 @@
 class Space < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
-  # validates :title, length: { minimum: 1 }, on: :create
-  # validates :description, length: { minimum: 1 }, on: :create
-  # validates :price, numericality: { greater_than_or_equal_to: 0 }
-  # validates :capacity, numericality: { greater_than: 0 }
-  # validates :bathrooms, numericality: { greater_than_or_equal_to: 0 }
-  # validates :size, numericality: { greater_than: 0 }
-  # validates :address, presence: true
+  validates :title, length: { minimum: 1 }, on: :create
+  validates :description, length: { minimum: 1 }, on: :create
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
+  validates :capacity, numericality: { greater_than: 0 }
+  validates :bathrooms, numericality: { greater_than_or_equal_to: 0 }
+  validates :size, numericality: { greater_than: 0 }
+  validates :address, presence: true
 
   has_and_belongs_to_many :amenities
   has_and_belongs_to_many :categories
@@ -17,7 +17,8 @@ class Space < ApplicationRecord
   accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
-  def all_disabled_dates(host_disabled_dates)
+  def all_disabled_dates
+    disabled_dates + booking_disabled_dates
   end
 
   def booking_disabled_dates
