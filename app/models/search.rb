@@ -18,7 +18,7 @@ class Search
 
   def populate_spaces_location
     @nearby_spaces = []
-    space_address = Address.near(@params[:address], 1)
+    space_address = Address.near(@params[:address], @params[:distance])
     space_address.each do |address|
       @nearby_spaces << address.space
     end
