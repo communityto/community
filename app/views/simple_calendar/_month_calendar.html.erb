@@ -31,3 +31,37 @@
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var disabledDates = <%= raw @hosted_space.disabled_dates %>;
+    $('div.enabled-date').on('click', function() {
+      var calendarDate = $(this).data('calendardate');
+      $.ajax({
+        url: '<%= disable_date_url %>',
+        type: 'POST',
+        data: { disabled_date: $(this).data('calendardate') },
+        success: function(data) { alert(data); }
+      }).fail(function(data) {
+        console.log("Failed");
+      }).always(function () {
+        console.log("Ajax request sent");
+      });
+    });
+
+    $('div.disabled-date').on('click', function() {
+      var calendarDate = $(this).data('calendardate');
+      $.ajax({
+        url: '<%= enable_date_url %>',
+        type: 'POST',
+        data: { enabled_date: $(this).data('calendardate') },
+        success: function(data) { alert(data); }
+      }).fail(function(data) {
+        console.log("Failed");
+      }).always(function () {
+        console.log("Ajax request sent");
+      });
+    });
+
+  });
+</script>

@@ -1,19 +1,1 @@
 $("#bookings-calendar").html("<%= escape_javascript render(partial: "calendar", locals: {events: @hosted_space_bookings}) %>");
-
-$(document).ready(function() {
-  var disabledDates = <%= raw @hosted_space.disabled_dates %>;
-  $('.calendarDay').on('click', function() {
-    var calendarDate = $(this).data('calendardate');
-    console.log(typeof disabledDates)
-    $.ajax({
-      url: '<%= disable_date_url %>',
-      type: 'POST',
-      data: { disabled_date: $(this).data('calendardate') },
-      success: function(data) { alert(data); }
-    }).fail(function(data) {
-      console.log("Failed");
-    }).always(function () {
-      console.log("Ajax request sent");
-    });
-  });
-});

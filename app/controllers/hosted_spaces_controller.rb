@@ -20,6 +20,9 @@ class HostedSpacesController < ApplicationController
   end
 
   def enable_date
+    @hosted_space = Space.find(params[:id])
+    @hosted_space.disabled_dates.delete(params[:enabled_date].to_time.iso8601)
+    @hosted_space.save!
   end
 
   private
