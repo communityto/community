@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:index, :edit, :update, :destroy]
     resources :reviews, only: [:index]
     resources :favourite_spaces, only: [:index]
-    resources :hosted_spaces, only: [:index, :show]
+    resources :hosted_spaces, only: [:index, :show,]
     resources :personal_messages, only: [:create, :new]
     resources :conversations, only: [:index, :show,]
   end
