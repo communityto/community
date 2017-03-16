@@ -1,5 +1,5 @@
 <%= month_calendar events: @hosted_space_bookings do |date, bookings| %>
-  <%= content_tag 'div', class: 'calendarDay', data: { calendardate: date } do %>
+  <%= content_tag 'div', data: { calendardate: date } do %>
     <%= date.day %>
     <% bookings.each do |booking| %>
         <%= booking.user.first_name %>

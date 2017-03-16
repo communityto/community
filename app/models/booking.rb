@@ -17,4 +17,14 @@ class Booking < ApplicationRecord
     return booking_dates
   end
 
+  def unavailable_dates_host
+    booking_dates = []
+    start = (start_time).to_datetime
+    finish = (end_time).to_datetime
+    (start..finish).each do |d|
+      booking_dates << d.to_s
+    end
+    return booking_dates
+  end
+
 end

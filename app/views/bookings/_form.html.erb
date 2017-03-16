@@ -33,19 +33,20 @@
 <!-- ##### SCRIPTS ##### -->
 
 <script type="text/javascript">
+
     $(function () {
         $('#datetimepicker6').datetimepicker({
           format: 'DD/MM/YYYY',
           showTodayButton: true,
           minDate: moment(),
-          disabledDates: <%= raw @space.booking_disabled_dates %>,
+          disabledDates: <%= raw @space.all_disabled_dates %>,
           useCurrent: false
         });
         $('#datetimepicker7').datetimepicker({
             format: 'DD/MM/YYYY',
             showTodayButton: true,
             minDate: moment(),
-            disabledDates: <%= raw @space.booking_disabled_dates %>,
+            disabledDates: <%= raw @space.all_disabled_dates %>,
             useCurrent: false //Important! See issue #1075
         });
         $("#datetimepicker6").on("dp.change", function (e) {
@@ -56,7 +57,7 @@
         });
         $('#datetimepicker5').datetimepicker({
             defaultDate: moment(),
-            disabledDates: <%= raw @space.booking_disabled_dates %>
+            disabledDates: <%= raw @space.all_disabled_dates %>
         });
     });
 </script>

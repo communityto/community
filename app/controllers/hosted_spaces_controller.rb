@@ -16,7 +16,16 @@ class HostedSpacesController < ApplicationController
     end
   end
 
-  def set_dates
+  def disable_date
+    @hosted_space = Space.find(params[:id])
+    @hosted_space.disabled_dates << params[:disabled_date]
+    @hosted_space.save!
+  end
+
+  def enable_date
+    @hosted_space = Space.find(params[:id])
+    @hosted_space.disabled_dates.delete(params[:enabled_date])
+    @hosted_space.save!
   end
 
   private

@@ -31,3 +31,58 @@
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    function timeISO(time) {
+      t1 = new Date(time)
+      t2 = t1.toISOString();
+      return moment(t2).format("YYYY-MM-DDT00:00:00+00:00")
+    }
+
+    var disabledDates = <%= raw @hosted_space.disabled_dates %>;
+    var bookings = <%= raw @hosted_space.booking_disabled_dates_host %>;
+    console.log(disabledDates);
+    console.log(disabledDates[0]);
+
+    $('td > div').each(function(){
+      var calendarDate = timeISO($(this).data('calendardate'));
+      console.log(calendarDate);
+      if (disabledDates.includes(calendarDate)) {
+        $(this).attr('class', 'disabled-date');
+      } else if (bookings.includes(calendarDate)) {
+        $(this).attr('class', 'booked-date');
+      } else {
+        $(this).attr('class', 'enabled-date');
+      };
+    });
+
+    $('#bookings-calendar').on('click', '.enabled-date', function(event) {
+      $(this).attr('class', 'disabled-date');
+      $.ajax({
+        url: '<%= disable_date_url %>',
+        type: 'PATCH',
+        data: { disabled_date: timeISO($(this).data('calendardate')) }
+      }).fail(function(data) {
+        console.log("Failed");
+      }).always(function () {
+        console.log("Ajax request sent");
+      });
+    });
+
+    $('#bookings-calendar').on('click', '.disabled-date', function(event) {
+      $(this).attr('class', 'enabled-date');
+      $.ajax({
+        url: '<%= enable_date_url %>',
+        type: 'PATCH',
+        data: { enabled_date: timeISO($(this).data('calendardate')) }
+      }).fail(function(data) {
+        console.log("Failed");
+      }).always(function () {
+        console.log("Ajax request sent");
+      });
+    });
+
+  });
+</script>

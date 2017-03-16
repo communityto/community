@@ -9,6 +9,33 @@
     <%= form_tag(search_results_path, method: "get") do %>
 
     <div>
+
+      <h3><span class="blue-underline">Availability</span></h3>
+
+      <div class="booking-calendar">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+                <%= text_field_tag("search[:start_time]", nil, :class => "form-control", :placeholder => "Check-in") %>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+      </div>
+
+      <div class="booking-calendar">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker7'>
+              <%= text_field_tag("search[:end_time]", nil, :class => "form-control", :placeholder => "Check-out") %>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+      </div>
+
+      <hr>
+
       <h3><span class="blue-underline">Capacity</span></h3>
       <%= text_field_tag("search[capacity]", nil, :id => 'capacity-search', :readonly => true ) %>
       <div id="capacity-slider"></div>
@@ -38,13 +65,41 @@
     <%= submit_tag 'Search' %>
 
     <% end %>
-
     </div>
-
   </section>
+
 
   <script type="text/javascript">
       $(function () {
         $('#geo-input').geocomplete();
       });
   </script>
+
+<!-- ##### SCRIPTS ##### -->
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+          format: 'DD/MM/YYYY',
+          showTodayButton: true,
+          minDate: moment(),
+          useCurrent: false
+        });
+        $('#datetimepicker7').datetimepicker({
+            format: 'DD/MM/YYYY',
+            showTodayButton: true,
+            minDate: moment(),
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+        $('#datetimepicker5').datetimepicker({
+            defaultDate: moment()
+        });
+    });
+</script>
+

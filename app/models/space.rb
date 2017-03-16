@@ -17,13 +17,30 @@ class Space < ApplicationRecord
   accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
 
-  def all_disabled_dates(host_disabled_dates)
+  def all_disabled_dates
+    disabled_dates_user = []
+    disabled_dates.each do |date|
+      disabled_dates_user << (date.to_datetime + 1.days).to_s
+    end
+    disabled_dates_user + booking_disabled_dates
+  end
+
+  def all_disabled_dates_host
+    disabled_dates + booking_disabled_dates_host
   end
 
   def booking_disabled_dates
     booked_dates = []
     bookings.where(approved: true).each do |b| # Iterates over all approved bookings for particular space.
       booked_dates.push(*b.unavailable_dates)
+    end
+    return booked_dates
+  end
+
+  def booking_disabled_dates_host
+    booked_dates = []
+    bookings.where(approved: true).each do |b| # Iterates over all approved bookings for particular space.
+      booked_dates.push(*b.unavailable_dates_host)
     end
     return booked_dates
   end
