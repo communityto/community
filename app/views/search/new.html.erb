@@ -10,12 +10,16 @@
 
     <div>
 
+      <h3><span class="blue-underline">Location</span></h3>
+      <%= text_field_tag("search[address]", nil, :id => 'geo-input') %>
+      <%= select_tag("search[distance]", options_for_select(1..20)) %> miles
+
       <h3><span class="blue-underline">Availability</span></h3>
 
       <div class="booking-calendar">
         <div class="form-group">
             <div class='input-group date' id='datetimepicker6'>
-                <%= text_field_tag("search[:start_time]", nil, :class => "form-control", :placeholder => "Check-in") %>
+                <%= text_field_tag("search[start_time]", nil, :class => "form-control", :placeholder => "Check-in") %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -26,7 +30,7 @@
       <div class="booking-calendar">
         <div class="form-group">
             <div class='input-group date' id='datetimepicker7'>
-              <%= text_field_tag("search[:end_time]", nil, :class => "form-control", :placeholder => "Check-out") %>
+              <%= text_field_tag("search[end_time]", nil, :class => "form-control", :placeholder => "Check-out") %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -53,10 +57,6 @@
       <%= collection_check_boxes(:search, :amenity_ids, Amenity.all, :id, :name) do |s| %>
         <%= s.check_box %> <%= s.label %><br />
       <% end %>
-
-      <h3><span class="blue-underline">Location</span></h3>
-      <%= text_field_tag("search[address]", nil, :id => 'geo-input') %>
-      <%= select_tag("search[distance]", options_for_select(1..20)) %>
 
     </div>
 
@@ -102,4 +102,3 @@
         });
     });
 </script>
-
