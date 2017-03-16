@@ -41,7 +41,8 @@
       return moment(t2).format("YYYY-MM-DDT00:00:00+00:00")
     }
 
-    var disabledDates = <%= raw @hosted_space.all_disabled_dates_host %>;
+    var disabledDates = <%= raw @hosted_space.disabled_dates %>;
+    var bookings = <%= raw @hosted_space.booking_disabled_dates_host %>;
     console.log(disabledDates);
     console.log(disabledDates[0]);
 
@@ -50,6 +51,8 @@
       console.log(calendarDate);
       if (disabledDates.includes(calendarDate)) {
         $(this).attr('class', 'disabled-date');
+      } else if (bookings.includes(calendarDate)) {
+        $(this).attr('class', 'booked-date');
       } else {
         $(this).attr('class', 'enabled-date');
       };
