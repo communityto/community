@@ -41,6 +41,6 @@ Rails.application.routes.draw do
   get "/hosted_spaces/approve_booking" => "bookings_controller#approve_booking", :as => 'approve_booking'
 
   # ENABLE/DISABLE DATES
-  post "/users/:user_id/hosted_spaces/:id/disable_date" => "hosted_spaces#disable_date", :as => 'disable_date'
-  post "/users/:user_id/hosted_spaces/:id/enable_date" => "hosted_spaces#enable_date", :as => 'enable_date'
+  patch "/users/:user_id/hosted_spaces/:id/disable_date" => "hosted_spaces#disable_date", :as => 'disable_date'
+  patch "/users/:user_id/hosted_spaces/:id/enable_date" => "hosted_spaces#enable_date", :as => 'enable_date'
 end
