@@ -12,8 +12,8 @@ class Search
     populate_spaces_category
     populate_spaces_amenity
     populate_spaces_capacity
-
-    populate_spaces_location
+    populate_spaces_availability if !@params[:start_time].blank? && !@params[:end_time].blank?
+    populate_spaces_location if !@params[:address].blank?
     @results = @potential_results.inject(&:&)
   end
 
@@ -24,9 +24,6 @@ class Search
       @nearby_spaces << address.space
     end
     @potential_results << @nearby_spaces
-
-    populate_spaces_availability
-    @results = @potential_results.inject(&:&)
   end
 
   def populate_spaces_availability
@@ -36,8 +33,7 @@ class Search
     (start..finish).each do |date|
       available_dates << date.iso8601
     end
-    @potential_results << Space.all.select{|space| (space.all_disabled_dates & available_dates).empty? }
-
+    @potential_results << Space.all.select{|space| (space.all_disabled_dates_host & available_dates).empty? }
   end
 
   def populate_spaces_category
