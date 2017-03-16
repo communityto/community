@@ -28,7 +28,7 @@
             <h1 class="space-title"><%= space.title %></h1><% end %>
               <hr>
               <p><%= space.description %></p>
-              <div class="space-bookings"><% if space.host == current_user %><%= link_to 'Manage Space', user_hosted_space_path(current_user, space) %> Delete Space: <%= link_to "Delete", user_hosted_space_path(current_user, space), method: :delete %><% end %></div>
+              <div class="space-bookings"><% if space.host == current_user %><%= link_to 'Manage Space', user_hosted_space_path(current_user, space) %> <br/> Delete Space: <%= link_to "Delete", user_hosted_space_path(current_user, space), method: :delete %><% end %></div>
           </div>
 
         </div>
