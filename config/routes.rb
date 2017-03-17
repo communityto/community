@@ -43,4 +43,10 @@ Rails.application.routes.draw do
   # ENABLE/DISABLE DATES
   patch "/users/:user_id/hosted_spaces/:id/disable_date" => "hosted_spaces#disable_date", :as => 'disable_date'
   patch "/users/:user_id/hosted_spaces/:id/enable_date" => "hosted_spaces#enable_date", :as => 'enable_date'
+
+  # FACEBOOK LOGIN
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+
 end

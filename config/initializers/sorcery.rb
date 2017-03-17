@@ -2,23 +2,26 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:remember_me]
+Rails.application.config.sorcery.submodules = [:remember_me, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
 
-  # config.external_providers = [:facebook, :google]
+  config.external_providers = [:facebook]
 
-  # config.facebook.key = ""
-  # config.facebook.secret = ""
-  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
-  # config.facebook.user_info_mapping = {:email => "email", :name => "name"}
-  # config.facebook.access_permissions = ["email", "publish_actions"]
-  # config.facebook.display = "popup"
-  # config.facebook.api_version = "v2.8"
+  config.facebook.key = Figaro.env.facebook_access_key_id
+  config.facebook.secret = Figaro.env.facebook_secret_access_key
+  config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  config.facebook.user_info_mapping = {:email => "email", :name => "name"}
+  config.facebook.user_info_path = "me?fields=email,first_name,last_name"
+  config.facebook.access_permissions = ["email", "publish_actions"]
+  config.facebook.display = "popup"
+  config.facebook.api_version = "v2.8"
 
   # --- user config ---
   config.user_config do |user|
+
+    user.authentications_class = Authentication
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
