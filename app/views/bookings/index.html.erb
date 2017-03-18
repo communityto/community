@@ -23,8 +23,8 @@
 
     <h4><span class="blue-underline">Pending Bookings</span></h4>
 
-    <% if !@user.bookings.where(approved: false).exists? %>
-      <p>You have no approved bookings.</p>
+    <% if !@user.bookings.where(approved:false).exists? %>
+      <p>You have no pending bookings.</p>
     <% end %>
 
         <% @user.bookings.where(approved: false, denied: false).each do |booking| %>
@@ -39,7 +39,7 @@
 
     <h4><span class="blue-underline">Denied Bookings</span></h4>
 
-    <% if !@user.bookings.where(denied: false).exists? %>
+    <% if !@user.bookings.where(denied:true).exists? %>
       <p>You have no denied bookings.</p>
     <% end %>
 

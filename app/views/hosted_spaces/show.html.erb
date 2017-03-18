@@ -37,8 +37,8 @@
 
   <h4><span class="blue-underline">Pending Bookings</span></h4>
 
-  <% if !@hosted_space_bookings.where(approved:false).exists? %>
-    <p>You have no approved bookings.</p>
+  <% if !@hosted_space_bookings.where(approved:false, denied: false).exists? %>
+    <p>You have no pending bookings.</p>
   <% end %>
 
   <% @hosted_space_bookings.where(approved: false, denied: false).each do |booking| %>
@@ -58,6 +58,11 @@
   <% end %>
 
 <h4><span class="blue-underline">Denied Bookings</span></h4>
+
+<% if !@hosted_space_bookings.where(denied:true).exists? %>
+  <p>You have no denied bookings.</p>
+<% end %>
+
   <% @hosted_space_bookings.where(denied: true).each do |booking| %>
     <div class="user-booking">
       <h4><%= link_to booking.user.first_name, booking.user %> | <%= link_to 'Send a Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></h4>
