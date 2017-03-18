@@ -8,9 +8,9 @@
     <h1 class="centered"><span><%= @user.first_name%>'s</span> Profile<br/>
     <%= link_to 'Send a Message', new_user_personal_message_path(current_user, receiver_id: @user) %> </h1>
     <% end %>
-</section>
+</main>
 
-<section class="container">
+<main class="site-content">
 
   <h4>About Me</h4>
   <hr>
@@ -44,4 +44,4 @@
       <%=link_to ' (View all)', user_reviews_path(@user) %>
     <% end %></h5>
 
-</section>
+</main>
