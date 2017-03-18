@@ -1,10 +1,11 @@
-<section class="container">
+<main class="site-content">
 
   <div class="centered-form grey">
     <h1>Login</h1>
     <%= render 'form' %>
     <hr>
     <center><div class="sign-up">Don't have an account? <%= link_to 'Sign up!', new_user_path %></div></center>
+    <%= link_to 'FB', auth_at_provider_path(:provider => :facebook) %>
   </div>
 
-</section>
+</main>

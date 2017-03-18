@@ -1,6 +1,8 @@
 @import 'variables';
 @import 'forms';
+@import 'lists';
 @import 'typography';
+@import 'calendar';
 
 html,
 body {
@@ -8,9 +10,13 @@ body {
   height: 100%;
   margin: 0;
   font-family: $base-font-family;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   line-height: 1.35;
+}
+
+main {
+  vertical-align: top;
 }
 
 img {
@@ -21,14 +27,6 @@ img {
 a, a:hover {
   color: $blue;
   text-decoration: none;
-}
-
-figure {
-  margin: 0;
-
-  & > img {
-    display: block;
-  }
 }
 
 header {
@@ -51,9 +49,12 @@ p {
   zoom: 1;
 }
 
-.main {
-  min-height: 100%;
-  position: relative;
+.page-container {
+  min-height: 70%;
+}
+
+.no-gutters {
+  padding: 0;
 }
 
 .site-header {
@@ -63,13 +64,13 @@ p {
 
   .site-nav {
     line-height: 50px;
-    font-size: 0.8em;
+    font-size: 12px;
 
     a {
       color: $grey;
       margin: 0 1em;
       letter-spacing: 1px;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     a:hover {
@@ -86,10 +87,10 @@ p {
   }
 }
 
-.container {
+.site-content {
   width: 80%;
   margin: 0 auto;
-  padding: 2em 0 8em 0;
+  padding: 2em 0;
 }
 
 .flex-container {
@@ -111,8 +112,16 @@ p {
   width: 100%;
 }
 
+.clear {
+  clear: both;
+}
+
 .centered {
   text-align: center;
+}
+
+.inline {
+  display: inline-block;
 }
 
 .centered-form {
@@ -136,33 +145,34 @@ p {
 
 .site-footer {
 
-  text-align: right;
   background-color: $blue;
-  padding: 1em;
-  position: absolute;
-  bottom: 0;
+  color: white;
+  padding: 2em 5em;
   width: 100%;
+  vertical-align: bottom;
 
   .footer-logo {
     color: white;
     font-size: 25px;
-    margin: 0.5em;
+    margin: 0   0.5em;
     font-weight: 600;
   }
+
+  .row {
+    margin-left: 4em;
+  }
+}
+
+.footer-title {
+  font-weight: 500;
+  color: white;
+  letter-spacing: 1px;
 }
 
 .reviewer-info {
   text-align: center;
 }
 
-.enabled-date {
-  background-color: green;
-}
-
-.disabled-date {
-  background-color: red;
-}
-
-.booked-date {
-  background-color: $blue;
+.table > thead > tr > th {
+  border-bottom: none;
 }

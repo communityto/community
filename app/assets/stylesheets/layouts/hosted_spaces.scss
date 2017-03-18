@@ -1,0 +1,35 @@
+.booking-button {
+  width: 50%;
+  float: right;
+  margin: 1em 0 0 0;
+  height: 39px;
+}
+
+.booking-container {
+  margin: 1em 0 5em 0;
+}
+
+.booking-submit {
+  width: 50%;
+  border: 1px solid $lightgrey;
+}
+
+.booking-icon {
+  float: left;
+  margin-right: 10px;
+}
+
+.message-button, .message-button:visited, .message-button:hover {
+  float: left;
+  background-color: $blue;
+  color: white;
+  height: 39px;
+  text-align: center;
+  padding: 0.5em;
+  margin: 1em 0.5em 0 0;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  width: 45%;
+}

@@ -1,4 +1,4 @@
-<section class="container">
+<main class="site-content">
   <h1> Your Inbox </h1>
 
   <% @conversations.each do |c| %>
@@ -11,4 +11,4 @@
     <%= link_to 'View Conversation', user_conversation_path(current_user, c) %>
       </p>
     <% end %>
-</section>
+</main>

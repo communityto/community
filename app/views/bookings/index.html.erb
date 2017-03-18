@@ -1,4 +1,4 @@
-<section class="container">
+<main class="site-content">
   <h1>Your Bookings</h1>
   <hr>
   <h4>You currently have <%= pluralize(@user.bookings.count,'booking') %>. <% if @user.bookings.count == 0 %>Explore some <%= link_to 'spaces', spaces_url %>!<% end %></h4><br />
@@ -55,4 +55,4 @@
 
 
   <% end %>
-</section>
+</main>

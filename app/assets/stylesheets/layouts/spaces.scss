@@ -22,17 +22,13 @@
   }
 }
 
-.space-description {
-  padding: 1em;
-}
-
-.space-link {
-  display: block;
+.space-nav {
+  float: right;
   text-decoration: none;
-}
 
-.space-title {
-  margin-bottom: 0;
+  a {
+    margin: 0 0.5em;
+  }
 }
 
 .space-cover {
