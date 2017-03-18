@@ -1,6 +1,6 @@
 <main class="site-content">
   <h1>Your conversation with <%=link_to @conversation.with(current_user).first_name, @conversation.with(current_user) %></h1>
-
+  <hr>
   <div id="conversation-main">
     <div id="conversation-body">
       <%= render @conversation.personal_messages %>
@@ -8,10 +8,10 @@
 
     <%= form_for @personal_message, url: {action: "reply"} do |f| %>
       <%= hidden_field_tag 'conversation_id', @conversation.id %>
-  <p class="emoji-picker-container"><%= f.label :Reply %>
-      <%= f.text_area :body, :placeholder => "Enter your message here", data: { emojiable: true } %></p>
+  <section class="emoji-picker-container">
+      <%= f.text_area :body, :placeholder => "Enter your message here", data: { emojiable: true } %></section>
 
-      <%= f.submit %>
+      <%= f.submit 'Send Message' %>
     <% end %>
   </div>
 </main>

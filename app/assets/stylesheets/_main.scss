@@ -176,3 +176,27 @@ p {
 .table > thead > tr > th {
   border-bottom: none;
 }
+
+.emoji-picker-container {
+  width: 100%;
+  -webkit-border-radius: 0.5em;
+  border: 1px solid $lightgrey;
+}
+
+.emoji-wysiwyg-editor {
+  padding: 0.5em;
+  margin: 0.5em 0;
+  border: none;
+  width: 100%;
+  resize: none;
+  height: 100%;
+  outline: none;
+}
+
+.emoji-wysiwyg-editor:active {
+  border: none;
+}
+
+.emoji-picker-icon {
+  padding: 0.5em;
+}

@@ -1,6 +1,6 @@
 <main class="site-content">
   <h1> Your Inbox </h1>
-
+  <hr>
   <% @conversations.each do |c| %>
     Your conversation with: <% if c.author == current_user %>
       <%= link_to c.receiver.first_name, user_path(c.receiver) %> <br/>

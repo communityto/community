@@ -1,12 +1,12 @@
 <main class="site-content">
   <h1>New message to <%= @receiver.first_name %></h1>
-
+  <hr>
   <%= form_for @personal_message, url: {action: "create"} do |f| %>
     <%= hidden_field_tag 'receiver_id', @receiver.id %>
 
-<p class="emoji-picker-container">
-    <%= f.text_area :body, :placeholder => 'Enter your message here', data: { emojiable: true } %> </p>
+<section class="emoji-picker-container">
+    <div class="message-container"><%= f.text_area :body, :placeholder => 'Enter your message here', data: { emojiable: true } %></div> </section>
 
-    <%= f.submit %>
+    <%= f.submit 'Send Message' %>
   <% end %>
 </main>
