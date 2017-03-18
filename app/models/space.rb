@@ -54,7 +54,7 @@ class Space < ApplicationRecord
       if accuracy_count > 0
         accuracy_avg = accuracy_sum / accuracy_count
       else
-        accuracy_avg = "omg y nobody luv me :("
+        accuracy_avg = "-"
       end
   end
 
@@ -64,7 +64,7 @@ class Space < ApplicationRecord
       if communication_count > 0
         communication_avg = communication_sum / communication_count
       else
-        communication_avg = "gimme a review plz /)O___o/)"
+        communication_avg = "-"
       end
   end
 
@@ -74,7 +74,7 @@ class Space < ApplicationRecord
       if facilities_count > 0
         facilities_avg = facilities_sum / facilities_count
       else
-        facilities_avg = "waaaaah :'("
+        facilities_avg = "-"
       end
   end
 
@@ -85,7 +85,7 @@ class Space < ApplicationRecord
       if location_count > 0
         location_avg = location_sum / location_count
       else
-        location_avg = "pika?"
+        location_avg = "-"
       end
 
   end
