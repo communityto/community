@@ -1,8 +1,8 @@
 <main class="site-content">
   <h1>Your conversation with <%=link_to @conversation.with(current_user).first_name, @conversation.with(current_user) %></h1>
   <hr>
-  <div id="conversation-main">
-    <div id="conversation-body">
+  <div class="conversation-main">
+    <div class="conversation-body">
       <%= render @conversation.personal_messages %>
     </div>
 
