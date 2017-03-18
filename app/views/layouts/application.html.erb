@@ -4,7 +4,7 @@
     <title>Community</title>
     <%= csrf_meta_tags %>
     <script src="https://use.fontawesome.com/8004be3262.js"></script>
-    <%= stylesheet_link_tag    "https://fonts.googleapis.com/css?family=Open+Sans:300,600|Roboto:300,500" %>
+    <%= stylesheet_link_tag    "https://fonts.googleapis.com/css?family=Roboto:300,500" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Yllu6iEk-2YKGm6lcwahtk9LPP2VFmI&libraries=places"></script>
@@ -23,11 +23,11 @@
           <%= link_to "Profile", current_user %>
           <%= link_to 'Inbox', user_conversations_path(current_user) %>
           <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-          <%= link_to 'My Bookings', user_bookings_path(current_user)%>
-          <%= link_to 'My Favourites', user_favourite_spaces_path(current_user) %>
-          <%= link_to 'My Reviews', user_reviews_path(current_user)%>
+          <%= link_to 'Bookings', user_bookings_path(current_user)%>
+          <%= link_to 'Favourites', user_favourite_spaces_path(current_user) %>
+          <%= link_to 'Reviews', user_reviews_path(current_user)%>
           <% if current_user.hosted_spaces.any? %>
-            <%= link_to 'My Spaces', user_hosted_spaces_path(current_user) %>
+            <%= link_to 'Hosted Spaces', user_hosted_spaces_path(current_user) %>
           <% end %>
           <%= link_to 'Host', new_space_path %>
           <%= link_to "Logout", :logout, method: :post %>

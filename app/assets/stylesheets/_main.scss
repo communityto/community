@@ -2,6 +2,7 @@
 @import 'forms';
 @import 'lists';
 @import 'typography';
+@import 'calendar';
 
 html,
 body {
@@ -28,14 +29,6 @@ a, a:hover {
   text-decoration: none;
 }
 
-figure {
-  margin: 0;
-
-  & > img {
-    display: block;
-  }
-}
-
 header {
   padding: 1em;
 }
@@ -57,7 +50,11 @@ p {
 }
 
 .page-container {
-  min-height: 60%;
+  min-height: 70%;
+}
+
+.no-gutters {
+  padding: 0;
 }
 
 .site-header {
@@ -67,13 +64,13 @@ p {
 
   .site-nav {
     line-height: 50px;
-    font-size: 0.8em;
+    font-size: 12px;
 
     a {
       color: $grey;
       margin: 0 1em;
       letter-spacing: 1px;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     a:hover {
@@ -115,8 +112,16 @@ p {
   width: 100%;
 }
 
+.clear {
+  clear: both;
+}
+
 .centered {
   text-align: center;
+}
+
+.inline {
+  display: inline-block;
 }
 
 .centered-form {
@@ -168,18 +173,6 @@ p {
   text-align: center;
 }
 
-.enabled-date {
-  width: 100%;
-  height: 100%;
-  background-color: green;
-}
-
-.disabled-date {
-  width: 100%;
-  height: 100%;
-  background-color: red;
-}
-
-.booked-date {
-  background-color: $blue;
+.table > thead > tr > th {
+  border-bottom: none;
 }

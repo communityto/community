@@ -1,9 +1,35 @@
 @media (max-width: 768px) {
+  .simple-calendar {
+    .day {
+      height: 80px;
+    }
+  }
+
   .site-footer {
     padding: 2em;
 
     .row {
       margin-left: 0;
     }
+  }
+
+  .search-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 992px) {
+  .simple-calendar {
+    .day {
+      height: 100px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .results-map {
+    position: fixed;
+    top: 10%;
+    margin-bottom: 10em;
   }
 }
