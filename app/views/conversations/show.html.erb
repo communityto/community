@@ -1,4 +1,4 @@
-<section class="container">
+<main class="site-content">
   <h1>Your conversation with <%=link_to @conversation.with(current_user).first_name, @conversation.with(current_user) %></h1>
 
   <div id="conversation-main">
@@ -14,4 +14,4 @@
       <%= f.submit %>
     <% end %>
   </div>
-</section>
+</main>

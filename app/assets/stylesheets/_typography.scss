@@ -1,11 +1,10 @@
 h1,
 h2,
 h3,
-h4,
 h5,
 h6 {
   font-family: $header-font-family;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.1;
 }
 
@@ -14,6 +13,9 @@ h1 {
 }
 
 h4 {
+  font-family: $base-font-family;
+  font-weight: 300;
+  line-height: 1.1;
   margin: 1em 0;
 }
 
@@ -21,17 +23,16 @@ h3 {
   margin: 2em 0;
 }
 
-a {
-  font-family: $header-font-family;
+a, a:active, a:visited {
   text-decoration: none;
+}
+
+b {
+  font-weight: 500;
 }
 
 .small-text {
   font-size: 0.9em;
-}
-
-.inline {
-  display: inline-block;
 }
 
 .color-blue {

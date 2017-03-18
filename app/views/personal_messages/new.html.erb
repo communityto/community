@@ -1,4 +1,4 @@
-<section class="container">
+<main class="site-content">
   <h1>New message to <%= @receiver.first_name %></h1>
 
   <%= form_for @personal_message, url: {action: "create"} do |f| %>
@@ -9,4 +9,4 @@
 
     <%= f.submit %>
   <% end %>
-</section>
+</main>

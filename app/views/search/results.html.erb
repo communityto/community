@@ -1,36 +1,70 @@
-<section class="container">
+<main class="site-content">
 
   <h1><span class="blue-underline"><%= @search.results.count %></span> Spaces</h1>
-    <% if @search.results.empty? %>
-      <h2>No spaces found!</h2>
+
+  <div class="search-params">
+    <% if params[:search][:address] %>
+      <h3 class="search-param">Location <span class="color-blue"><%= params[:search][:address] %></span> | <span class="color-blue"><%= params[:search][:distance] %></span> miles</h3>
     <% end %>
-  <br />
 
-  <%= render partial: 'spaces/map', locals: {spaces: @search.results} %>
+    <% if !params[:search][:start_time].empty? && !params[:search][:end_time].empty? %>
+      <h3 class="search-param">Available <span class="color-blue"><%= params[:search][:start_time].to_datetime.strftime("%B %-d, %Y") %></span> – <span class="color-blue"><%= params[:search][:end_time].to_datetime.strftime("%B %-d, %Y") %></span></h3>
+    <% end %>
 
-  <section class="flex-container">
+    <% if params[:search][:category_ids].count > 1%>
+      <h3 class="search-param">Categories
+        <% params[:search][:category_ids].each do |category| %>
+          <span class="color-blue"><% if !category.empty? %><%= Category.find(category).name %><% end %></span>
+        <% end %>
+    <% end %>
 
-    <% @search.results.each do |space| %>
-      <div class="space flex-child">
+    <% if params[:search][:amenity_ids].count > 1 %>
+      <h3 class="search-param">Amenities
+        <% params[:search][:amenity_ids].each do |amenity| %>
+          <span class="color-blue"><% if !amenity.empty? %><%= Amenity.find(amenity).name %><% end %></span>
+        <% end %>
+    <% end %>
 
-        <%= link_to space, class: 'space-link' do %>
+    <% if params[:search][:capacity].to_i > 0 %>
+      <h3 class="search-param">Capacity <span class="color-blue"><%= params[:search][:capacity] %></span></h3>
+    <% end %>
 
-          <figure class="space-image">
-            <% if space.avatar %>
-              <%= image_tag space.avatar %>
-            <% else %>
-              <%= image_tag ("http://placehold.it/2000x1000") %>
+    <% if @search.results.empty? %>
+      <h3 class="search-param">No spaces found!</h3>
+    <% else %>
+  </div>
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm-12 col-md-6">
+            <% @search.results.each do |space| %>
+              <div class="row search-result no-gutters">
+                <%= link_to space do %>
+
+                <div class="col-sm-12 col-md-6 no-gutters">
+                  <div class="search-image" style="background-image: url('<%= space.avatar %>')"></div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-gutters">
+                  <div class="search-description">
+                    <h1><%= space.title %></h1><% end %>
+                    <hr>
+                    <b><%= space.address.street_address %>, <%= space.address.city %></b><br />
+                    $<%= space.price %> | <%= space.capacity %> Persons | <%= space.size %> ft<sup>2</sup><br />
+                    <p><%= space.description.truncate(65) %></p>
+                    Hosted by <%= link_to space.host.first_name, space.host %>
+                  </div>
+                </div>
+
+              </div>
             <% end %>
-          </figure>
+          </div>
 
-        <div class="space-description">
-          <h1 class="space-title"><%= space.title %></h1><% end %>
-            <hr>
-          <p><%= space.description %></p>
-        </div>
+          <div class="col-sm-12 col-md-6">
+            <%= render partial: 'spaces/map', locals: {spaces: @search.results} %>
+          </div>
 
       </div>
     <% end %>
-  </section>
-
-</section>
+</main>

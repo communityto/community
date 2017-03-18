@@ -1,6 +1,7 @@
-<section class="container">
+<main class="site-content">
   <div class="centered-form grey">
     <h1>Register</h1>
     <%= render 'form' %>
+    <%= link_to 'FB', auth_at_provider_path(:provider => :facebook) %>
   </div>
-</section>
+</main>

@@ -23,6 +23,7 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap-datetimepicker';
 @import 'main';
+@import 'queries';
 
 // Page styles
 @import 'layouts/pages';
@@ -33,3 +34,4 @@
 @import 'layouts/user_sessions';
 @import 'layouts/bookings';
 @import 'layouts/reviews';
+@import 'layouts/hosted_spaces';
