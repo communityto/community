@@ -1,4 +1,4 @@
-<section class="space-cover" style="background: url('http://www.torontolofts.ca/Assets/website/Images/Properties/ToyFactory227/slider01.jpg') no-repeat">
+<section class="space-cover" style="background-image: url('<%= @space.space_photos.first.photo %> ')"></section>
 </main>
 
 <main class="site-content">
@@ -7,7 +7,7 @@
   <%# please do not remove the above div with class review_contaner!!! %>
 
     <h1><%= @space.title %></h1>
-    <h4>Hosted by: <%=link_to @space.host.first_name, user_path(@space.host) %> <% if logged_in? && @space.host != current_user%> |<%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: @space.host) %> <% end %></h4>
+    <h4>Hosted by: <%=link_to @space.host.first_name, user_path(@space.host) %> <% if logged_in? && @space.host != current_user%> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: @space.host) %> <% end %></h4>
     <hr>
 
     <div class="space-nav">
@@ -28,6 +28,15 @@
     <p><%= @space.description %></p>
 
     <h3>Details</h3>
+
+    <div clas="space_photo">
+      <% @space.space_photos.drop(1).each do |p|%>
+        <%= image_tag p.photo %>
+      <% end %>
+    </div>
+
+
+
 
     <hr>
 

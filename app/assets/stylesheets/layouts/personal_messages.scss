@@ -1,0 +1,25 @@
+// Place all the styles related to the PersonalMessages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.personal-message-right {
+  border: 0.5px solid $blue;
+  border-radius: 0.5em;
+  margin: 0.5em;
+  width: 50%;
+  float: right;
+  padding: 0.5em;
+}
+
+.personal-message-left {
+  border: 0.5px dotted $blue;
+  border-radius: 0.5em;
+  margin: 0.5em;
+  width: 50%;
+  float: left;
+  padding: 0.5em;
+}
+
+.personal-message-body {
+  margin: 0;
+}

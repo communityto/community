@@ -20,6 +20,7 @@ class SpacesController < ApplicationController
     # @review_user = User.where(user_id: review.user_id)
     @booking = Booking.new
     @address = @space.address
+    @space_photos = @space.space_photos.all
 
     respond_to do |format|
       format.html
@@ -30,17 +31,22 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new
     @space.address = Address.new
-    @space.avatar = params[:file]
+    @space_photo = @space.space_photos.build
   end
 
   def create
     @space = Space.new(space_params)
 
+    respond_to do |format|
       if @space.save
-        redirect_to space_url(id: @space.id)
+        params[:space_photos]['photo'].each do |p|
+          @space_photo = @space.space_photos.create!(:photo => p)
+        end
+        format.html { redirect_to @space }
       else
-        render :new
+        format.html { render action: 'new' }
       end
+    end
   end
 
   def edit
@@ -64,7 +70,7 @@ class SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:title, :description, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, :avatar, :amenity_ids => [], :category_ids => [], :address_attributes => [:id, :street_address, :neighbourhood, :city, :province] )
+    params.require(:space).permit(:title, :description, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, space_photos_attributes: [:id, :space_id, :photo], :amenity_ids => [], :category_ids => [], :address_attributes => [:id, :street_address, :neighbourhood, :city, :province] )
   end
 
 end

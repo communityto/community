@@ -122,6 +122,11 @@ ActiveRecord::Schema.define(version: 20170318190334) do
     t.integer  "helpful_count", default: 0
   end
 
+  create_table "space_photos", force: :cascade do |t|
+    t.string  "photo"
+    t.integer "space_id"
+  end
+
   create_table "spaces", force: :cascade do |t|
     t.string   "title"
     t.text     "description"

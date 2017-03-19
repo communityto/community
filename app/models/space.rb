@@ -1,5 +1,4 @@
 class Space < ApplicationRecord
-  mount_uploader :avatar, AvatarUploader
 
   validates :title, length: { minimum: 1 }, on: :create
   validates :description, length: { minimum: 1 }, on: :create
@@ -15,6 +14,8 @@ class Space < ApplicationRecord
   has_one :address
   accepts_nested_attributes_for :address
   belongs_to :host, :class_name => 'User', :foreign_key => 'host_id'
+  has_many :space_photos
+  accepts_nested_attributes_for :space_photos
 
   def all_disabled_dates
     disabled_dates_user = []

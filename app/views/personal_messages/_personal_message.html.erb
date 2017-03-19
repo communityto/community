@@ -1,6 +1,15 @@
-<main class="site-content">
-  <p><%= personal_message.body %></p>
-  <p>at <strong><%= personal_message.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%-d %b %Y at %l:%M %P") %></strong><br>
-    from <strong><%= personal_message.user.first_name %></strong></p>
-  <hr>
-</main>
+<% if current_user == personal_message.user %>
+  <div class="personal-message-right">
+    <p class='personal-message-body'><%= personal_message.body %></p>
+    sent <strong><%= personal_message.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%-d %b %Y at %l:%M %P") %></strong><br>
+    from <strong><%= personal_message.user.first_name %></strong>
+  </div>
+
+<% else %>
+
+  <div class="personal-message-left">
+    <p class='personal-message-body'><%= personal_message.body %></p>
+    sent <strong><%= personal_message.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%-d %b %Y at %l:%M %P") %></strong><br>
+    from <strong><%= personal_message.user.first_name %></strong>
+  </div>
+<% end %>

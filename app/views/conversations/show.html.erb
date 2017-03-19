@@ -1,17 +1,19 @@
 <main class="site-content">
-  <h1>Your conversation with <%=link_to @conversation.with(current_user).first_name, @conversation.with(current_user) %></h1>
-
-  <div id="conversation-main">
-    <div id="conversation-body">
+  <h1>Your conversation with <%=link_to @conversation.with(current_user).first_name, @conversation.with(current_user) %>
+    <span class="profile-image size50 booking-icon" style="background-image: url('<% if @conversation.author == current_user %> <%= @conversation.receiver.avatar %> <% else %> <%= @conversation.author.avatar %> <% end %>')"></span></h1>
+  <span class="inbox-link"><%= link_to 'Back to Inbox', user_conversations_path(current_user) %></span>
+  <hr>
+  <div class="conversation-main">
+    <div class="conversation-body">
       <%= render @conversation.personal_messages %>
     </div>
 
     <%= form_for @personal_message, url: {action: "reply"} do |f| %>
       <%= hidden_field_tag 'conversation_id', @conversation.id %>
-  <p class="emoji-picker-container"><%= f.label :Reply %>
-      <%= f.text_area :body, :placeholder => "Enter your message here", data: { emojiable: true } %></p>
+  <section class="emoji-picker-container">
+      <%= f.text_area :body, :placeholder => "Enter your message here", data: { emojiable: true } %></section>
 
-      <%= f.submit %>
+      <%= f.submit 'Send Message' %>
     <% end %>
   </div>
 </main>
