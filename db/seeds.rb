@@ -69,6 +69,7 @@ end
   )
 
    s.address = a
+   s.categories = Category.all.sample(rand(1..2))
 
    s2 = Space.create!(
      host: User.all.sample,
@@ -90,6 +91,8 @@ end
    )
 
    s2.address = a2
+   s2.categories = Category.all.sample(rand(1..2))
+
 
    s3 = Space.create!(
      host: User.all.sample,
@@ -111,6 +114,8 @@ end
    )
 
    s3.address = a3
+   s3.categories = Category.all.sample(rand(1..2))
+
 
    s4 = Space.create!(
      host: User.all.sample,
@@ -132,6 +137,8 @@ end
    )
 
    s4.address = a4
+   s4.categories = Category.all.sample(rand(1..2))
+
 
    s5 = Space.create!(
      host: User.all.sample,
@@ -153,3 +160,4 @@ end
    )
 
    s5.address = a5
+   s5.categories = Category.all.sample(rand(1..2))

@@ -29,6 +29,13 @@
 
     <h3>Details</h3>
 
+    <% @space.space_photos.each do |p|%>
+      <%= image_tag p.photo %>
+    <% end %>
+
+
+
+
     <hr>
 
     <div class="space-details"><h4>
