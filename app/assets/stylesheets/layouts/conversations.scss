@@ -14,3 +14,33 @@
   overflow: scroll;
   height: 275px;
 }
+
+.inbox-main {
+  width: 100%;
+  overflow: scroll;
+  height: 400px;
+  // margin-left: 4em;
+}
+
+.inbox-conversation {
+  border: 1px dotted $blue;
+  border-radius: 0.5em;
+  margin-bottom: 0.5em;
+  margin: 0.25em 0 0 0.25em;
+}
+
+.conversation-title {
+  font-size: 1.5em;
+  margin: 0.25em 0 0 0.25em;
+}
+
+.conversation-brief {
+  margin: 0.25em 0 0 0.25em;
+  font-style: italic;
+}
+
+.conversation-link a {
+  margin: 0.25em 0 0 0.25em;
+  background-color: $blue;
+  color: white;
+}

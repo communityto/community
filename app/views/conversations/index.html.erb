@@ -1,14 +1,17 @@
 <main class="site-content">
   <h1> Your Inbox </h1>
   <hr>
-  <% @conversations.each do |c| %>
-    Your conversation with: <% if c.author == current_user %>
-      <%= link_to c.receiver.first_name, user_path(c.receiver) %> <br/>
-    <% else %>
-      <%= link_to c.author.first_name, user_path(c.author) %> <br />
-    <% end %>
-      <%= c.personal_messages.last.body.truncate(50) %> <br/>
-    <%= link_to 'View Conversation', user_conversation_path(current_user, c) %>
-      </p>
-    <% end %>
+  <section class="inbox-main" >
+      <% @conversations.each do |c| %>
+      <section class="inbox-conversation">
+        <p class="conversation-title"><span class="blue-underline">Your conversation with</span>: <% if c.author == current_user %>
+          <%= link_to c.receiver.first_name, user_path(c.receiver) %> <br/>
+        <% else %>
+          <%= link_to c.author.first_name, user_path(c.author) %> <br />
+        <% end %></p>
+        <p class="conversation-brief"><%= c.personal_messages.last.body.truncate(50) %> <br/><p>
+        <p class="conversation-link"><%= link_to 'View Conversation', user_conversation_path(current_user, c) %></p>
+          </section>
+        <% end %>
+  </section>
 </main>
