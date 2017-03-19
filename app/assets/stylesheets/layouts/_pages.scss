@@ -22,3 +22,48 @@
   color: $blue;
   display: inline-block;
 }
+
+.explore-container {
+  width: 60%;
+  margin: 0 auto;
+
+  h3 {
+    margin-top: 1em;
+  }
+}
+
+#tabs {
+  padding: 0;
+  border: 0;
+  font-family: $base-font-family;
+  font-weight: 300;
+
+  ul {
+    border: 0;
+    background-color: #FFF;
+  }
+
+  li {
+    outline: none;
+    border-radius: 0;
+    background-color: #FFF;
+    border: 0;
+  }
+
+  .ui-tabs-nav a {
+    padding: 0;
+    font-size: 15px;
+    margin-right: 10px;
+    color: $darkgrey;
+    outline: none;
+  }
+
+  .ui-tabs-nav li.ui-state-active a {
+    color: $blue;
+    border-bottom: 3px solid $blue;
+  }
+}
+
+#tabs > div {
+  padding: 0;
+}

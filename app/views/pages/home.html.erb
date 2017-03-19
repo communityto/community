@@ -8,7 +8,52 @@
 
 <main class="site-content">
 
-  <h1>Featured Spaces</h1>
+  <div class="explore-container">
+    <h3>Explore</h3>
+
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-art">Art</a></li>
+          <li><a href="#tabs-event">Event</a></li>
+          <li><a href="#tabs-meeting">Meeting</a></li>
+          <li><a href="#tabs-residential">Residential</a></li>
+          <li><a href="#tabs-office">Office</a></li>
+          <li><a href="#tabs-retail">Retail</a></li>
+          <li><a href="#tabs-cafe">Café</a></li>
+        </ul>
+
+        <div id="tabs-art">
+          <%= render partial: 'explore', locals: {space: @space_art} %>
+        </div>
+
+        <div id="tabs-event">
+          <%= render partial: 'explore', locals: {space: @space_event} %>
+        </div>
+
+        <div id="tabs-meeting">
+          <%= render partial: 'explore', locals: {space: @space_meeting} %>
+        </div>
+
+        <div id="tabs-residential">
+          <%= render partial: 'explore', locals: {space: @space_residential} %>
+        </div>
+
+        <div id="tabs-office">
+          <%= render partial: 'explore', locals: {space: @space_office} %>
+        </div>
+
+        <div id="tabs-retail">
+          <%= render partial: 'explore', locals: {space: @space_retail} %>
+        </div>
+
+        <div id="tabs-cafe">
+          <%= render partial: 'explore', locals: {space: @space_cafe} %>
+        </div>
+      </div>
+
+  </div>
+
+  <h3>Featured Spaces</h3>
   <hr>
 
   <div class="container-fluid no-gutters">
@@ -33,3 +78,11 @@
       <% end %>
 
 </main>
+
+<!-- SCRIPTS -->
+
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+</script>
