@@ -42,7 +42,7 @@ class SpacesController < ApplicationController
         params[:space_photos]['photo'].each do |p|
           @space_photo = @space.space_photos.create!(:photo => p)
         end
-        format.html { redirect_to @space, notice: 'Space was successfully created.'}
+        format.html { redirect_to @space }
       else
         format.html { render action: 'new' }
       end
@@ -54,7 +54,7 @@ class SpacesController < ApplicationController
 
   def update
     if @space.update_attributes(space_params)
-      redirect_to space_url, notice: "Space successfully updated!"
+      redirect_to space_url
     else
       flash.now[:alert] = "Failed to update space."
       render :edit
@@ -64,7 +64,7 @@ class SpacesController < ApplicationController
   def destroy
     @space = Space.find(params[:id])
     @space.destroy
-    redirect_to spaces_url
+    redirect_to root_path
   end
 
   private

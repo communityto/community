@@ -3,7 +3,7 @@
   <h1><span class="blue-underline"><%= @search.results.count %></span> Spaces</h1>
 
   <div class="search-params">
-    <% if params[:search][:address] %>
+    <% if !params[:search][:address].empty? %>
       <h3 class="search-param">Location <span class="color-blue"><%= params[:search][:address] %></span> | <span class="color-blue"><%= params[:search][:distance] %></span> miles</h3>
     <% end %>
 
@@ -43,11 +43,11 @@
                 <%= link_to space do %>
 
                 <div class="col-sm-12 col-md-6 no-gutters">
-                  <div class="search-image" style="background-image: url('<%= space.avatar %>')"></div>
+                  <div class="space-image" style="background-image: url('<%= space.avatar %>')"></div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 no-gutters">
-                  <div class="search-description">
+                  <div class="space-description">
                     <h1><%= space.title %></h1><% end %>
                     <hr>
                     <b><%= space.address.street_address %>, <%= space.address.city %></b><br />

@@ -6,35 +6,114 @@
   </div>
 </main>
 
-<main class="site-content">
+<section class="site-content">
 
-  <h1>Featured Spaces</h1>
-  <hr>
-  <section class="flex-container">
+  <div class="explore-container">
+    <h3 class="home-heading">Explore</h3>
 
-    <% @spaces.sample(6).each do |space| %>
-      <div class="space flex-child">
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-art">Art</a></li>
+          <li><a href="#tabs-event">Event</a></li>
+          <li><a href="#tabs-meeting">Meeting</a></li>
+          <li><a href="#tabs-residential">Residential</a></li>
+          <li><a href="#tabs-office">Office</a></li>
+          <li><a href="#tabs-retail">Retail</a></li>
+          <li><a href="#tabs-cafe">Café</a></li>
+        </ul>
 
-        <%= link_to space, class: 'space-link' do %>
-
-          <figure class="space-image">
-            <% if space.avatar %>
-              <%= image_tag space.avatar %>
-            <% else %>
-              <%= image_tag ("http://placehold.it/2000x1000") %>
-            <% end %>
-          </figure>
-
-        <div class="space-description">
-          <h1 class="space-title"><%= space.title %></h1><% end %>
-            <hr>
-          <p><%= space.description %></p>
-          <% if current_user == space.host %>
-          Delete Space: <%= link_to "Delete", space_path(space), method: :delete %>
-          <% end %>
+        <div id="tabs-art">
+          <%= render partial: 'explore', locals: {space: @space_art} %>
         </div>
 
+        <div id="tabs-event">
+          <%= render partial: 'explore', locals: {space: @space_event} %>
+        </div>
+
+        <div id="tabs-meeting">
+          <%= render partial: 'explore', locals: {space: @space_meeting} %>
+        </div>
+
+        <div id="tabs-residential">
+          <%= render partial: 'explore', locals: {space: @space_residential} %>
+        </div>
+
+        <div id="tabs-office">
+          <%= render partial: 'explore', locals: {space: @space_office} %>
+        </div>
+
+        <div id="tabs-retail">
+          <%= render partial: 'explore', locals: {space: @space_retail} %>
+        </div>
+
+        <div id="tabs-cafe">
+          <%= render partial: 'explore', locals: {space: @space_cafe} %>
+        </div>
       </div>
-    <% end %>
-  </main>
-</main>
+
+  </div>
+</section>
+
+<section class="blue">
+
+  <div class="container-fluid no-gutters home-about">
+    <div class="row no-gutters">
+      <h1>Who are we for?</h1>
+      <div class="col-md-4">
+        <i class="fa fa-users fa-5x" aria-hidden="true"></i>
+        <p>
+          Individuals and community looking for affordable, temporary spaces to hold events, workshops and meetings.
+        </p>
+      </div>
+      <div class="col-md-4">
+        <i class="fa fa-handshake-o fa-5x" aria-hidden="true"></i>
+        <p>
+          People and organizations able to contribute to their communities by offering spaces that can accommodate them.
+        </p>
+      </div>
+      <div class="col-md-4">
+        <i class="fa fa-paint-brush fa-5x" aria-hidden="true"></i>
+        <p>
+          Creatives who want opportunities to share their work with the public in an informal space.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="site-content"><br />
+
+  <h3 class="home-heading">Featured Spaces</h3>
+  <hr>
+
+  <div class="container-fluid no-gutters">
+    <div class="row no-gutters">
+      <% @spaces.sample(6).each do |space| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="space">
+            <%= link_to space, class: 'space-link' do %>
+
+            <div class="space-image" style="background-image: url('<%= space.avatar %>')"></div>
+
+            <div class="space-description">
+              <h1><%= space.title %></h1><% end %>
+              <hr>
+              <b><%= space.address.street_address %>, <%= space.address.city %></b><br />
+              $<%= space.price %> | <%= space.capacity %> Persons | <%= space.size %> ft<sup>2</sup><br />
+              <p><%= space.description %></p>
+              Hosted by <%= link_to space.host.first_name, space.host %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+</section>
+
+<!-- SCRIPTS -->
+
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+</script>

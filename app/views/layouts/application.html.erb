@@ -21,21 +21,20 @@
         <%= link_to "Search", search_path %>
         <% if current_user %>
           <div class="dropdown">
-            <%= link_to current_user do %>
-              <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
-            <% end %>
-              <div class="dropdown-content">
-                <%= link_to 'Inbox', user_conversations_path(current_user) %>
-                <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-                <%= link_to 'Bookings', user_bookings_path(current_user)%>
-                <%= link_to 'Favourites', user_favourite_spaces_path(current_user) %>
-                <%= link_to 'Reviews', user_reviews_path(current_user)%>
-                <% if current_user.hosted_spaces.any? %>
-                  <%= link_to 'Hosted Spaces', user_hosted_spaces_path(current_user) %>
-                <% end %>
-                <%= link_to 'Host A Space', new_space_path %>
-                <%= link_to "Logout", :logout, method: :post %>
-              </div>
+            <i class="fa fa-user-circle-o fa-lg dropdown-icon" aria-hidden="true"></i>
+            <div class="dropdown-content">
+              <%= link_to 'Profile', current_user %>
+              <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+              <%= link_to 'Inbox', user_conversations_path(current_user) %>
+              <%= link_to 'Bookings', user_bookings_path(current_user)%>
+              <%= link_to 'Favourites', user_favourite_spaces_path(current_user) %>
+              <%= link_to 'Reviews', user_reviews_path(current_user)%>
+              <% if current_user.hosted_spaces.any? %>
+                <%= link_to 'Hosted Spaces', user_hosted_spaces_path(current_user) %>
+              <% end %>
+              <%= link_to 'Host A Space', new_space_path %>
+              <%= link_to "Logout", :logout, method: :post %>
+            </div>
           </div>
         <% else %>
           <%= link_to "Register", new_user_path %>
