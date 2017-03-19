@@ -1,5 +1,7 @@
 <main class="site-content">
-  <h1>Your conversation with <%=link_to @conversation.with(current_user).first_name, @conversation.with(current_user) %></h1>
+  <h1>Your conversation with <%=link_to @conversation.with(current_user).first_name, @conversation.with(current_user) %>
+    <span class="profile-image size50 booking-icon" style="background-image: url('<% if @conversation.author == current_user %> <%= @conversation.receiver.avatar %> <% else %> <%= @conversation.author.avatar %> <% end %>')"></span></h1>
+  <span class="inbox-link"><%= link_to 'Back to Inbox', user_conversations_path(current_user) %></span>
   <hr>
   <div class="conversation-main">
     <div class="conversation-body">
