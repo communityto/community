@@ -4,7 +4,7 @@
             <div class='input-group date' id='datetimepicker6'>
                 <%= f.text_field :start_time, :class => "form-control", :placeholder => "Check-in" %>
                 <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
                 </span>
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class='input-group date' id='datetimepicker7'>
               <%= f.text_field :end_time, :class => "form-control", :placeholder => "Check-out" %>
                 <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
                 </span>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <%= f.hidden_field :approved, :value => false %>
 
     <div class="form-actions">
-      <%= f.submit "Book", :class => 'booking-submit' %>
+      <%= f.submit "Request Booking", :class => 'booking-submit' %>
     </div>
 
   <% end %>
@@ -37,14 +37,12 @@
     $(function () {
         $('#datetimepicker6').datetimepicker({
           format: 'DD/MM/YYYY',
-          showTodayButton: true,
           minDate: moment(),
           disabledDates: <%= raw @space.all_disabled_dates %>,
           useCurrent: false
         });
         $('#datetimepicker7').datetimepicker({
             format: 'DD/MM/YYYY',
-            showTodayButton: true,
             minDate: moment(),
             disabledDates: <%= raw @space.all_disabled_dates %>,
             useCurrent: false //Important! See issue #1075

@@ -5,20 +5,22 @@
     }
   }
 
+  .search-image {
+    height: 300px;
+  }
+
+  // HEADER & FOOTER
+
+  .logo-title {
+    display: none;
+  }
+
   .site-footer {
     padding: 2em;
 
     .row {
       margin-left: 0;
     }
-  }
-
-  .search-image {
-    height: 300px;
-  }
-
-  .logo-title {
-    display: none;
   }
 }
 

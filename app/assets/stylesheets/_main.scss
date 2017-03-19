@@ -24,7 +24,7 @@ img {
   height: auto;
 }
 
-a, a:active, a::selection, a:hover {
+a, a:link, a:active, a:visited, a:hover {
   color: $blue;
   text-decoration: none;
 }
@@ -91,12 +91,17 @@ p {
   display: inline-block;
 }
 
+.dropdown-icon {
+  margin: 0 1em;
+}
+
 .dropdown-content {
   display: none;
+  z-index: 100;
   position: absolute;
   right: 0;
   background-color: white;
-  min-width: 160px;
+  min-width: 200px;
   padding: 0.5em;
 
   a {
@@ -136,6 +141,11 @@ p {
 .grey {
   background-color: $lightergrey;
   padding: 3em 0;
+}
+
+.blue {
+  background-color: $blue;
+  padding: 4em;
 }
 
 .full-width {
