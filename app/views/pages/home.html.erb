@@ -18,8 +18,8 @@
         <%= link_to space, class: 'space-link' do %>
 
           <figure class="space-image">
-            <% if space.avatar %>
-              <%= image_tag space.avatar %>
+            <% if @space.space_photos %>
+              <%= image_tag space.space_photos.first.photo %>
             <% else %>
               <%= image_tag ("http://placehold.it/2000x1000") %>
             <% end %>
