@@ -24,7 +24,7 @@ img {
   height: auto;
 }
 
-a, a:hover {
+a, a:active, a::selection, a:hover {
   color: $blue;
   text-decoration: none;
 }
@@ -44,10 +44,7 @@ p {
   margin: 1.5em 0;
 }
 
-.clearfix {
-  overflow: auto;
-  zoom: 1;
-}
+// BOOTSTRAP MODIFICATIONS
 
 .page-container {
   min-height: 70%;
@@ -56,6 +53,8 @@ p {
 .no-gutters {
   padding: 0;
 }
+
+// HEADER & NAVIGATION
 
 .site-header {
   display: flex;
@@ -87,20 +86,51 @@ p {
   }
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  padding: 0.5em;
+
+  a {
+    display: block;
+    padding: 0 1em;
+  }
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+// CONTENT
+
 .site-content {
   width: 80%;
   margin: 0 auto;
   padding: 2em 0;
 }
 
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
+.space-nav {
+  text-align: right;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 0;
+  margin-top: 15px;
 }
 
-.flex-child {
-  flex-basis: 30%;
-  margin: 1em;
+// SIMPLE STYLES & FIXED
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
 }
 
 .grey {
@@ -134,14 +164,7 @@ p {
   margin-top: 2em;
 }
 
-.space-nav {
-  text-align: right;
-  font-size: 0.75em;
-  font-weight: 600;
-  text-transform: uppercase;
-  line-height: 0;
-  margin-top: 15px;
-}
+// FOOTER
 
 .site-footer {
 
