@@ -1,5 +1,5 @@
 <main class="site-content">
-  <h1>New message to <%= @receiver.first_name %></h1>
+  <h1>New message to <%= @receiver.first_name %><span class="profile-image size50 booking-icon" style="background-image: url('<%= @receiver.avatar %>')"></span> </h1>
   <hr>
   <%= form_for @personal_message, url: {action: "create"} do |f| %>
     <%= hidden_field_tag 'receiver_id', @receiver.id %>
