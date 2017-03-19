@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
   # SPACES
-  resources :spaces do
+  resources :spaces, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :bookings
     resources :reviews
   end
