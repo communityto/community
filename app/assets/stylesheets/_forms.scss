@@ -31,6 +31,7 @@ input[type=radio] {
 }
 
 textarea {
+  height: 200px;
   border: 1px solid $lightgrey;
   resize: none;
 }
@@ -65,6 +66,13 @@ textarea {
   width: 100%;
   display: block;
   margin: 0;
+}
+
+.centered-form {
+  padding: 2em;
+  width: 475px;
+  margin: 0 auto;
+  background-color: $lightergrey;
 }
 
 .helpful_button input[type=submit] {

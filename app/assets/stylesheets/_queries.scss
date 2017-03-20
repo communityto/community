@@ -1,4 +1,31 @@
+@media (max-width: 992px) {
+
+  .centered-form {
+    width: 55%;
+  }
+
+  .simple-calendar {
+    .day {
+      height: 100px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .results-map {
+    position: fixed;
+    top: 10%;
+    margin-bottom: 10em;
+  }
+}
+
 @media (max-width: 768px) {
+
+  .centered-form {
+    width: 90%;
+  }
+
   .simple-calendar {
     .day {
       height: 80px;
@@ -25,21 +52,5 @@
 
   .button-right {
     padding-left: 15px;
-  }
-}
-
-@media (max-width: 992px) {
-  .simple-calendar {
-    .day {
-      height: 100px;
-    }
-  }
-}
-
-@media (min-width: 1200px) {
-  .results-map {
-    position: fixed;
-    top: 10%;
-    margin-bottom: 10em;
   }
 }
