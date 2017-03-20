@@ -2,12 +2,13 @@
   <div class="row no-gutters" style="margin-top: 1em;">
 
       <div class="col-sm-12 col-md-6 no-gutters">
-          <div class="space-image" style="background-image: url('<%= space.space_photos.first.photo %>')"></div>
+        <%= link_to space do %>
+        <div class="space-image" style="background-image: url('<%= space.space_photos.first.photo %>')"></div>
       </div>
 
       <div class="col-sm-12 col-md-6 no-gutters">
         <div class="space-description">
-          <h1><%= space.title %></h1>
+          <h1><%= space.title %></h1><% end %>
           <hr>
           <b><%= space.address.street_address %>, <%= space.address.city %></b><br />
           $<%= space.price %> | <%= space.capacity %> Persons | <%= space.size %> ft<sup>2</sup><br />
