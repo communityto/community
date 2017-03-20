@@ -1,0 +1,2 @@
+module SpaceImagesHelper
+end

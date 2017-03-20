@@ -1,0 +1,2 @@
+class SpaceImagesController < ApplicationController
+end
