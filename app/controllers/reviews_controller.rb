@@ -70,7 +70,7 @@ class ReviewsController < ApplicationController
             accuracy_avg: @space.accuracy_avg,
             communication_avg: @space.communication_avg,
             facilities_avg: @space.facilities_avg,
-            review_count: @space.reviews.count
+            review_count: @space.reviews.count,
           }
           render json: json_response
         end
@@ -91,6 +91,7 @@ class ReviewsController < ApplicationController
 
     @review = Review.find(params[:id])
     @review.destroy
+    @space = @review.space
 
     respond_to do |format|
       format.html { redirect_to space_url(@space.id), notice: 'Review Deleted!'}
