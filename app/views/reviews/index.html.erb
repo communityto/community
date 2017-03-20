@@ -1,19 +1,30 @@
 <main class="site-content">
   <% if current_user == @user %>
-      <h1>Your Reviews</h1>
-      <hr>
-      <h4>You have made <%=pluralize(@user.reviews.count, 'review') %>.</h4>
-    <% else %>
-      <h1> <%= @user.first_name %>'s Reviews </h1>
-    <h3> <%= @user.first_name %> has left <%=pluralize(@user.reviews.count, 'review') %> </h2>
+    <h1>Your Reviews</h1>
+    <hr>
+  <% else %>
+    <h1> <%= @user.first_name %>'s Reviews </h1>
   <% end %>
 
-  <br/>
-
   <% if @user.reviews.any? %>
-      <% @user.reviews.order(:created_at).each do |review|%>
-      <p>Review left for: <%=link_to review.space.title, review.space %> on <%= review.created_at %><br/>
-        "<%= review.content %>" </p>
-      <% end %>
+      <div class="container-fluid no-gutters">
+        <div class="row no-gutters">
+          <% @user.reviews.order(created_at: :desc).each do |review|%>
+            <div class="col-sm-6 col-md-6">
+              <div class="user-review">
+                <%= link_to review.space.host, class: 'space-link' do %>
+                <div class="space-description">
+                  <div class="profile-image size50 booking-icon" style="background-image: url('<%= review.space.host.avatar %>')"></div>
+                  <h1><%= review.space.host.first_name + " " + review.space.host.last_name %><% end %></h1>
+                  <hr>
+                  <p><%= review.content %></p>
+                  <b><%= link_to review.space.title, review.space %><br />
+                  <%= review.created_at.strftime("%B %-d, %Y") %></b>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
   <% end %>
 </main>
