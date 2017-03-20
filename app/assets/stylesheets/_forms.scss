@@ -31,8 +31,23 @@ input[type=radio] {
 }
 
 textarea {
+  height: 200px;
   border: 1px solid $lightgrey;
   resize: none;
+}
+
+.link-button, .link-button:link, .link-button:active, .link-button:visited, .link-button:hover {
+  background-color: $blue;
+  color: white;
+  text-align: center;
+  padding: 0.5em;
+  margin: 0 1.25%;
+  display: inline-block;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  width: 45%;
 }
 
 #error_explanation {
@@ -51,6 +66,13 @@ textarea {
   width: 100%;
   display: block;
   margin: 0;
+}
+
+.centered-form {
+  padding: 2em;
+  width: 475px;
+  margin: 0 auto;
+  background-color: $lightergrey;
 }
 
 .helpful_button input[type=submit] {

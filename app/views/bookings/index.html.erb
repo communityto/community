@@ -1,57 +1,128 @@
 <main class="site-content">
   <h1>Your Bookings</h1>
   <hr>
-  <h4>You currently have <%= pluralize(@user.bookings.count,'booking') %>. <% if @user.bookings.count == 0 %>Explore some <%= link_to 'spaces', categories_url %>!<% end %></h4><br />
 
   <% if @user.bookings.any? %>
 
-    <h4><span class="blue-underline">Approved Bookings</span></h4>
+    <h4><span class="blue-underline">Upcoming Bookings</span></h4>
 
-    <% if !@user.bookings.where(approved:true).exists? %>
-      <p>You have no approved bookings.</p>
+    <% if !@user.bookings.where(approved: true).where("end_time >= ?", Date.today).exists? %>
+      <p>You have no upcoming bookings. Explore some <%= link_to 'spaces', categories_url %>!</p>
+    <% else %>
+      <p>You have <%= pluralize(@user.bookings.where("end_time > ?", Date.today).where(approved: true).count,'upcoming booking') %>.</p>
     <% end %>
 
-      <% @user.bookings.where(approved: true).each do |booking| %>
-        <div class="user-booking">
-          <b><%= link_to booking.space.title, booking.space %></b><br />
-          <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: booking.space.host) %><br />
-          Start: <%= booking.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
-          End: <%= booking.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
-          Delete booking: <%= link_to "Remove", user_booking_path(current_user, booking), method: :delete %>
-        </div>
-      <% end %><br />
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <% @user.bookings.where(approved: true).each do |booking| %>
+          <div class="col-sm-6 col-md-4">
+            <div class="space">
+              <%= link_to booking.space, class: 'space-link' do %>
+              <div class="space-image" style="background-image: url('<%= booking.space.space_photos.first.photo %>')"></div>
+              <div class="space-description" style="padding-bottom: 2.5em;">
+                <h1><%= booking.space.title %></h1><% end %>
+                <hr>
+                <b><%= booking.space.address.street_address %>, <%= booking.space.address.city %></b><br />
+                <p><center><span class="blue-underline">Booking Details</span></center></p>
+                <p>
+                  <ul>
+                    <li><b>Total Cost</b> &#8250; $<%= booking.total_cost %></li>
+                    <li><b>Dates</b> &#8250; <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %></li>
+                    <li><b>Check-in</b> &#8250; <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></li>
+                    <li><b>Check-out</b> &#8250; <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></li>
+                  </ul>
+                </p>
+                Hosted by <%= link_to booking.space.host.first_name, booking.space.host %>
+                <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.space.host.avatar %>')"></div>
+                <div class="booking-desc"><b>
+                  <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></b>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
     <h4><span class="blue-underline">Pending Bookings</span></h4>
 
-    <% if !@user.bookings.where(approved:false).exists? %>
+    <% if !@user.bookings.where(approved: false).where("end_time >= ?", Date.today).exists? %>
       <p>You have no pending bookings.</p>
+    <% else %>
+      <p>You currently have <%= pluralize(@user.bookings.where("end_time >= ?", Date.today).where(denied: false).count,'pending booking') %>.</p>
     <% end %>
 
-        <% @user.bookings.where(approved: false, denied: false).each do |booking| %>
-          <div class="user-booking">
-            <b><%= link_to booking.space.title, booking.space %></b><br />
-            <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: booking.space.host) %><br />
-            Start: <%= booking.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
-            End: <%= booking.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
-            Delete booking: <%= link_to "Remove", user_booking_path(current_user, booking), method: :delete %>
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <% @user.bookings.where(approved: false).each do |booking| %>
+          <div class="col-sm-6 col-md-4">
+            <div class="space">
+              <%= link_to booking.space, class: 'space-link' do %>
+              <div class="space-image" style="background-image: url('<%= booking.space.space_photos.first.photo %>')"></div>
+              <div class="space-description" style="padding-bottom: 2.5em;">
+                <h1><%= booking.space.title %></h1><% end %>
+                <hr>
+                <b><%= booking.space.address.street_address %>, <%= booking.space.address.city %></b><br />
+                <p><center><span class="blue-underline">Booking Details</span></center></p>
+                <p>
+                  <ul>
+                    <li><b>Total Cost</b> &#8250; $<%= booking.total_cost %></li>
+                    <li><b>Dates</b> &#8250; <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %></li>
+                    <li><b>Check-in</b> &#8250; <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></li>
+                    <li><b>Check-out</b> &#8250; <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></li>
+                  </ul>
+                </p>
+                Hosted by <%= link_to booking.space.host.first_name, booking.space.host %>
+                <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.space.host.avatar %>')"></div>
+                <div class="booking-desc"><b>
+                  <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></b>
+                </div>
+              </div>
+            </div>
           </div>
         <% end %>
+      </div>
+    </div>
 
     <h4><span class="blue-underline">Denied Bookings</span></h4>
 
-    <% if !@user.bookings.where(denied:true).exists? %>
-      <p>You have no denied bookings.</p>
+    <% if !@user.bookings.where(denied: true).where("end_time >= ?", Date.today).exists? %>
+      <p>You have no upcoming bookings. Explore some <%= link_to 'spaces', categories_url %>!</p>
+    <% else %>
+      <p>You have <%= pluralize(@user.bookings.where("end_time > ?", Date.today).where(denied: true).count,'denied booking') %>.</p>
     <% end %>
 
+    <div class="container-fluid">
+      <div class="row no-gutters">
         <% @user.bookings.where(denied: true).each do |booking| %>
-          <div class="user-booking">
-            <b><%= link_to booking.space.title, booking.space %></b><br />
-            <%= link_to "Edit Booking", edit_user_booking_url(id: booking.id) %> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: booking.space.host) %><br />
-            Start: <%= booking.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
-            End: <%= booking.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> <br />
-            Delete booking: <%= link_to "Remove", user_booking_path(current_user, booking), method: :delete %>
+          <div class="col-sm-6 col-md-4">
+            <div class="space">
+              <%= link_to booking.space, class: 'space-link' do %>
+              <div class="space-image" style="background-image: url('<%= booking.space.space_photos.first.photo %>')"></div>
+              <div class="space-description" style="padding-bottom: 2.5em;">
+                <h1><%= booking.space.title %></h1><% end %>
+                <hr>
+                <b><%= booking.space.address.street_address %>, <%= booking.space.address.city %></b><br />
+                <p><center><span class="blue-underline">Booking Details</span></center></p>
+                <p>
+                  <ul>
+                    <li><b>Total Cost</b> &#8250; $<%= booking.total_cost %></li>
+                    <li><b>Dates</b> &#8250; <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %></li>
+                    <li><b>Check-in</b> &#8250; <%= booking.space.check_in.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></li>
+                    <li><b>Check-out</b> &#8250; <%= booking.space.check_out.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></li>
+                  </ul>
+                </p>
+                Hosted by <%= link_to booking.space.host.first_name, booking.space.host %>
+                <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.space.host.avatar %>')"></div>
+                <div class="booking-desc"><b>
+                  <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></b>
+                </div>
+              </div>
+            </div>
           </div>
         <% end %>
+      </div>
+    </div>
 
 
   <% end %>

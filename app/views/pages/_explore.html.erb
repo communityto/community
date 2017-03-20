@@ -12,7 +12,7 @@
           <hr>
           <b><%= space.address.street_address %>, <%= space.address.city %></b><br />
           $<%= space.price %> | <%= space.capacity %> Persons | <%= space.size %> ft<sup>2</sup><br />
-          <p><%= space.description.truncate(90) %></p>
+          <p><%= space.description.truncate(80) %></p>
           Hosted by <%= link_to space.host.first_name, space.host %>
         </div>
       </div>

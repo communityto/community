@@ -1,12 +1,22 @@
 .booking-button {
-  width: 50%;
-  float: right;
+  width: 100%;
   margin: 1em 0 0 0;
-  height: 39px;
+  display: inline;
 }
 
 .booking-container {
-  margin: 1em 0 5em 0;
+  padding: 1em;
+  margin: 1.5em 0;
+  border: 1px solid $lightgrey;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+
+  .fa {
+    color: $lightgrey;
+    margin: 0 5px;
+  }
 }
 
 .booking-submit {
@@ -19,17 +29,10 @@
   margin-right: 15px;
 }
 
-.message-button, .message-button:visited, .message-button:hover {
-  float: left;
-  background-color: $blue;
-  color: white;
-  height: 39px;
-  text-align: center;
-  padding: 0.5em;
-  margin: 1em 0.5em 0 0;
-  -moz-border-radius: 0.5em;
-  -webkit-border-radius: 0.5em;
-  -khtml-border-radius: 0.5em;
-  border-radius: 0.5em;
-  width: 45%;
+.button-left {
+  padding-right: 15px;
+}
+
+.button-right {
+  padding-left: 0;
 }
