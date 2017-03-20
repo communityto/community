@@ -25,25 +25,32 @@
   <% if !@hosted_space_bookings.where(approved:true).exists? %>
     <p>You have no approved bookings.</p>
   <% else %>
-    <div class="container">
-      <div class="row">
+    <div class="container-fluid">
+      <div class="row no-gutters">
         <% @hosted_space_bookings.where(approved: true).each do |booking| %>
+
           <% if booking.end_time >= Date.today %>
-            <div class="col-sm-6 col-md-4 booking-container">
-              <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.user.avatar %>')"></div>
-              <div class="booking-desc">
-                <%= link_to booking.user.first_name + " " + booking.user.last_name, booking.user %> | <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></br >
-                <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %>
-              </div>
-              <div class="clear">
-                <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user), class: 'message-button' %>
-                <%= form_for [@hosted_space, booking] do |f| %>
-                  <%= f.hidden_field(:approved, :value => false) %>
-                  <%= f.submit "Cancel", class: 'booking-button' %>
-                <% end %>
+            <div class="col-sm-6 col-md-4">
+              <div class="booking-container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.user.avatar %>')"></div>
+                    <div class="booking-desc"><b>
+                      <%= link_to booking.user.first_name + " " + booking.user.last_name, booking.user %></b> <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></br >
+                      <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <%= form_for [@hosted_space, booking] do |f| %>
+                      <%= f.hidden_field(:denied, :value => true) %>
+                      <%= f.submit "Deny", class: 'booking-button' %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
           <% end %>
+
         <% end %>
       </div>
     </div>
@@ -56,25 +63,38 @@
   <% if !@hosted_space_bookings.where(approved:false).exists? %>
     <p>You have no pending bookings.</p>
     <% else %>
-      <div class="container">
-        <div class="row">
+      <div class="container-fluid">
+        <div class="row no-gutters">
           <% @hosted_space_bookings.where(approved: false, denied: false).each do |booking| %>
+
             <% if booking.end_time >= Date.today %>
-              <div class="col-sm-6 col-md-4 booking-container">
-                <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.user.avatar %>')"></div>
-                <div class="booking-desc">
-                  <%= link_to booking.user.first_name + " " + booking.user.last_name, booking.user %> | <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></br >
-                  <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %>
-                </div>
-                <div class="clear">
-                  <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user), class: 'message-button' %>
-                  <%= form_for [@hosted_space, booking] do |f| %>
-                    <%= f.hidden_field(:approved, :value => true) %>
-                    <%= f.submit "Approve", class: 'booking-button' %>
-                  <% end %>
+              <div class="col-sm-6 col-md-4">
+                <div class="booking-container">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.user.avatar %>')"></div>
+                      <div class="booking-desc"><b>
+                        <%= link_to booking.user.first_name + " " + booking.user.last_name, booking.user %></b> <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></br >
+                        <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 button-left">
+                      <%= form_for [@hosted_space, booking] do |f| %>
+                        <%= f.hidden_field(:approved, :value => true) %>
+                        <%= f.submit "Approve", class: 'booking-button' %>
+                      <% end %>
+                    </div>
+                    <div class="col-sm-6 button-right">
+                      <%= form_for [@hosted_space, booking] do |f| %>
+                        <%= f.hidden_field(:denied, :value => true) %>
+                        <%= f.submit "Deny", class: 'booking-button' %>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
             <% end %>
+
           <% end %>
         </div>
       </div>
@@ -82,18 +102,30 @@
 
   <% if @hosted_space_bookings.where(denied:true).exists? %>
 
-    <h4><span class="blue-underline">Denied Bookings</span></h4>
+    <h4><span class="blue-underline">Cancelled Bookings</span></h4>
 
-    <% @hosted_space_bookings.where(denied: true).each do |booking| %>
-      <div class="user-booking">
-        <h4><%= link_to booking.user.first_name, booking.user %> | <%= link_to 'Send a Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></h4>
-        Start: <%= booking.start_time.strftime("%B %-d %Y") %>, Check-in: <%= booking.space.check_in.strftime("%I:%M%p") %> <br />
-        End: <%= booking.end_time.strftime("%B %-d %Y") %>, Check-out <%= booking.space.check_out.strftime("%I:%M%p") %>
-        <%= form_for [@hosted_space, booking] do |f| %>
-          <%= f.hidden_field(:denied, :value => false) %>
-          <%= f.submit "Reinstate" %>
-        <% end %>
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <% @hosted_space_bookings.where(denied: true).each do |booking| %>
+
+          <% if booking.end_time >= Date.today %>
+            <div class="col-sm-6 col-md-4">
+              <div class="booking-container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.user.avatar %>')"></div>
+                    <div class="booking-desc"><b>
+                      <%= link_to booking.user.first_name + " " + booking.user.last_name, booking.user %></b> <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></br >
+                      <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
+
     <% end %>
   <% end %>
 
