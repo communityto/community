@@ -35,6 +35,20 @@ textarea {
   resize: none;
 }
 
+.link-button, .link-button:link, .link-button:active, .link-button:visited, .link-button:hover {
+  background-color: $blue;
+  color: white;
+  text-align: center;
+  padding: 0.5em;
+  margin: 0 1.25%;
+  display: inline-block;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  width: 45%;
+}
+
 #error_explanation {
   margin: 2.5em 0;
 }
