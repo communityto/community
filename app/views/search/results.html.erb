@@ -1,7 +1,7 @@
 <main class="site-content">
 
   <h1><span class="blue-underline"><%= @search.results.count %></span> Spaces</h1>
-
+  <hr>
   <div class="search-params">
     <% if !params[:search][:address].empty? %>
       <h3 class="search-param">Location <span class="color-blue"><%= params[:search][:address] %></span> | <span class="color-blue"><%= params[:search][:distance] %></span> miles</h3>
@@ -34,7 +34,7 @@
     <% else %>
   </div>
 
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
 
           <div class="col-sm-12 col-md-6">
@@ -61,7 +61,7 @@
             <% end %>
           </div>
 
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-6" style="padding-right: 0; padding-left: 30px;">
             <%= render partial: 'spaces/map', locals: {spaces: @search.results} %>
           </div>
 
