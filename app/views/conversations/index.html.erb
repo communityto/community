@@ -1,8 +1,11 @@
 <main class="site-content">
   <h1> Your Inbox </h1>
   <hr>
-  <section class="inbox-main" >
-      <% @conversations.each do |c| %>
+  <% if !current_user.personal_messages.exists? %>
+    <span class="inbox-count"> You have <%= pluralize(current_user.personal_messages.count, 'message') %> </span>
+  <% else %>
+    <section class="inbox-main" >
+    <% @conversations.each do |c| %>
       <section class="inbox-conversation">
         <p class="conversation-title"><span class="blue-underline">Your conversation with</span>: <% if c.author == current_user %>
           <%= link_to c.receiver.first_name, user_path(c.receiver) %> <span class="profile-image size50 booking-icon" style="background-image: url('<%= c.receiver.avatar %>')"></span> <br/>
@@ -13,5 +16,6 @@
         <p class="conversation-link"><%= link_to 'View Conversation', user_conversation_path(current_user, c) %></p>
           </section>
         <% end %>
-  </section>
+    </section>
+    <% end %>
 </main>
