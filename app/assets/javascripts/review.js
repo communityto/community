@@ -3,7 +3,7 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function() {
-  $(".review_form").on('submit', function(event){
+  $(".review_form_").on('submit', function(event){
     console.log(event);
     event.preventDefault();
     $.ajax({
@@ -43,7 +43,8 @@ $(document).ready(function() {
       var reviewIdCreated = review.id;
       var avatar = user.avatar;
       var avatarUrl = avatar.url;
-      var avatarImg = $("<img class='profile-image' />").attr('src', avatarUrl);
+      var avatarImg = $("<img class='reviewer-avatar' />").attr('src', avatarUrl);
+      // <p class="profile-image size50" style="background-image: url('<%= review.user.avatar %>')"></p>
       var starImg = $("<img />").attr('src', '/assets/stars.png');
       // var encodeUrl = (avatarUrl.replace(/ /,'/'));
       // new review averages
@@ -103,9 +104,9 @@ $(document).ready(function() {
         avatarImg,
         // "<div class='reviewer-info'><p><div class='profile-image' style='background-image: " + avatarImg + "</div></p>",
         // "<div class='reviewer-info'><p><div class='profile-image' style='background-image: url('" + avatarImg + "')'</div></p>",
-        '<p>By: ' + name + '</p>',
-        '<p>Added on: ' + time + '</p></div>',
-        "<button>Was this review helpful?</button>",
+        '<br/><p class="reviewer-details">By: ' + name + '</p><br/>',
+        '<p class="reviewer-details">Added on: ' + time + '</p></div>',
+        // "<button>Was this review helpful?</button>",
         '<hr>');
       // }
 
