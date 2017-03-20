@@ -1,29 +1,38 @@
 <main class="site-content">
   <h1><%=@category.name%></h1>
-  <div class="container">
-    <% @category.spaces.each do |space| %>
-    <div class="row category-spaces no-gutters">
-      <%= link_to space, class: 'space-link' do %>
+  <hr>
 
-      <div class="col-sm-12 col-md-6 no-gutters">
-        <div class="space-image" style="background-image: url('<%= space.space_photos.first.photo %>')"></div>
-          <% end %>
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-12 col-md-6">
+        <% @category.spaces.each do |space| %>
+          <div class="row search-result no-gutters">
+            <%= link_to space do %>
+
+            <div class="col-sm-12 col-md-6 no-gutters">
+              <div class="space-image" style="background-image: url('<%= space.space_photos.first.photo %>')"></div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 no-gutters">
+              <div class="space-description">
+                <h1><%= space.title %></h1><% end %>
+                <hr>
+                <b><%= space.address.street_address %>, <%= space.address.city %></b><br />
+                $<%= space.price %> | <%= space.capacity %> Persons | <%= space.size %> ft<sup>2</sup><br />
+                <p><%= space.description.truncate(65) %></p>
+                Hosted by <%= link_to space.host.first_name, space.host %>
+              </div>
+            </div>
+
+          </div>
+        <% end %>
       </div>
 
-      <div class="col-sm-12 col-md-6 no-gutters">
-        <div class="space-description">
-          <h1 class="space-title"><%= space.title %></h1><% end %>
-            <hr>
-          <p><%= space.description %></p>
-        </div>
+      <div class="col-sm-12 col-md-6" style="padding-right: 0; padding-left: 30px;">
+        <%= render partial: 'spaces/map', locals: {spaces: @category.spaces} %>
       </div>
 
     </div>
-  </div>
-
-    <div class="col-sm-12 col-md-6">
-      <%= render 'map' %>
-    </div>
-
   </div>
 </main>
