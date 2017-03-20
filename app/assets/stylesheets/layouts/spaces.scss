@@ -11,6 +11,15 @@
   text-align: left;
   margin: 1em 0;
   font-size: 12px;
+  height: 545px;
+  position: relative;
+  overflow: hidden;
+}
+
+.space-buttons {
+  width: 100%;
+  position: absolute;
+  bottom: 25px;
 }
 
 .space-nav {
@@ -67,4 +76,14 @@
   input {
     margin-bottom: 15px;
   }
+}
+
+.reviewer-details {
+  display: inline-block;
+  margin: 0;
+}
+
+#space_num img{
+  width: 1.5em;
+  height: auto;
 }

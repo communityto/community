@@ -31,16 +31,28 @@ input[type=radio] {
 }
 
 textarea {
+  height: 200px;
   border: 1px solid $lightgrey;
   resize: none;
 }
 
-#error_explanation {
-  margin: 2.5em 0;
+.link-button, .link-button:link, .link-button:active, .link-button:visited, .link-button:hover {
+  background-color: $blue;
+  color: white;
+  text-align: center;
+  padding: 0.5em;
+  margin: 0 1.25%;
+  display: inline-block;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  width: 40%;
 }
 
-.alert {
-  padding: 0;
+.search-location {
+  width: 50%;
+  display: inline;
 }
 
 .input-group-date {
@@ -51,6 +63,13 @@ textarea {
   width: 100%;
   display: block;
   margin: 0;
+}
+
+.centered-form {
+  padding: 2em;
+  width: 475px;
+  margin: 0 auto;
+  background-color: $lightestgrey;
 }
 
 .helpful_button input[type=submit] {
@@ -68,4 +87,42 @@ textarea {
   -khtml-border-radius: 0.5em;
   border-radius: 0.5em;
   width: 100%;
+}
+
+// ERRORS
+
+.field_with_errors {
+  padding: 0;
+  width: 100%;
+  background-color: transparent;
+
+  input {
+    border: 2px solid $blue;
+  }
+}
+
+#error_explanation {
+  width: 100%;
+  padding: 1.5em;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+
+  h6 {
+    font-family: $base-font-family;
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 1.5em;
+  }
+
+  ul li {
+    margin-left: 1em;
+    font-size: 13px;
+    list-style-type: disc;
+  }
+}
+
+.alert {
+  padding: 0;
+  margin-bottom: 10px;
 }

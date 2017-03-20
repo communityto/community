@@ -18,7 +18,7 @@
 
   <div>
     <%= f.fields_for :address do |address_form| %>
-    <%= address_form.label :street_address %>
+    <%= address_form.label :street_address, 'Street Address' %>
       <%= address_form.text_field :street_address, :placeholder => "123 Main Street" %>
       <%= address_form.label :city %>
       <%= address_form.text_field :city, :placeholder => "Toronto" %>
@@ -45,7 +45,7 @@
   </div>
 
   <div>
-    <%= f.label :size, 'Size (sqft)' %>
+    <%= f.label :size, 'Size' %> ft<sup>2</sup>
     <%= f.text_field :size, :placeholder => "e.g. 500" %>
   </div>
 

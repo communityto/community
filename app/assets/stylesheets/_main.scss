@@ -139,7 +139,7 @@ p {
 }
 
 .grey {
-  background-color: $lightergrey;
+  background-color: $lightestgrey;
   padding: 3em 0;
 }
 
@@ -162,12 +162,6 @@ p {
 
 .inline {
   display: inline-block;
-}
-
-.centered-form {
-  padding: 2em;
-  width: 35%;
-  margin: 0 auto;
 }
 
 .sign-up {
@@ -208,28 +202,4 @@ p {
 
 .table > thead > tr > th {
   border-bottom: none;
-}
-
-.emoji-picker-container {
-  width: 100%;
-  -webkit-border-radius: 0.5em;
-  border: 1px solid $lightgrey;
-}
-
-.emoji-wysiwyg-editor {
-  padding: 0.5em;
-  margin: 0.5em 0;
-  border: none;
-  width: 100%;
-  resize: none;
-  height: 100%;
-  outline: none;
-}
-
-.emoji-wysiwyg-editor:active {
-  border: none;
-}
-
-.emoji-picker-icon {
-  padding: 0.5em;
 }

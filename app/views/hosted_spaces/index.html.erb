@@ -2,38 +2,39 @@
   <% if @user == current_user %>
     <h1> Your Spaces </h1>
     <hr>
-    <h4> You host <%= pluralize(current_user.hosted_spaces.count,'space') %>.</h4>
   <% else %>
     <h1> <%= @user.first_name %>'s Spaces </h1>
-    <h3> <%= @user.first_name%> hosts <%= pluralize(@user.hosted_spaces.count,'space') %>.</h3>
+    <hr>
   <% end %>
 
   <% if @user.hosted_spaces.any? %>
-    <section class="flex-container">
-
-      <% @hosted_spaces.each do |space| %>
-        <div class="space flex-child">
-
-          <%= link_to space, class: 'space-link' do %>
-
-            <figure class="space-image">
-              <% if space.avatar %>
-                <%= image_tag space.avatar %>
-              <% else %>
-                <%= image_tag ("http://placehold.it/2000x1000") %>
-              <% end %>
-            </figure>
-
-          <div class="space-description">
-            <h1 class="space-title"><%= space.title %></h1><% end %>
-              <hr>
-              <p><%= space.description %></p>
-              <div class="space-bookings"><% if space.host == current_user %><%= link_to 'Manage Space', user_hosted_space_path(current_user, space) %> <% end %></div>
-          </div>
-
+      <div class="container-fluid no-gutters">
+        <div class="row no-gutters">
+          <% @hosted_spaces.each do |space| %>
+            <div class="col-sm-6 col-md-4">
+              <div class="space">
+                <%= link_to space, class: 'space-link' do %>
+                <div class="space-image" style="background-image: url('<%= space.space_photos.first.photo %>')"></div>
+                <div class="space-description">
+                  <h1><%= space.title %></h1><% end %>
+                  <hr>
+                  <b><%= space.address.street_address %>, <%= space.address.city %></b><br />
+                  $<%= space.price %> | <%= space.capacity %> Persons | <%= space.size %> ft<sup>2</sup><br />
+                  <p><%= space.description.truncate(190) %></p>
+                  <div class="space-buttons">
+                    <% if space.host == current_user %>
+                      <%= link_to 'Manage', user_hosted_space_path(current_user, space), class: 'link-button' %>
+                      <%= link_to 'Delete', space_path(space), class: 'link-button', method: :delete   %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </main>
+      </div>
+  <% else %>
+    <h4>You don't have any spaces listed yet. <%= link_to 'List', new_space_url %> a new space!</h4>
   <% end %>
 
 </main>

@@ -27,4 +27,8 @@ class Booking < ApplicationRecord
     return booking_dates
   end
 
+  def total_cost
+    unavailable_dates.count * space.price
+  end
+
 end

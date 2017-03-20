@@ -11,45 +11,38 @@
       <li>Facilities Average: <span id="fac_num"><%= @space.facilities_avg %></span></li>
       <li>Location Average: <span id="loc_num"><%= @space.location_avg %></span></li>
     </ul>
-  <hr>
 
-  <div id="review_all">
-
-    <% @space.reviews.order(created_at: :desc).each do |review|  %>
-
-        <div class="review_container" data-review-id = "<%= review.id %>">
-          <p class="reviewer-content">
-            <%= review.content %><br><br>
-            Accuracy: <%= review.accuracy %><br>
-            Communication: <%= review.communication %><br>
-            Facilities: <%= review.facilities %><br>
-            Location: <%= review.location %><br><br>
-          </p>
-
-          <% if logged_in? && review.user_id == current_user.id %>
-          <%= link_to 'Remove your Review', review_path(review), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %>
-          <% end %>
-
-          <% if review.user != nil  %>
-
-            <div class="reviewer-info">
-              <p><div class="profile-image" style="background-image: url('<%= review.user.avatar %>')"></div></p>
-              <p> By <%= review.user.first_name %></p>
-              <p>Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
-
-                <div class="helpful_div">
-                  <%= form_for review, :html => {:class => "helpful_button"} do |f| %>
-                    <%= f.hidden_field :increment_helpful_count, :value => true %>
-                    <%= f.submit 'Was this review helpful?' %>
-                  <% end %>
-                </div>
-
-            </div>
-
-            <hr>
-          <% end %>
-        </div>
-
-      <% end %>
-  </div>
 </div>
+
+  <h3> See Reviews </h3>
+    <div id="review_all">
+      <% @space.reviews.order(created_at: :desc).each do |review|  %>
+          <div class="review_container" data-review-id = "<%= review.id %>">
+            <p class="reviewer-content">
+              <%= review.content %><br><br>
+              Accuracy: <%= review.accuracy %><br>
+              Communication: <%= review.communication %><br>
+              Facilities: <%= review.facilities %><br>
+              Location: <%= review.location %><br><br>
+            </p>
+            <% if review.user != nil  %>
+              <div class="reviewer-info">
+                <p class="profile-image size50" style="background-image: url('<%= review.user.avatar %>')"></p>
+                <p class="reviewer-details">By: <%= review.user.first_name %></p><br/>
+                <p class="reviewer-details">Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
+                <% if logged_in? && review.user_id == current_user.id %><br/>
+                <p class="reviewer-details"><%= link_to 'Remove your Review', review_path(review), method: :delete, data: { :confirm => 'Are you sure?'}%></p>
+                  <%#= link_to 'Remove your Review', review_path(review), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %>
+                <% end %>
+              </div>
+            <% end %>
+                <!-- <div class="helpful_div"> -->
+                  <%#= form_for review, :html => {:class => "helpful_button"} do |f| %>
+                    <%#= f.hidden_field :increment_helpful_count, :value => true %>
+                    <%#= f.submit 'Was this review helpful?' %>
+                  <%# end %>
+                <!-- </div> -->
+            </div>
+          </div>
+        <% end %>
+    </div>
