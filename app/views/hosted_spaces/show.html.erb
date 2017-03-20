@@ -56,8 +56,6 @@
     </div>
   <% end %>
 
-  <hr>
-
   <h4><span class="blue-underline">Pending Bookings</span></h4>
 
   <% if !@hosted_space_bookings.where(approved:false).exists? %>
