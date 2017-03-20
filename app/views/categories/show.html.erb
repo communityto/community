@@ -1,21 +1,14 @@
 <main class="site-content">
   <h1><%=@category.name%></h1>
-  <div class="flex-container">
+  <div class="container">
+    <% @category.spaces.each do |space| %>
+    <div class="row category-spaces no-gutters">
+      <%= link_to space, class: 'space-link' do %>
 
-    <div class="col-sm-12 col-md-6">
-      <% @category.spaces.each do |space| %>
-      <div class="row category-spaces no-gutters">
-        <%= link_to space, class: 'space-link' do %>
-
-        <div class="col-sm-12 col-md-6 no-gutters">
-          <div class="space-image"></div>
-            <% if space.space_photos %>
-              <%= image_tag space.space_photos %>
-            <% else %>
-              <%= image_tag ("http://placehold.it/2000x1000") %>
-            <% end %>
-        </div>
-
+      <div class="col-sm-12 col-md-6 no-gutters">
+        <div class="space-image" style="background-image: url('<%= space.space_photos.first.photo %>')"></div>
+          <% end %>
+      </div>
 
       <div class="col-sm-12 col-md-6 no-gutters">
         <div class="space-description">
@@ -28,10 +21,9 @@
     </div>
   </div>
 
-      <div class="col-sm-12 col-md-6">
-        <%= render 'map' %>
-      </div>
-
+    <div class="col-sm-12 col-md-6">
+      <%= render 'map' %>
     </div>
-    <% end %>
+
+  </div>
 </main>
