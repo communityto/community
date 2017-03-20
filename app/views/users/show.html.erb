@@ -1,14 +1,13 @@
 <section class="grey">
-  <div class="profile-image size200" style="background-image: url('<%= @user.avatar %>')">
-  </div>
+  <div class="profile-image size200" style="background-image: url('<%= @user.avatar %>')"></div>
 
   <% if @user == current_user %>
     <h1 class="centered">Hey there <span><%= @user.first_name%>!</span></h1>
-    <% else %>
+  <% else %>
     <h1 class="centered"><span><%= @user.first_name%>'s</span> Profile<br/>
     <%= link_to 'Send a Message', new_user_personal_message_path(current_user, receiver_id: @user) %> </h1>
-    <% end %>
-</main>
+  <% end %>
+</section>
 
 <main class="site-content">
 
