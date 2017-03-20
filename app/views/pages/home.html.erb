@@ -34,19 +34,9 @@
           <%= render partial: 'explore', locals: {space: @space_meeting} %>
         </div>
 
-
-          <figure class="space-image">
-            <% if @space.space_photos %>
-              <%= image_tag space.space_photos.first.photo %>
-            <% else %>
-              <%= image_tag ("http://placehold.it/2000x1000") %>
-            <% end %>
-          </figure>
-
         <div id="tabs-residential">
           <%= render partial: 'explore', locals: {space: @space_residential} %>
         </div>
-
 
         <div id="tabs-office">
           <%= render partial: 'explore', locals: {space: @space_office} %>
@@ -103,9 +93,7 @@
         <div class="col-sm-6 col-md-4">
           <div class="space">
             <%= link_to space, class: 'space-link' do %>
-
-            <div class="space-image" style="background-image: url('<%= space.avatar %>')"></div>
-
+            <div class="space-image" style="background-image: url('<%= space.space_photos.first.photo %>')"></div>
             <div class="space-description">
               <h1><%= space.title %></h1><% end %>
               <hr>
