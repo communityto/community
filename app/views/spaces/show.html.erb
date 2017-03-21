@@ -60,7 +60,7 @@
           <span class="blue-underline">Amenities</span>
 
           <div class="row space-amenities">
-            <% if @space.amenities.includes(name: "Pets Allowed") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Pets Allowed"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -73,7 +73,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Wireless Internet") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Wireless Internet"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -86,7 +86,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Internet") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Internet"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -99,7 +99,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Air Conditioning") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Air Conditioning"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -112,7 +112,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Onsite Parking") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Onsite Parking"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -125,7 +125,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Elevator") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Elevator"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -138,7 +138,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Wheelchair Accessibility") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Wheelchair Accessibility"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -151,7 +151,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Coat Check") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Coat Check"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -164,7 +164,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Kid Friendly") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Kid Friendly"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -177,7 +177,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Kitchen") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Kitchen"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -190,7 +190,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Television") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Television"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -203,7 +203,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Projection Screen") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Projection Screen"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -216,7 +216,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Speakers") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Speakers"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -229,7 +229,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Rooftop") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Rooftop"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -242,7 +242,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Outdoor Space") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Outdoor Space"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -255,7 +255,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Tables") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Tables"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -268,7 +268,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Tables") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Tables"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">
@@ -281,7 +281,7 @@
               </div>
             <% end %>
 
-            <% if @space.amenities.includes(name: "Storage") %>
+            <% if @space.amenities.any? {|amenity| amenity.name == "Storage"} %>
               <div class="col-xs-6 col-sm-4">
                 <div class="row">
                   <div class="col-xs-2">

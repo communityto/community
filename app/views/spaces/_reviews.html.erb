@@ -1,47 +1,77 @@
-<div id="new_review">
+<h3>Reviews</h3>
+<hr>
 
-  <h3>Reviews</h3>
-  <hr>
+<div class="reviews-overall">
+  <h4 class="inline"><b><%= pluralize(@review_count, "Review") %></b></h4> <span class="overall-stars" id="space_num"><%= render_stars(@space.reviews_avg) %></span><br /><br />
 
-    <h4><%= pluralize(@review_count, "Review") %></h4>
-    <ul class = "reviews_summary">
-      <li>Overall Average/Star rating: <span id="space_num"><%= render_stars(@space.reviews_avg) %></span></li><br>
-      <li>Accuracy Average: <span id="acc_num"><%= @space.accuracy_avg %></span></li>
-      <li>Communication Average: <span id="comm_num"><%= @space.communication_avg %></span></li>
-      <li>Facilities Average: <span id="fac_num"><%= @space.facilities_avg %></span></li>
-      <li>Location Average: <span id="loc_num"><%= @space.location_avg %></span></li>
-    </ul>
-
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-3">
+        <h4 class="inline">Accuracy</h4><br />
+        <h4 class="inline">Communication</h4>
+      </div>
+      <div class="col-xs-3">
+        <span class="overall-stars" id="space_num"><%= render_stars(@space.accuracy_avg) %></span><br />
+        <span class="overall-stars" id="space_num"><%= render_stars(@space.communication_avg) %></span>
+      </div>
+      <div class="col-xs-3">
+        <h4 class="inline">Facilities</h4><br />
+        <h4 class="inline">Location</h4>
+      </div>
+      <div class="col-xs-3">
+        <span class="overall-stars" id="space_num"><%= render_stars(@space.facilities_avg) %></span><br />
+        <span class="overall-stars" id="space_num"><%= render_stars(@space.location_avg) %></span>
+      </div>
+    </div>
+  </div>
 </div>
 
-    <div id="review_all">
-      <% @space.reviews.order(created_at: :desc).each do |review|  %>
-          <div class="review_container" data-review-id = "<%= review.id %>">
-            <p class="reviewer-content">
-              <%= review.content %><br><br>
-              Accuracy: <%= review.accuracy %><br>
-              Communication: <%= review.communication %><br>
-              Facilities: <%= review.facilities %><br>
-              Location: <%= review.location %><br><br>
-            </p>
-            <% if review.user != nil  %>
-              <div class="reviewer-info">
-                <p class="profile-image size50" style="background-image: url('<%= review.user.avatar %>')"></p>
-                <p class="reviewer-details">By: <%= review.user.first_name %></p><br/>
-                <p class="reviewer-details">Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
-                <% if logged_in? && review.user_id == current_user.id %><br/>
-                <p class="reviewer-details"><%= link_to 'Remove your Review', review_path(review), method: :delete, data: { :confirm => 'Are you sure?'}%></p>
-                  <%#= link_to 'Remove your Review', review_path(review), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %>
-                <% end %>
-              </div>
+<hr>
+
+<div class="container-fluid no-gutters">
+  <% @space.reviews.order(created_at: :desc).each do |review|  %>
+    <div class="row no-gutters">
+      <div class="col-xs-12 col-md-3">
+        <div class="profile-image size100" style="background-image: url('<%= review.user.avatar %>'); margin-bottom: 10px;"></div>
+        <center><%= link_to review.user.first_name, review.user, class: 'review-user' %></center>
+      </div>
+      <div class="col-xs-12 col-md-9 no-gutters">
+        <b><%= (review.created_at).strftime("%B %-d, %Y") %></b>
+        <div class="review-body"><%= review.content %></div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>
+
+<!-- <div id="review_all">
+  <% @space.reviews.order(created_at: :desc).each do |review|  %>
+      <div class="review_container" data-review-id = "<%= review.id %>">
+        <p class="reviewer-content">
+          <%= review.content %><br><br>
+          Accuracy: <%= review.accuracy %><br>
+          Communication: <%= review.communication %><br>
+          Facilities: <%= review.facilities %><br>
+          Location: <%= review.location %><br><br>
+        </p>
+        <% if review.user != nil  %>
+          <div class="reviewer-info">
+            <p class="profile-image size50" style="background-image: url('<%= review.user.avatar %>')"></p>
+            <p class="reviewer-details">By: <%= review.user.first_name %></p><br/>
+            <p class="reviewer-details">Added on: <%= (review.created_at).strftime("%Y-%m-%d") %></p>
+            <% if logged_in? && review.user_id == current_user.id %><br/>
+            <p class="reviewer-details"><%= link_to 'Remove your Review', review_path(review), method: :delete, data: { :confirm => 'Are you sure?'}%></p>
+              <%#= link_to 'Remove your Review', review_path(review), method: :delete, data: { :confirm => 'Are you sure?' }, :class=>'delete_review' %>
             <% end %>
-                <!-- <div class="helpful_div"> -->
-                  <%#= form_for review, :html => {:class => "helpful_button"} do |f| %>
-                    <%#= f.hidden_field :increment_helpful_count, :value => true %>
-                    <%#= f.submit 'Was this review helpful?' %>
-                  <%# end %>
-                <!-- </div> -->
-            </div>
           </div>
         <% end %>
-    </div>
+            <div class="helpful_div">
+              <%#= form_for review, :html => {:class => "helpful_button"} do |f| %>
+                <%#= f.hidden_field :increment_helpful_count, :value => true %>
+                <%#= f.submit 'Was this review helpful?' %>
+              <%# end %>
+            </div>
+        </div>
+      </div>
+    <% end %>
+</div> -->
