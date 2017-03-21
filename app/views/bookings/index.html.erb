@@ -16,7 +16,7 @@
       <div class="row no-gutters">
         <% @user.bookings.where(approved: true).each do |booking| %>
           <div class="col-sm-6 col-md-4">
-            <div class="space">
+            <div class="booking">
               <%= link_to booking.space, class: 'space-link' do %>
               <div class="space-image" style="background-image: url('<%= booking.space.space_photos.first.photo %>')"></div>
               <div class="space-description" style="padding-bottom: 2.5em;">

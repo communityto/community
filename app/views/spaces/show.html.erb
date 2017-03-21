@@ -1,98 +1,329 @@
 <section class="space-cover" style="background-image: url('<%= @space.space_photos.first.photo %> ')"></section>
-</main>
 
-<main class="site-content">
+<section class="site-content">
 
-  <div class="space_container" data-space-id = "<%= @space.id %>">
-  <%# please do not remove the above div with class review_contaner!!! %>
+<div class="container-fluid no-gutters">
+  <div class="row no-gutters">
 
-    <h1><%= @space.title %></h1>
-    <h4>Hosted by: <%=link_to @space.host.first_name, user_path(@space.host) %> <% if logged_in? && @space.host != current_user%> | <%= link_to 'Message Host', new_user_personal_message_path(user_id: current_user, receiver_id: @space.host) %> <% end %></h4>
-    <hr>
+    <div class="col-sm-12 col-md-3 col-md-push-9 space-aside">
+      <div class="profile-image size50 booking-icon" style="background-image: url('<%= @space.host.avatar %>')"></div>
+      <%= link_to @space.host.first_name + " " + @space.host.last_name, @space.host %><br />
+      <b style="font-size: 14px">Joined <%= @space.host.created_at.strftime("%B %-d, %Y") %></b>
+      <p><%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: @space.host), class: 'link-button-full' %></p>
 
-    <div class="space-nav">
-      <% if logged_in? %>
-        <% if current_user.hosted_spaces.include?(@space) %>
-          <%= link_to 'Edit Details', edit_space_path %>
-          <%= link_to 'Manage Space', user_hosted_space_path(current_user, @space) %>
-        <% end %>
-        <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
-          <%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %>
-        <% else %>
-          <%= link_to 'Unfavourite', favourite_space_path(@space), method: :delete %></p>
-        <% end %>
-      <% end %>
+      <hr>
+
+      <%= render 'bookings/form' %>
     </div>
 
-    <h4><%= @address.street_address %></h4>
+    <div class="col-sm-12 col-md-9 col-md-pull-3 space-content" style="padding-right: 4em;">
+      <div data-space-id = "<%= @space.id %>">
+      <%# please do not remove the above div with class review_contaner!!! %>
 
-    <p><%= @space.description %></p>
+        <h1><%= @space.title %></h1>
+        <hr>
 
-    <h3>Details</h3>
+        <div class="space-nav">
+          <% if logged_in? %>
+            <% if current_user.hosted_spaces.include?(@space) %>
+              <%= link_to 'Edit Details', edit_space_path %>
+              <%= link_to 'Manage Space', user_hosted_space_path(current_user, @space) %>
+            <% end %>
+            <% unless current_user.favourite_spaces.exists?(id: @space.id) %>
+              <%= link_to 'Favourite', favourite_spaces_path(space_id: @space), method: :post %>
+            <% else %>
+              <%= link_to 'Unfavourite', favourite_space_path(@space), method: :delete %></p>
+            <% end %>
+          <% end %>
+        </div>
 
-    <div clas="space_photo">
-      <% @space.space_photos.drop(1).each do |p|%>
-        <%= image_tag p.photo %>
-      <% end %>
-    </div>
+        <h4><b><%= @address.street_address %></b></h4>
 
+        <p><%= @space.description %></p>
 
+        <h3>Details</h3>
 
+        <hr>
 
-    <hr>
+        <div class="space-details"><h4>
+          <span class="blue-underline">Category</span> -
 
-    <div class="space-details"><h4>
-      <span class="blue-underline">Category</span> -
-        <% @space.categories.each do |category| %>
-          <%= category.name %> <br/>
-        <% end %>
+            <% @space.categories.each do |category| %>
+              <%= category.name + " " %>
+            <% end %><br />
 
-      <span class="blue-underline">Capacity</span> <%= @space.capacity %> <br/>
-      <span class="blue-underline">Size</span> <%= @space.size %> sq.ft. <br/>
-      <span class="blue-underline">Available From</span> <%= @space.check_in.strftime("%I:%m%p")%> to <%= @space.check_out.strftime("%I:%m%p") %><br/>
-      <span class="blue-underline">Daily Rate</span> <%= number_to_currency(@space.price)%> <br/>
-      <span class="blue-underline">Amenities</span>
-        <ul> <% @space.amenities.each do |amenity|%>
-        <li><%= amenity.name %></li>
-        <% end %></ul>
-      <span class="blue-underline">Rules</span> <br /><%= @space.rules %><br/>
-      <span class="blue-underline">Bathrooms</span> <%= @space.bathrooms %> </h4>
-    </div>
+          <span class="blue-underline">Capacity</span> <%= @space.capacity %> <br/>
+          <span class="blue-underline">Size</span> <%= @space.size %> ft<sup>2</sup> <br/>
+          <span class="blue-underline">Bathrooms</span> <%= @space.bathrooms %></span><br />
+          <span class="blue-underline">Check-in</span> <%= @space.check_in.strftime("%I:%m%p")%> <span class="blue-underline">Check-out</span> <%= @space.check_out.strftime("%I:%m%p") %><br/>
+          <span class="blue-underline">Daily Rate</span> <%= number_to_currency(@space.price)%> <br/>
+          <span class="blue-underline">Amenities</span>
 
-    <h3>Make A Booking</h3>
+          <div class="row space-amenities">
+            <% if @space.amenities.includes(name: "Pets Allowed") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-paw fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Pets Allowed
+                  </div>
+                </div>
+              </div>
+            <% end %>
 
-    <hr><br />
+            <% if @space.amenities.includes(name: "Wireless Internet") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-wifi fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Wireless Internet
+                  </div>
+                </div>
+              </div>
+            <% end %>
 
-    <%= render 'bookings/form' %>
+            <% if @space.amenities.includes(name: "Internet") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-laptop fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Internet
+                  </div>
+                </div>
+              </div>
+            <% end %>
 
-    <%# for new reviews: %>
-    <%# if can? :create, Review  %>
+            <% if @space.amenities.includes(name: "Air Conditioning") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-thermometer-three-quarters fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Air Conditioning
+                  </div>
+                </div>
+              </div>
+            <% end %>
 
-    <div class="reviews_container">
+            <% if @space.amenities.includes(name: "Onsite Parking") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-car fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Onsite Parking
+                  </div>
+                </div>
+              </div>
+            <% end %>
 
-      <% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
-        <%= render 'reviews/form' %>
-        <%= render 'reviews/errors' %>
-      <% end %>
+            <% if @space.amenities.includes(name: "Elevator") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Elevator
+                  </div>
+                </div>
+              </div>
+            <% end %>
 
-      <div id="reviews_list">
-        <%= render "reviews" %>
+            <% if @space.amenities.includes(name: "Wheelchair Accessibility") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-wheelchair fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Accessible
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Coat Check") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-suitcase fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Coat Check
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Kid Friendly") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-child fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Kid Friendly
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Kitchen") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-cutlery fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Kitchen
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Television") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-television fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Television
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Projection Screen") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-video-camera fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Projector
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Speakers") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-bullhorn fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Speakers
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Rooftop") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Rooftop
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Outdoor Space") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-leaf fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Outdoor Space
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Tables") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-cube fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Tables
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Tables") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Tables
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if @space.amenities.includes(name: "Storage") %>
+              <div class="col-xs-6 col-sm-4">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <i class="fa fa-archive fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-xs-10">
+                    Storage
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <span class="blue-underline">Rules</span> <br /><%= @space.rules %><br/>
+        </div>
+
+        <div class="reviews_container">
+          <% if logged_in? && current_user.bookings.where(space_id: @space.id) %>
+            <%= render 'reviews/form' %>
+            <%= render 'reviews/errors' %>
+          <% end %>
+          <div id="reviews_list">
+            <%= render "reviews" %>
+          </div>
+        </div>
+
+        <h3>Location</h3>
+        <hr><br />
+
+         <% if @address %>
+           <iframe
+             width="100%"
+             height="450"
+             frameborder="0" style="border:0"
+             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
+               &q=<%=URI.encode(@address.street_address)%>" allowfullscreen>
+           </iframe>
+         <% end %>
       </div>
     </div>
 
-    <h3>Location</h3>
-    <hr><br />
-
-     <% if @address %>
-       <iframe
-         width="600"
-         height="450"
-         frameborder="0" style="border:0"
-         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7WAtGLU6PfuXDdDTjurl5pezeqhy4U_E
-           &q=<%=URI.encode(@address.street_address)%>" allowfullscreen>
-       </iframe>
-     <% end %>
-
-
-
-</main>
+   </div>
+  </div>
+</section>

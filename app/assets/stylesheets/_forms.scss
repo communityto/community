@@ -50,6 +50,19 @@ textarea {
   width: 40%;
 }
 
+.link-button-full, .link-button-full:link, .link-button-full:active, .link-button-full:visited {
+  background-color: $blue;
+  color: white;
+  text-align: center;
+  padding: 0.5em;
+  display: inline-block;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  width: 100%;
+}
+
 .search-location {
   width: 50%;
   display: inline;

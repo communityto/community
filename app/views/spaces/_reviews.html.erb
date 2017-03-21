@@ -14,7 +14,6 @@
 
 </div>
 
-  <h3> See Reviews </h3>
     <div id="review_all">
       <% @space.reviews.order(created_at: :desc).each do |review|  %>
           <div class="review_container" data-review-id = "<%= review.id %>">
