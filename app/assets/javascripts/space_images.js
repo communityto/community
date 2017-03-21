@@ -7,8 +7,3 @@
 //        $("#popup").html( $('<%= p.photo %>').attr('src', this.href) );
 //     });
 // });
-
-
-$(function() {
-    $('.gallery a').lightBox();
-});
