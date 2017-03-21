@@ -7,6 +7,38 @@
   height: 200px;
 }
 
+.review-container {
+  margin: 1em 0;
+}
+
 .review-submit {
   width: 100%;
+}
+
+.reviews-overall {
+  margin: 1.5em 0;
+
+  h4 {
+    margin: 0;
+  }
+
+  .overall-stars img {
+    vertical-align: top;
+  }
+
+  .col-xs-3 {
+    h4 {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+.review-user {
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.review-body {
+  margin-top: 1.5em;
 }
