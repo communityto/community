@@ -33,7 +33,7 @@
               Hosted by <%= link_to booking.space.host.first_name, booking.space.host %>
               <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.space.host.avatar %>')"></div>
               <div class="booking-desc"><b>
-                <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></b>
+                <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.space.host) %></b>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
               Hosted by <%= link_to booking.space.host.first_name, booking.space.host %>
               <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.space.host.avatar %>')"></div>
               <div class="booking-desc"><b>
-                <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></b>
+                <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.space.host) %></b>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@
               Hosted by <%= link_to booking.space.host.first_name, booking.space.host %>
               <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.space.host.avatar %>')"></div>
               <div class="booking-desc"><b>
-                <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></b>
+                <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.space.host) %></b>
               </div>
             </div>
           </div>
