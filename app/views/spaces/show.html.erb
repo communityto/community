@@ -53,7 +53,7 @@
 
 
         <p><%= @space.description %></p>
-
+      <% if @space.space_photos.count > 1 %>
         <div class="row">
           <div class="gallery">
               <% @space.space_photos.drop(1).each do |p|%>
@@ -63,7 +63,7 @@
         </div>
 
         <div id="popup"></div>
-
+      <% end %>
         <h3>Details</h3>
 
         <hr>
