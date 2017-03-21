@@ -16,6 +16,17 @@
   overflow: hidden;
 }
 
+.space-content {
+  h3 {
+    margin-top: 2em;
+  }
+}
+
+.space-amenities {
+  padding: 2em;
+  font-size: 15px;
+}
+
 .space-buttons {
   width: 100%;
   position: absolute;
@@ -28,6 +39,16 @@
 
   a {
     margin: 0 0.5em;
+  }
+}
+
+.space-aside {
+  border: 1px solid $lightgrey;
+  padding: 1.5em;
+  margin-bottom: 2em;
+
+  h2 {
+    margin-top: 0;
   }
 }
 
