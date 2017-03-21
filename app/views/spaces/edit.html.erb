@@ -1,6 +1,8 @@
 <main class="site-content">
   <div class="centered-form">
     <h1>Edit <%= @space.title %></h1>
+    <h4><%= link_to 'Delete Space', space_path(@space),method: :delete %></h4>
     <%= render 'form' %>
+
   </div>
 </main>
