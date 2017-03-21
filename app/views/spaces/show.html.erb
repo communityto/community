@@ -1,3 +1,12 @@
+<head>
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.lightbox-0.5.min.js"></script>
+<link rel="shortcut icon" href="http://designshack.net/favicon.ico">
+<link rel="icon" href="http://designshack.net/favicon.ico">
+<link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+<link rel="stylesheet" type="text/css" media="all" href="css/jquery.lightbox-0.5.css">
+</head>
+
 <section class="space-cover" style="background-image: url('<%= @space.space_photos.first.photo %> ')"></section>
 
 <section class="site-content">
@@ -15,6 +24,7 @@
 
       <%= render 'bookings/form' %>
     </div>
+
 
     <div class="col-sm-12 col-md-9 col-md-pull-3 space-content" style="padding-right: 4em;">
       <div data-space-id = "<%= @space.id %>">
@@ -39,7 +49,18 @@
 
         <h4><b><%= @address.street_address %></b></h4>
 
+
         <p><%= @space.description %></p>
+
+        <div class="row">
+          <div class="gallery">
+              <% @space.space_photos.drop(1).each do |p|%>
+                <a href='<%= p.photo %>'><section id="space-photo" class="col-12" style="background-image: url('<%= p.photo %> ')"></section></a>
+              <% end %>
+          </div>
+        </div>
+
+        <div id="popup"></div>
 
         <h3>Details</h3>
 

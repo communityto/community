@@ -5,7 +5,7 @@
   <% end %>
 
   <div>
-    <%= f.fields_for :post_attachments do |p| %>
+    <%= f.fields_for :space_photos do |p| %>
       <%= p.label :photo %><br>
       <%= p.file_field :photo, :multiple => true, name: "space_photos[photo][]" %>
       <% end %>

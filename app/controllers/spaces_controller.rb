@@ -70,7 +70,7 @@ class SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:title, :description, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, space_photos_attributes: [:id, :space_id, :photo], :amenity_ids => [], :category_ids => [], :address_attributes => [:id, :street_address, :neighbourhood, :city, :province] )
+    params.require(:space).permit(:title, :description, :check_in, :check_out, :rules, :capacity, :bathrooms, :price, :size, :host_id, space_photos_attributes: [:id, :space_id, :photo, :remove_photo], :amenity_ids => [], :category_ids => [], :address_attributes => [:id, :street_address, :neighbourhood, :city, :province] )
   end
 
 end

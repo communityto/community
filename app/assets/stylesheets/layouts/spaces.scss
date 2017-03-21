@@ -60,17 +60,34 @@
   background-color: #F3F3F5;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   width: 100%;
   height: 500px;
 }
 
 .space-image {
-  width: 100%;
+  width: 250px;
   height: 250px;
-  overflow: hidden;
-  background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
+}
+
+.gallery {
+  height: 300px;
+  width: auto;
+  overflow: scroll;
+  margin: 0px;
+}
+
+#space-photo {
+  float: left;
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .space-description {
