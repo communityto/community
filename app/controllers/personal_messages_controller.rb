@@ -4,9 +4,9 @@ class PersonalMessagesController < ApplicationController
   before_action :require_login
 
   def new
-    redirect_to user_conversation_path(current_user, @conversation) and return if @conversation
-    @users = User.all
-    @personal_message = current_user.personal_messages.build
+      redirect_to user_conversation_path(current_user, @conversation) and return if @conversation
+      @users = User.all
+      @personal_message = current_user.personal_messages.build
   end
 
 
