@@ -61,14 +61,9 @@ gem 'figaro'
 
 gem 'simple_calendar', '~> 2.0'
 
-
 gem 'geocoder'
 
-
 gem 'rails_emoji_picker'
-
-gem 'mini_magick'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
