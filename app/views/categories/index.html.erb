@@ -3,11 +3,11 @@
   <hr>
   <div class="category">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" style="max-width: 700px">
 
         <% @categories.each do |category| %>
           <%= link_to category do %>
-          <div class="col-md-4 category-name">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 category-name">
             <%= category.name %>
           </div>
         <% end %>
