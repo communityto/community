@@ -20,7 +20,7 @@
                   <hr>
                   <b><%= space.address.street_address %>, <%= space.address.city %></b><br />
                   $<%= space.price %> | <%= space.capacity %> Persons | <%= space.size %> ft<sup>2</sup><br />
-                  <p><%= space.description.truncate(190) %></p>
+                  <p><%= space.description.truncate(180) %></p>
                   <div class="space-buttons">
                     <% if space.host == current_user %>
                       <%= link_to 'Manage', user_hosted_space_path(current_user, space), class: 'link-button' %>

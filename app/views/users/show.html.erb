@@ -6,10 +6,15 @@
       <% if @user == current_user %>
         <h1 class="centered">Hey there <span><%= @user.first_name%>!</span></h1><br/>
         <center><%= link_to 'Edit Profile', edit_user_path, class: 'link-button' %></center>
-      <% else %>
-        <h1 class="centered"><span><%= @user.first_name + " " + @user.last_name %></h1><br/>
-        <center><%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: @user), class: 'link-button' %></center>
+        <% else %>
+          <h1 class="centered"><span><%= @user.first_name + " " + @user.last_name %></h1><br/>
+            <% if logged_in? %>
+          <center><%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: @user), class: 'link-button' %></center>
+            <% else %>
+          <center><%= link_to 'Log in to Message', login_path, class: 'link-button' %></center>  
+          <% end %>
       <% end %>
+
 
     </div>
 

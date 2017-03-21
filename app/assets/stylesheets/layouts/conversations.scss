@@ -17,15 +17,17 @@
 
 .inbox-main {
   width: 100%;
-  overflow: scroll;
-  height: 400px;
+  // overflow: scroll;
+  // height: 400px;
   // margin-left: 4em;
 }
 
 .inbox-conversation {
-  border: 1px dotted $blue;
+  border: 1px solid $blue;
+  padding: 1em;
   border-radius: 0.5em;
   margin: 0.25em 0 0.5em 0.25em;
+  height: 200px;
 }
 
 .conversation-title {
