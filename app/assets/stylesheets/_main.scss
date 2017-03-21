@@ -168,6 +168,11 @@ p {
   padding: 0;
 }
 
+.ui-widget input {
+  font-family: $base-font-family;
+  font-weight: 300;
+}
+
 // SIMPLE STYLES & FIXED
 
 .clearfix {
