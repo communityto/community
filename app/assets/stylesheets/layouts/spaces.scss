@@ -68,6 +68,24 @@
   background-position: center top;
 }
 
+.gallery {
+  height: 300px;
+  width: auto;
+  overflow: scroll;
+  margin: 0px;
+}
+
+#space-photo {
+  float: left;
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .space-description {
   padding: 25px;
   font-size: 13px;
