@@ -11,7 +11,7 @@
             <% if logged_in? %>
           <center><%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: @user), class: 'link-button' %></center>
             <% else %>
-          <center><%= link_to 'Log in to Message', login_path, class: 'link-button' %></center>  
+          <center><%= link_to 'Log in to Message', login_path, class: 'link-button' %></center>
           <% end %>
       <% end %>
 
@@ -25,13 +25,14 @@
         <p><b style="font-size: 14px">Joined <%= @user.created_at.strftime("%B %-d %Y") %></b></p>
         <p><%= @user.bio %></p>
 
-        <% if @user.hosted_spaces.any? %>
+        <center><% if @user.hosted_spaces.any? %>
           <%= link_to 'Listed Spaces', user_hosted_spaces_path(@user), class: 'link-button' %>
         <% end %></h5>
 
         <% if @user.favourites.any? %>
           <%=link_to 'Favourites', user_favourite_spaces_path(@user), class: 'link-button' %>
         <% end %>
+      </center>
 
       </section>
     </div>
