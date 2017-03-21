@@ -9,8 +9,11 @@
       <div class="profile-image size50 booking-icon" style="background-image: url('<%= @space.host.avatar %>')"></div>
       <%= link_to @space.host.first_name + " " + @space.host.last_name, @space.host %><br />
       <b style="font-size: 14px">Joined <%= @space.host.created_at.strftime("%B %-d, %Y") %></b>
-      <p><%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: @space.host), class: 'link-button-full' %></p>
-
+      <p><% if logged_in? %>
+          <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: @space.host), class: 'link-button-full' %> </p>
+        <% else %>
+          <%= link_to 'Log In to Message Host', login_path, class: 'link-button-full' %> </p>
+        <% end %>
       <hr>
 
       <%= render 'bookings/form' %>
