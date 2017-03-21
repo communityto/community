@@ -20,43 +20,55 @@
     <%= render partial: "calendar", locals: {hosted_spaces: @hosted_space_bookings} %>
   </div><br />
 
-  <h4><span class="blue-underline">Approved Bookings</span></h4>
+  <h3>Manage Bookings</h3>
+  <hr>
 
-  <% if !@hosted_space_bookings.where(approved:true).exists? %>
-    <p>You have no approved bookings.</p>
-  <% else %>
-    <div class="container-fluid">
-      <div class="row no-gutters">
-        <% @hosted_space_bookings.where(approved: true).each do |booking| %>
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-upcoming" class="tab-link">Upcoming Bookings</a></li>
+      <li><a href="#tabs-pending" class="tab-link">Pending Bookings</a></li>
+      <li><a href="#tabs-cancelled" class="tab-link">Cancelled Bookings</a></li>
+    </ul>
 
-          <% if booking.end_time >= Date.today %>
-            <div class="col-sm-6 col-md-4">
-              <div class="booking-container">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.user.avatar %>')"></div>
-                    <div class="booking-desc"><b>
-                      <%= link_to booking.user.first_name + " " + booking.user.last_name, booking.user %></b> <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></br >
-                      <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %>
+  <div id="tabs-upcoming">
+
+    <% if !@hosted_space_bookings.where(approved:true).exists? %>
+      <p>You have no approved bookings.</p>
+    <% else %>
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <% @hosted_space_bookings.where(approved: true).each do |booking| %>
+
+            <% if booking.end_time >= Date.today %>
+              <div class="col-sm-6 col-md-4">
+                <div class="booking-container">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="profile-image size50 booking-icon" style="background-image: url('<%= booking.user.avatar %>')"></div>
+                      <div class="booking-desc"><b>
+                        <%= link_to booking.user.first_name + " " + booking.user.last_name, booking.user %></b> <i class="fa fa-caret-right" aria-hidden="true"></i> <%= link_to 'Message', new_user_personal_message_path(current_user, receiver_id: booking.user) %></br >
+                        <%= booking.start_time.strftime("%B %-d %Y") %> – <%= booking.end_time.strftime("%B %-d %Y") %>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <%= form_for [@hosted_space, booking] do |f| %>
-                      <%= f.hidden_field(:denied, :value => true) %>
-                      <%= f.submit "Deny", class: 'booking-button' %>
-                    <% end %>
+                    <div class="col-sm-12">
+                      <%= form_for [@hosted_space, booking] do |f| %>
+                        <%= f.hidden_field(:denied, :value => true) %>
+                        <%= f.submit "Deny", class: 'booking-button' %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
+
           <% end %>
-
-        <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <h4><span class="blue-underline">Pending Bookings</span></h4>
+  </div>
+
+  <div id="tabs-pending">
 
   <% if !@hosted_space_bookings.where(approved:false).exists? %>
     <p>You have no pending bookings.</p>
@@ -98,9 +110,9 @@
       </div>
     <% end %>
 
-  <% if @hosted_space_bookings.where(denied:true).exists? %>
+  </div>
 
-    <h4><span class="blue-underline">Cancelled Bookings</span></h4>
+  <div id="tabs-cancelled">
 
     <div class="container-fluid">
       <div class="row no-gutters">
@@ -125,6 +137,15 @@
       </div>
 
     <% end %>
-  <% end %>
+
+  </div>
 
 </main>
+
+<!-- SCRIPT -->
+
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+</script>
